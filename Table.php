@@ -71,4 +71,10 @@ class Table {
 		$query = substr($query,0,-2);
                 return mysql_query($query); 
 	}
+
+	//This function resets the fields array.
+	function reset() 
+	{
+		$this->fields = array();	
+	}
 }
