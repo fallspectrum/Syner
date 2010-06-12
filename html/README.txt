@@ -1,0 +1,3 @@
+#####README######
+
+The left navigation namely the Area and Tag navigation doesn't look at that great and I'm still looking for for some better methods to have it blend with the rest of the layout.  The css is only covering gradients for webkit(chrome) and mozilla for the moment, the IE declarations are not working yet. Each page has a quick explanation describing how the page works.  I know the work is a bit rushed and un-organized but I'll be back to update this after the weekend. -Trav

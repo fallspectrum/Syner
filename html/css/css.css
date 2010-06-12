@@ -1,0 +1,669 @@
+/*  README first before digging through this */
+/*  I use Notepadd++ so I like to tab/indent a declaration if it is wrapped by another
+ This should help you understand the way I've organized the declarations since I also like to do the same
+with HTML tags that wrap each-other */
+
+/* 
+Here is a basic legends for hex colors:
+
+#000000(black)
+#393939(dark grey)
+#8f8f8f(grey)
+#dddddd(light grey)
+#ffffff(white)
+#009604(green)
+
+*/
+
+
+
+
+/*  non class/id declarations */
+html,body{
+	margin:0; 
+	padding:0; 
+	background-color:#393939;
+	font: 100% trebuchet ms,arial,sans-serif
+	
+}
+a{
+	color:#ffffff
+}
+h1 {	
+	font-size:18px;
+	
+}
+
+/*  Layout Begins */
+
+/*Container wraps entire layout = header & body*/
+div#container{
+	margin:0 auto; 
+	width:960px; 
+}
+
+	
+	/* Header wraps = logo, headnav, and login*/
+div#header{
+
+	-khtml-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	position:relative;
+	width:960px;
+	height:50px;
+	background:#1c1c1c;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#1c1c1c'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#1c1c1c)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #393939,  #1c1c1c); /* for firefox 3.6+ */
+	border:1px solid #8f8f8f;
+	border-top:none;
+	color:#ffffff;
+}
+	div#logo{
+		position:absolute;
+		left:5px;
+		top:6px;
+		width:300px;
+
+	}
+		a.logo{
+			border:0;
+			text-decoration:none;
+		}
+		
+			img#words{
+				position:relative;
+				vertical-align:text-middle;
+				top:5px;
+			}
+			
+			img#logo{
+			
+				position:relative;
+				vertical-align:text-top;
+				left:20px;
+				top:-9px;
+			}
+	/* Begin Headnav - The headnav contains the links (Search, Popular, and Recent) */
+	div#headnav{
+	position:relative;
+	float:left;
+	left:300px;
+	height:38px;
+	width:400px;
+	text-align:center;
+	vertical-align:middle;
+	}
+		ul#headnav{
+			width:100%;
+			padding:0;
+			margin:0;
+			list-style-type:none;
+			height:40px;
+		}
+
+			li.headnav{
+				-khtml-border-radius-bottomright: 5px;
+				-khtml-border-radius-bottomleft: 5px;
+	
+				-moz-border-radius-bottomright: 5px;
+				-moz-border-radius-bottomleft: 5px;
+	
+				border-bottom-right-radius: 5px;
+				border-bottom-left-radius: 5px;
+
+				-webkit-border-bottom-left-radius: 5px;
+				-webkit-border-bottom-right-radius: 5px;
+				
+				display:inline;
+				border:1px solid #8f8f8f;
+				border-top:none;
+				color:#009604;
+				font-weight:bold;
+				font-size:20px;
+			}
+
+			li.headnav#active{
+				border:1px solid #009604;
+				border-bottom:2px solid #009604;
+				background-color:#000000;
+			}
+
+				a.headnav{
+					text-decoration:none;
+					color:#ffffff;
+					padding-right:15px;
+					padding-left:15px;
+				}
+
+				a.headnav:hover{
+					border-bottom:2px solid #009604;
+				}
+	/* End Headnav */
+	/* Begin Login area - Contains Register, Login, Logout, Settings, Home, and Admin Control Panel*/
+	div#login{
+	float:right;
+	position:relative;
+	top:-5px;
+	height:38px;
+	width:300px;
+	}
+
+		ul#login{
+			float:right;
+			height:38;
+			list-style-type:none;
+		}
+
+			li.login{
+				display:inline;
+				height:38px;
+				font-weight:bold;
+				font-size:15px;
+			}
+
+			li.login#first{
+				border-right:1px solid #fff
+			}
+
+				a.login{
+					height:38px;
+					text-decoration:none;
+					color:#fff;
+					padding-right:10px;
+					padding-left:10px;
+					font-weight:bold;
+				}
+				
+				a.login:hover{
+					color:#009604;
+				}
+
+
+				
+/* End Header */
+
+/* Begin Body - Body wraps leftBox(Area and Tag Navigation), rightBox(Topic content and navigation), or bigBox(basic content page), and the footer */
+div#body{
+	position:relative;
+	height:500px;
+	width:960px;
+}
+
+/* Begin leftBox - wraps Area navigation, and Tag navigation */
+
+	div#leftBox{
+		width:200px;
+		margin-top:20px;
+		margin-bottom:20px;
+		margin-right:20px;
+		float:left;
+		color:#000000;
+	}
+		/*  Control the Title over the Area nav, namely the words: "Area" */
+		div#lefttopBox{
+			color:#ffffff;
+			font-weight:bold;
+			font-size:20px;
+			text-align:center;
+		}
+			/*   Begin Area Navigation */
+			div.greyBox{
+				width: 200px; /*width of menu*/
+				border-style:0px;
+			}
+
+				.greyBox ul{
+					list-style-type: none;
+					margin: 0;
+					padding: 0;
+				}
+	
+					.greyBox li a{
+						font-size:12px;
+						font-weight:bold;
+						display: block;
+						background: transparent url(greyBox2.gif) 100% 0;
+						height: 24px; /*Set to height of bg image- padding within link (ie: 32px - 4px - 4px)*/
+						padding: 4px 0 4px 10px;
+						line-height: 24px; /*Set line-height of bg image- padding within link (ie: 32px - 4px - 4px)*/
+						text-decoration: none;
+						border-left:1px solid #8f8f8f;
+					}	
+	
+					.greyBox li a:link, .greyBox li a:visited {
+						color: #000000;
+					}
+                      /* changes menu item to green and hightlights the right edge */
+					.greyBox li a:hover{
+					color: #009604;
+					border-right:2px solid #009604;
+					}
+
+					/*  Expands the selected area manu item */
+					.greyBox li a.selected{
+						color: #000000;
+						height:56px;
+						font-size:16px;
+						border-right:2px solid #009604;
+						background-position: 100% -32px;
+					}
+			
+			
+		/* End Area Navigation */
+		
+		/* Start Tag Navigation */
+
+		div#lefttagBox{
+			margin-top:15px;
+			color:#ffffff;
+			font-weight:bold;
+			font-size:20px;
+			text-align:center;
+		}
+		div#lefttagcontent{
+			padding-top:5px;
+			border:1px solid #000000;
+			background-color:#dddddd;
+			color:#000000;
+			font-weight:bold;
+			font-size:15px;
+			text-align:left;
+		}
+		div#lefttagcontent a{
+			color:#ff4040;
+			text-decoration:none;
+			font-size:90%;
+		}
+		/* End Tag Navigation */
+	/* End Left Box */
+
+
+	/* Start Right Box - rightBox consisters of 3 divs - The topic navigation, control navigation (edit + admin), and the content.*/
+	div#rightBox{
+		position:;
+		float:left;
+		left:;
+		padding:;
+		height:;
+		width:740px;
+		color:#000000;
+		margin-top:20px;
+	}
+		/* Start Topic Navigation -  */
+		div#topicnav{
+		float:left;
+		vertical-align:bottom;
+		width:500px;
+		}
+		
+			ul#topicnav { 
+				text-align:left; 
+				margin: 0 0 0 0; 
+				font: bold 11px verdana, arial, sans-serif; 
+				border-bottom: 1px solid #000; 
+				list-style-type: none;
+				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+			}
+
+ 
+			ul#topicnav li { 
+			display: inline;
+			}
+
+			ul#topicnav li a { 
+				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				border: 1px solid #000; 
+				background-color:#dddddd; 
+				color: #000; 
+				margin-right: 1px; 
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			ul#topicnav a:hover { 
+				border-top:2px solid #009604;
+			}
+
+		/* End Topic Navigation */
+
+		/* Begin Control Nav (edit + admin) */
+		
+		div#controlnav{
+			text-align:right;
+			
+		}
+		
+			ul#controlnav {
+				text-align:right; /* set to left, right or center */
+				margin: 0 0 0 0; /* set margins as desired */
+				font: bold 11px verdana, arial, sans-serif; /* set font as desired */
+				border-bottom: 1px solid #000; /* set border COLOR as desired */
+				list-style-type: none;
+				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+			}
+			
+			ul#controlnav li { /* do not change */
+				display: inline;
+			}
+			
+			ul#controlnav li a { /* settings for all tab links */
+				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				border: 1px solid #000; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+				background-color:#dddddd; /* set unselected tab background color as desired */
+				color: #000; /* set unselected tab link color as desired */
+				margin-right: 1px; /* set additional spacing between tabs as desired */
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			ul#controlnav a:hover { /* settings for hover effect */
+				border-top:2px solid #009604;
+			}
+			/*  End Control Nav */
+			
+								/*  These two declarations below cover BOTH topic nav AND control nav.  I copied this css tab script from another site and after configuring it I think there is a more elegant way to set each of the li menu items as active.
+									This script forces you to place an ID value within the body tag, and that id value determines which item is selected.  I'll have to come back change this later. */
+
+				
+		
+							body#problem li.problem, body#action li.action, body#discussion li.discussion, body#solutions li.solutions, body#vote li.vote, body#admin li.admin, body#edit li.edit { /* settings for selected tab */
+								border-bottom: 0px solid #fff; 
+								
+							}
+ 
+							body#problem li.problem a, body#action li.action a, body#discussion li.discussion a, body#solutions li.solutions a, body#vote li.vote a, body#admin li.admin a, body#edit li.edit a { /* settings for selected tab link */
+								background-color: #fff; 
+								color: #000; 
+								position: relative;
+								top: 1px;
+								padding-top: 4px; /* must change with respect to padding (X) above and below */
+								border-top:2px solid #009604;
+							}
+		
+		
+		
+		/* Begin Content  */
+		
+		
+		div#content{
+		
+		position:;
+		float:;
+		left:;
+		padding:15px;
+		height:;
+		width:;
+		background-color:#ffffff;
+		color:#000000;
+		border-color:#000;
+		border-style:solid;
+		border-width:1px;
+		border-top:none;
+		margin-bottom:20px;
+		}
+		div#content a{
+			text-decoration:none;
+			color:#009604;
+		}
+		
+			/* titleBox (used on every topic page)*/
+			div#titleBox {
+				-moz-border-radius-topleft:5px;
+				-moz-border-radius-topright:5px;
+				-moz-border-radius-bottomleft: 5px;
+				-moz-border-radius-bottomright: 5px;
+				-webkit-border-top-left-radius: 5px;
+				-webkit-border-top-right-radius: 5px;
+				-webkit-border-bottom-left-radius: 5px;
+				-webkit-border-bottom-right-radius: 5px;
+				background-color:;
+				background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cacaca));
+				border:1px solid #393939;
+				margin-bottom:10px;
+				z-index: 1;
+				width:700px;
+				position: static;
+				top: auto;
+				left: auto;
+				padding: 5px 5px 5px 5px; 
+				text-align:center;
+				font-weight:bold;
+				font-size:16px;
+			}
+		
+		/*  For each of the topic pages I'm going to list the declarations needed for need each one.  Some declarations are used within other pages as well, these can be consolidated later but for now I'll just list them.   */
+		
+		/* Begin Problem Page */
+		
+		
+		
+		div#resultsheader{
+			text-align:;
+			height:25px;
+			border:0px solid #000;
+		}
+		div#resultstitle{
+			float:left;
+			font-weight:bold;
+			font-size:15px;
+			
+		}
+		div#pageoptions{
+			float:right;
+			font-size:18px;
+		}
+		
+		div#itemTitle{
+			font-weight:bold;
+			
+		}
+		div#itemTags{
+				text-align:right;
+		}
+		
+		div#tagBox {
+			-moz-border-radius-topleft:5px;
+			-moz-border-radius-topright:5px;
+			-moz-border-radius-bottomleft: 5px;
+			-moz-border-radius-bottomright: 5px;
+			-webkit-border-top-left-radius: 5px;
+			-webkit-border-top-right-radius: 5px;
+			-webkit-border-bottom-left-radius: 5px;
+			-webkit-border-bottom-right-radius: 5px;
+			background-color:;
+			background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cacaca));
+			border:1px solid #393939;
+			margin-top:10px;
+			z-index: 1;
+			width:700px;
+			position: static;
+			top: auto;
+			left: auto;
+			padding: 5px 5px 5px 5px; 
+			text-align:left;
+			font-weight:bold;
+			font-size:16px;
+			text-decoration:none;
+		}
+ 
+		div#tagBox  a{
+			color:#000000;
+			text-decoration:none;
+		}
+		
+		/* End Problem Page */
+		
+		/*  Action Page   */
+		div#actionBox{
+			width:710px;
+			border:0px solid #ff0000;
+		}
+		div#historyBox{
+			float:left;
+			height:;
+			width:340px;
+			margin-right:0px;
+			margin-bottom:20px;
+			border:2px solid #000;
+		}
+
+		div#eventBox{
+			margin-bottom:20px;
+			float:right;
+			height:350px;
+			width:340px;
+			border:2px solid #000;
+		}
+
+		div#timelineBox{
+			clear:both;
+			height:400px;
+			border:2px solid #000;
+		}
+		/*  End Action Page   */
+		
+		/*  Begin Discussion Page   */
+		div#discussionBox{
+			width:710px;
+			border:0px solid #ff0000;
+		}
+		/*  End Discussion Page   */
+
+		/*  Solution Page   */
+
+		div#solutionsBox{
+			width:710px;
+			border:0px solid #ff0000;
+		}
+		div#solutionOptions{
+			font-weight:bold;
+			font-size:20px;
+
+		}
+		div#solutionListing{
+
+		}
+		div#solutionItem{
+			height:30px;
+
+		}
+		div#solutionTitle{
+			float:left;
+		}
+		div#solutionVote{
+			float:right;
+		}
+
+		/*  End Solution Page   */
+		
+		/* These are used for various pages */
+
+		div#spacer{
+			margin-top:10px;
+			margin-bottom:10px;
+			height:2px;
+			display:block;
+			background-color:#8f8f8f;
+		}
+		div#minispacer{
+			margin-top:5px;
+			margin-bottom:5px;
+			height:1px;
+			display:block;
+			background-color:#000;
+		}
+		
+		
+	/* END rightBox */
+		
+	/* bigBox is used for standard pages that require no area/tag/topic navigation (such as index and footer links) */	
+	div#bigBox{
+		margin-top:20px;
+		position:;
+		float:left;
+		left:;
+		padding:;
+		height:;
+		width:960px;
+		color:#000000;
+		margin-top:20px;
+	}
+	
+	/* Begin Footer */
+	
+	div#footer{
+	
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+
+	-khtml-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-khtml-border-radius-topright: 5px;
+	-khtml-border-radius-topleft: 5px;
+
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-topleft: 5px;
+
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+
+	position:;
+	right:;
+	width:960px;
+	height:50px;
+	background:#1c1c1c;
+	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#1c1c1c'); /* for IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#1c1c1c)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #393939,  #1c1c1c); /* for firefox 3.6+ */
+
+	
+	border:1px solid #8f8f8f;
+	text-align:center;
+	vertical-align:middle;
+	color:#c8c7c7;
+	clear:both;
+	}
+	div#footer a{
+		color:#ffffff;
+		text-decoration:none;
+		font-weight:bold;
+	}
+	div#footer a:hover{
+		color:#009604;
+		text-decoration:underline;
+	}
+	
+	/* End Footer */
+
+	
+	
+	
+
+
+
+ 
+
+
+
+
+
+
+
+
