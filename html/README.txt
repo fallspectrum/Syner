@@ -19,3 +19,5 @@ You can reach to new logo from the index page, see the link at the bottom of the
 Also I forgot to mention some functionality with the headnav and area nav.  If a user selects "search" and then selects an area, say country, if they go back and select "peak" they do not get returned to global as default, whatever current area they have selected it would remain that way until they change it.  The area that they select would also stay selected after they have selected a Topic, this way the menu passively tells the user what area the topic is located within.  Another thing we could try and I wanted to get your input on is having the area selection change whenever a user clicks on a link to another problem that happens to be in a different Area.  Should the area menu change to select that area to as the user is looking at it?
 
 -Trav
+
+Testing change to readme
