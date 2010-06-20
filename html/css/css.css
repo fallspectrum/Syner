@@ -170,13 +170,15 @@ div#header{
 					border-bottom:2px solid #009604;
 				}
 	/* End Headnav */
-	/* Begin Login area - Contains Register, Login, Logout, Settings, Home, and Admin Control Panel*/
+	/* Begin User Navigation - Contains Register, Login, Logout, Settings, Home, and Admin Control Panel*/
+	/*  change name from login to usernav */
 	div#login{
 	float:right;
 	position:relative;
 	top:-5px;
 	height:38px;
-	width:300px;
+	width:350px;
+	border:0px solid #ff0000;
 	}
 
 		ul#login{
@@ -209,7 +211,45 @@ div#header{
 					color:#009604;
 				}
 
+				/*  Delete above CSS and leave belong once the class and id fields have been changed over */
+				div#usernav{
+	float:right;
+	position:relative;
+	top:-5px;
+	height:38px;
+	width:300px;
+	}
 
+		ul#usernav{
+			float:right;
+			height:38;
+			list-style-type:none;
+		}
+
+			li.usernav{
+				display:inline;
+				height:38px;
+				font-weight:bold;
+				font-size:15px;
+			}
+
+			li.usernav#first{
+				border-right:1px solid #fff
+			}
+
+				a.usernav{
+					height:38px;
+					text-decoration:none;
+					color:#fff;
+					padding-right:10px;
+					padding-left:10px;
+					font-weight:bold;
+				}
+				
+				a.usernav:hover{
+					color:#009604;
+				}
+/* End User Navigation */
 				
 /* End Header */
 
@@ -230,14 +270,16 @@ div#body{
 		float:left;
 		color:#000000;
 	}
-		/*  Control the Title over the Area nav, namely the words: "Area" */
+		/*  Control the Title over the Group Module, namely the word: "Groups" */
+		/* Change this to groupBox */
 		div#lefttopBox{
 			color:#ffffff;
 			font-weight:bold;
 			font-size:20px;
 			text-align:center;
 		}
-			/*   Begin Area Navigation */
+			/*   Begin Group Module */
+			/*  change greyBox to groupMod */
 			div.greyBox{
 				width: 200px; /*width of menu*/
 				border-style:0px;
@@ -280,10 +322,10 @@ div#body{
 					}
 			
 			
-		/* End Area Navigation */
+		/* End Group Module */
 		
-		/* Start Tag Navigation */
-
+		/* Start Tag Module */
+		/*  change lefttagBox to tagBox */
 		div#lefttagBox{
 			margin-top:15px;
 			color:#ffffff;
@@ -291,6 +333,7 @@ div#body{
 			font-size:20px;
 			text-align:center;
 		}
+		/*  change lefttagcontent to tagMod */
 		div#lefttagcontent{
 			padding-top:5px;
 			border:1px solid #000000;
@@ -305,7 +348,7 @@ div#body{
 			text-decoration:none;
 			font-size:90%;
 		}
-		/* End Tag Navigation */
+		/* End Tag Module */
 	/* End Left Box */
 
 
@@ -428,6 +471,7 @@ div#body{
 		}
 		
 			/* titleBox (used on every topic page)*/
+			/*  change titleBox to titleDisplay */
 			div#titleBox {
 				-moz-border-radius-topleft:5px;
 				-moz-border-radius-topright:5px;
@@ -481,7 +525,7 @@ div#body{
 		div#itemTags{
 				text-align:right;
 		}
-		
+		/* change from tagBox to tagDisplay */
 		div#tagBox {
 			-moz-border-radius-topleft:5px;
 			-moz-border-radius-topright:5px;
@@ -628,7 +672,6 @@ div#body{
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
 
-	
 	width:960px;
 	height:50px;
 	background:#1c1c1c;
