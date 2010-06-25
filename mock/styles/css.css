@@ -1,0 +1,805 @@
+/*  README first before digging through this */
+/*  I use Notepadd++ so I like to tab/indent a declaration if it is wrapped by another
+ This should help you understand the way I've organized the declarations since I also like to do the same
+with HTML tags that wrap each-other */
+
+/* 
+Here is a basic legend for hex colors:
+
+#000000(black)
+#393939(dark grey)
+#8f8f8f(grey)
+#dddddd(light grey)
+#ffffff(white)
+#009604(green)
+
+*/
+
+
+/*  non class/id declarations */
+html,body{
+	margin:0; 
+	padding:0; 
+	background-color:#393939;
+	font: 100% trebuchet ms,arial,sans-serif
+	
+}
+a{
+	color:#ffffff
+}
+h1 {	
+	font-size:;
+	
+}
+h2 {
+	color:#009604;
+	font-size:20px;
+}
+
+/*  *****Layout Begins***** */
+
+/*Container wraps entire layout = header & body*/
+div#container{
+	margin:0 auto; 
+	width:960px; 
+}
+	
+	/* Header wraps = logo, headnav, and usernav*/
+div#header{
+	-khtml-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	position:relative;
+	width:960px;
+	height:50px;
+	background:#1c1c1c;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#1c1c1c'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#1c1c1c)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #393939,  #1c1c1c); /* for firefox 3.6+ */
+	border:1px solid #8f8f8f;
+	border-top:none;
+	color:#ffffff;
+}
+
+	/* Begin logo */
+
+	div#logo{
+		position:absolute;
+		width:300px;
+		border:0px solid #ff0000;
+
+	}
+		div.logoBox{
+			border:0px solid #fff;
+			position:absolute;
+			top:10px;
+			right:-8px;
+			text-align:center;
+			vertical-align:middle;
+		}
+		div.logoBox a{
+			border:0;
+			text-decoration:none;
+		}
+		div.logoBox a:hover{
+			border-bottom:1px solid #009604;
+		}
+	/* End logo */
+	 
+	/* Begin Headnav - The headnav contains the links (Search, Popular, and Recent) */
+	div#headnav{
+	position:relative;
+	float:left;
+	left:300px;
+	height:38px;
+	width:400px;
+	text-align:center;
+	vertical-align:middle;
+	}
+		ul#headnav{
+			width:100%;
+			padding:0;
+			margin:0;
+			list-style-type:none;
+			height:40px;
+		}
+
+			li.headnav{
+				-khtml-border-radius-bottomright: 5px;
+				-khtml-border-radius-bottomleft: 5px;
+	
+				-moz-border-radius-bottomright: 5px;
+				-moz-border-radius-bottomleft: 5px;
+	
+				border-bottom-right-radius: 5px;
+				border-bottom-left-radius: 5px;
+
+				-webkit-border-bottom-left-radius: 5px;
+				-webkit-border-bottom-right-radius: 5px;
+				
+				display:inline;
+				border:1px solid #8f8f8f;
+				border-top:none;
+				color:#009604;
+				font-weight:bold;
+				font-size:20px;
+			}
+
+			li.headnav#active{
+				border:1px solid #009604;
+				border-bottom:2px solid #009604;
+				background:#1c1c1c;
+			}
+
+				a.headnav{
+					text-decoration:none;
+					color:#ffffff;
+					padding-right:15px;
+					padding-left:15px;
+				}
+
+				a.headnav:hover{
+					border-bottom:2px solid #009604;
+				}
+	/* End Headnav */
+	/* Begin User Navigation - Contains Register, Login, Logout, Settings, Home, and Admin Control Panel*/
+	div.usernav{
+		float:right;
+		position:relative;
+		top:-5px;
+		height:38px;
+		width:300px;
+		border:0px solid #ff0000;
+	}
+		ul.usernav{
+			float:right;
+			height:38;
+			list-style-type:none;
+			text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
+		}
+
+			li.usernav{
+				display:inline;
+				height:38px;
+				font-weight:bold;
+				font-size:15px;
+			}
+
+			li.usernav#first{
+				border-right:1px solid #009604;
+			}
+
+				li.usernav a{
+					height:38px;
+					text-decoration:none;
+					color:#fff;
+					padding-right:10px;
+					padding-left:10px;
+					font-weight:bold;
+				}
+				
+				li.usernav a:hover{
+					color:#009604;
+				}
+/* End User Navigation */
+				
+/* End Header */
+
+/* Begin Body - Body wraps leftBox(Group & Tag Modules), rightBox(Topic Navigation & Content), bigBox(basic content page), and the footer */
+div#body{
+	position:relative;
+	height:500px;
+	width:960px;
+}
+
+/* Begin leftBox - wraps Group Module, and Tag Module */
+
+	div#leftBox{
+		width:220px;
+		margin-top:20px;
+		margin-bottom:20px;
+		margin-left:;
+		float:left;
+		color:;
+	}
+	div#leftBox.topic{
+		margin-top:39px;
+	}
+		/*  Control the Title over the Group Module, namely the word: "Groups" */
+		
+			/*   Begin Group Box */
+			div.groupMod{
+				width:; /*width of menu*/
+				border-style:0px;
+				margin-left:;
+			}
+
+				ul.groupBox{
+					list-style-type: none;
+					margin:0;
+					padding:0;
+					border:0px solid #000000;
+					color:;
+				}
+				
+				ul.groupBox li#title{
+						font-size:20px;
+						font-weight:bold;
+						display: block;
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#cecece'); /* for IE */
+						background: -moz-linear-gradient(top,  #fcfcfc,  #cecece); /* for firefox 3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#cecece));
+						background:;
+						height:; 
+						padding: 4px 0 4px 10px;
+						line-height: 24px;
+						text-decoration: none;
+						text-align:center;
+						border:1px solid #000000;
+						border-bottom:none;
+						border-right:none;
+						text-shadow: rgba(0, 0, 0, 0.25) 0 1px 1px;
+				}
+	
+					ul.groupBox li a{
+						font-size:14px;
+						font-weight:bold;
+						display: block;
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd'); /* for IE */
+						background: -moz-linear-gradient(top,  #ffffff,  #dddddd); /* for firefox 3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dddddd));
+						height: 24px; /*Set to height of bg image- padding within link (ie: 32px - 4px - 4px)*/
+						padding: 4px 0 4px 10px;
+						line-height: 24px; /*Set line-height of bg image- padding within link (ie: 32px - 4px - 4px)*/
+						text-decoration: none;
+						border:1px solid #000000;
+						border-right:none;
+					}	
+	
+					ul.groupBox a:link, ul.groupBox a:visited {
+						color:#000000;
+					}
+                     
+					ul.groupBox a:hover{
+					color: #009604;
+					}
+
+					/*  brings the selected group item to the right, meshing it with the content */
+					ul.groupBox a.select{
+					position:relative;
+						color:#009604;
+						left:1px;
+						background:#ffffff;
+					}
+					/* This does the same as above, just increases the height as well for additional content (dropdown, checkbox, etc.) */
+					ul.groupBox a.selecthier{
+					position:relative;
+						color:#009604;
+						text-align:;
+						height:56px;
+						
+						
+						left:1px;
+						background:#ffffff;
+					}
+					
+					
+					ul.groupBox a.normal{
+						border-bottom:none;
+					}
+			
+			
+		/* End Group Module */
+		
+		/* Start Tag Module */
+		div.tagMod{
+			border:;
+			margin-top:20px;
+			color:#000000;
+			font-weight:bold;
+			font-size:20px;
+			text-align:center;
+		}
+		
+				ul.tagBox{
+					list-style-type: none;
+					margin:0;
+					padding:0;
+					border:0px solid #000000;
+					color:;
+					text-align:left;
+				}
+				
+				ul.tagBox li#title{
+						font-size:20px;
+						font-weight:bold;
+						display: block;
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#cecece'); /* for IE */
+						background: -moz-linear-gradient(top,  #fcfcfc,  #cecece); /* for firefox 3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#cecece));
+						height:; 
+						padding: 4px 0 4px 10px;
+						line-height:;
+						text-decoration: none;
+						text-align:center;
+						border:1px solid #000000;
+						border-bottom:none;
+						border-right:none;
+						text-shadow: rgba(0, 0, 0, 0.25) 0 1px 1px;
+				}
+				ul.tagBox li#add{
+						font-size:20px;
+						font-weight:bold;
+						display: block;
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#cecece'); /* for IE */
+						background: -moz-linear-gradient(top,  #fcfcfc,  #cecece); /* for firefox 3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#cecece));
+						height:; 
+						padding: 4px 0 4px 10px;
+						line-height: 24px;
+						text-decoration: none;
+						text-align:center;
+						border:1px solid #000000;
+						border-bottom:none;
+						border-right:none;
+						text-shadow: rgba(0, 0, 0, 0.25) 0 1px 1px;
+				}
+				ul.tagBox li#bottom{
+						font-size:15px;
+						font-weight:bold;
+						display: block;
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#cecece'); /* for IE */
+						background: -moz-linear-gradient(top,  #fcfcfc,  #cecece); /* for firefox 3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#cecece));
+						height:; 
+						padding: 4px 0 4px 10px;
+						line-height: 24px;
+						text-decoration: none;
+						text-align:center;
+						border:1px solid #000000;
+						border-bottom:;
+						border-right:none;
+						
+				}
+	
+					ul.tagBox li{
+						font-size:12px;
+						font-weight:bold;
+						display: block;
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd'); /* for IE */
+						background: -moz-linear-gradient(top,  #ffffff,  #dddddd); /* for firefox 3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dddddd));
+						height: 24px; /*Set to height of bg image- padding within link (ie: 32px - 4px - 4px)*/
+						padding: 4px 2px 4px 1px;
+						line-height: 24px; /*Set line-height of bg image- padding within link (ie: 32px - 4px - 4px)*/
+						text-decoration: none;
+						border:1px solid #000000;
+						border-right:none;
+					}	
+	
+					ul.tagBox a:link, ul.tagBox a:visited {
+						color:#ff0000;
+						text-decoration:none;
+					}
+                     
+					ul.tagBox a:hover{
+						color: #ff0000;
+						text-decoration:underline;
+					}
+
+					/*  brings the selected group item to the right, meshing it with the content */
+					ul.tagBox li.select{
+					position:relative;
+						color:#009604;
+						left:1px;
+						background:#ffffff;
+					}
+					/* This does the same as above, just increases the height as well for additional content (dropdown, checkbox, etc.) */
+					ul.tagBox li.selecthier{
+					position:relative;
+						color:#009604;
+						text-align:;
+						height:56px;
+						left:1px;
+						background:#ffffff;
+					}
+					ul.tagBox li.normal{
+						border-bottom:none;
+					}
+					ul.tagBox li.ignore{
+						color:#8f8f8f;
+					}
+					ul.tagBox li.exclude{
+						color:#ff0000;
+					}
+					ul.tagBox li.or{
+						color:#000000;
+					}
+					ul.tagBox li.and{
+						color:#009604;
+					}
+					
+					ul.tagBox a#red{
+						color:#ff0000;
+						text-decoration:none;
+					}
+					ul.tagBox a#green{
+						color:#009604;
+						text-decoration:none;
+					}
+		
+		/* End Tag Module */
+	/* End Left Box */
+
+
+	/* Start Right Box - rightBox consisters of 3 divs - The topic navigation, control navigation (edit + admin), and the content.*/
+	div#rightBox{
+		float:left;
+		width:740px;
+		color:#000000;
+		margin-top:20px;
+	}
+		/* Start Topic Navigation -  */
+		div.topicnav{
+		float:left;
+		vertical-align:bottom;
+		width:500px;
+		}
+		
+			ul#topicnav { 
+				text-align:left; 
+				margin: 0 0 0 0; 
+				font: bold 11px verdana, arial, sans-serif; 
+				border-bottom: 1px solid #000; 
+				list-style-type: none;
+				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+			}
+
+ 
+			ul#topicnav li { 
+			display: inline;
+			}
+
+			ul#topicnav li a { 
+				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				border: 1px solid #000; 
+				background-color:#dddddd; 
+				color: #000; 
+				margin-right: 1px; 
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			ul#topicnav a:hover { 
+				border-top:2px solid #009604;
+			}
+
+		/* End Topic Navigation */
+
+		/* Begin Control Nav (edit + control) */
+		
+		div.controlnav{
+			text-align:right;
+			
+		}
+		
+			ul#controlnav {
+				text-align:right; 
+				margin: 0 0 0 0; 
+				font: bold 11px verdana, arial, sans-serif; 
+				border-bottom: 1px solid #000;
+				list-style-type: none;
+				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+			}
+			
+			ul#controlnav li { 
+				display: inline;
+			}
+			
+			ul#controlnav li a { 
+				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				border: 1px solid #000; 
+				background-color:#dddddd; 
+				color: #000;
+				margin-right: 1px;
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			ul#controlnav a:hover { 
+				border-top:2px solid #009604;
+			}
+			/*  End Control Nav */
+			
+								/*  These two declarations below cover BOTH topic nav AND control nav.  I copied this css tab script from another site and after configuring it I think there is a more elegant way to set each of the li menu items as active.
+									This script forces you to place an ID value within the body tag, and that id value determines which item is selected.  I'll have to come back change this later. */
+
+				
+		
+							div#problem li.problem, div#action li.action, div#discussion li.discussion, div#solutions li.solutions, div#control li.control, div#edit li.edit { /* settings for selected tab */
+								border-bottom: 0px solid #fff; 
+								
+							}
+ 
+							div#problem li.problem a, div#action li.action a, div#discussion li.discussion a, div#solutions li.solutions a, div#control li.control a, div#edit li.edit a { /* settings for selected tab link */
+								background-color: #fff; 
+								color: #000; 
+								position: relative;
+								top: 1px;
+								padding-top: 4px; /* must change with respect to padding (X) above and below */
+								border-top:2px solid #009604;
+							}
+		
+		
+		
+		/* Begin Content  */
+		
+		
+		div#content{
+		padding:15px;
+		background-color:#ffffff;
+		color:#000000;
+		border:1px solid #000000;
+		margin-bottom:20px;
+		}
+		div#content.topic{
+		border-top:none;
+		}
+		div#content a{
+			text-decoration:none;
+			color:#009604;
+		}
+		
+			/* titleBox (used on every topic page)*/
+			/*  change titleBox to titleDisplay */
+			div#titleDisplay {
+				-moz-border-radius-topleft:5px;
+				-moz-border-radius-topright:5px;
+				-moz-border-radius-bottomleft: 5px;
+				-moz-border-radius-bottomright: 5px;
+				-webkit-border-top-left-radius: 5px;
+				-webkit-border-top-right-radius: 5px;
+				-webkit-border-bottom-left-radius: 5px;
+				-webkit-border-bottom-right-radius: 5px;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cacaca'); /* for IE */
+				background: -moz-linear-gradient(top,  #ffffff,  #cacaca); /* for firefox 3.6+ */
+				background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cacaca));
+				border:1px solid #393939;
+				margin-bottom:10px;
+				z-index: 1;
+				width:700px;
+				position: static;
+				top: auto;
+				left: auto;
+				padding: 5px 5px 5px 5px; 
+				text-align:center;
+				font-weight:bold;
+				font-size:16px;
+			}
+		
+		/*  For each of the topic pages I'm going to list the declarations needed for need each one.  Some declarations are used within other pages as well, these can be consolidated later but for now I'll just list them.   */
+		
+		/* Begin Problem Page */
+		
+		
+		
+		div#resultsheader{
+			height:25px;
+			border:0px solid #000;
+		}
+		div#resultstitle{
+			float:left;
+			font-weight:bold;
+			font-size:15px;
+			
+		}
+		div#pageoptions{
+			float:right;
+			font-size:18px;
+		}
+		
+		div#itemTitle{
+			font-weight:bold;
+			
+		}
+		div#itemTags{
+				text-align:right;
+		}
+		/* change from tagBox to tagDisplay */
+		div#tagDisplay {
+			-moz-border-radius-topleft:5px;
+			-moz-border-radius-topright:5px;
+			-moz-border-radius-bottomleft: 5px;
+			-moz-border-radius-bottomright: 5px;
+			-webkit-border-top-left-radius: 5px;
+			-webkit-border-top-right-radius: 5px;
+			-webkit-border-bottom-left-radius: 5px;
+			-webkit-border-bottom-right-radius: 5px;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cacaca'); /* for IE */
+			background: -moz-linear-gradient(top,  #ffffff,  #cacaca); /* for firefox 3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cacaca));
+			border:1px solid #393939;
+			margin-top:10px;
+			z-index: 1;
+			width:700px;
+			position: static;
+			top: auto;
+			left: auto;
+			padding: 5px 5px 5px 5px; 
+			text-align:left;
+			font-weight:bold;
+			font-size:16px;
+			text-decoration:none;
+		}
+ 
+		div#tagBox  a{
+			color:#000000;
+			text-decoration:none;
+		}
+		
+		/* End Problem Page */
+		
+		/*  Action Page   */
+		div#actionBox{
+			width:710px;
+			border:0px solid #ff0000;
+		}
+		div#historyBox{
+			float:left;
+			width:340px;
+			margin-bottom:20px;
+			border:2px solid #000;
+		}
+
+		div#eventBox{
+			margin-bottom:20px;
+			float:right;
+			height:350px;
+			width:340px;
+			border:2px solid #000;
+		}
+
+		div#timelineBox{
+			clear:both;
+			height:400px;
+			border:2px solid #000;
+		}
+		/*  End Action Page   */
+		
+		/*  Begin Discussion Page   */
+		div#discussionBox{
+			width:710px;
+		}
+		/*  End Discussion Page   */
+
+		/*  Solution Page   */
+
+		div#solutionsBox{
+			width:710px;
+		}
+		div#solutionOptions{
+			font-weight:bold;
+			font-size:20px;
+
+		}
+		div#solutionListing{
+
+		}
+		div#solutionItem{
+			height:30px;
+
+		}
+		div#solutionTitle{
+			float:left;
+		}
+		div#solutionVote{
+			float:right;
+		}
+
+		/*  End Solution Page   */
+		
+		/* These are used for various pages */
+
+		div#spacer{
+			margin-top:10px;
+			margin-bottom:10px;
+			height:2px;
+			display:block;
+			background-color:#8f8f8f;
+		}
+		div#minispacer{
+			margin-top:5px;
+			margin-bottom:5px;
+			height:1px;
+			display:block;
+			background-color:#000;
+		}
+		
+		
+	/* END rightBox */
+		
+	/* bigBox is used for standard pages that require no group/tag/topic navigation (such as index and footer links) */	
+	div#bigBox{
+		margin-top:20px;
+		position:;
+		float:left;
+		width:960px;
+		color:#000000;
+		margin-top:20px;
+	}
+	
+	/* Begin Footer */
+	
+	div#footer{
+	-webkit-radius: 5px;
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	width:960px;
+	height:65px;
+	background:#1c1c1c;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#1c1c1c'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#1c1c1c)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #393939,  #1c1c1c); /* for firefox 3.6+ */
+	border:1px solid #8f8f8f;
+	text-align:center;
+	vertical-align:middle;
+	color:#c8c7c7;
+	clear:both;
+	}
+	img#syner{
+		vertical-align:top;
+	}
+	
+	ul.footnav{
+			padding-top:5px;
+			padding-bottom:5px;
+			margin:0;
+			list-style-type:none;
+			text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
+		}
+
+			li.footnav{
+				padding-right:.75em;
+				padding-left:.5em;
+				display:inline;
+				color:#ffffff;
+				font-weight:bold;
+			}
+			li.footnav#border{
+				border-right:1px solid #009604;
+			}
+	
+	div#footer a{
+		color:#ffffff;
+		text-decoration:none;
+		font-weight:bold;
+		text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
+	}
+	div#footer a:hover{
+		color:#009604;
+	}
+	
+	/* End Footer */
+
+	
+	
+	
+
+
+
+ 
+
+
+
+
+
+
+
+
