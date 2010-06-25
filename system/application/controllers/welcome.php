@@ -9,7 +9,8 @@ class Welcome extends Controller {
 	
 	function index()
 	{
-		$this->load->view('welcome_message');
+		$data['content'] = $this->load->view('welcome_message', '', true);
+		$this->load->view('layout', $data);
 	}
 }
 

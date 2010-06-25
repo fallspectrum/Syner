@@ -1,6 +1,21 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
+|  I add this constant just in the case Syner is
+|  installed in a directory different from the root
+|
+|  This is used for links in the url for things like
+|  images.
+|
+|  We can move this into a view helper or something
+|  so it's not just a global constant we have to include
+|  in every URL
+|
+|	~Ryan
+*/
+define('SY_SITEPATH', '/');
+
+/*
 |--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
