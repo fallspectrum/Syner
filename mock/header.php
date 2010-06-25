@@ -23,15 +23,15 @@
 		</div>
 		<div id="headnav">
 			<ul id="headnav">
-				<li class="headnav" id="<?php echo $searchnav; ?>"><a href="search.php" class="headnav">Search</a></li>
-				<li class="headnav" id="<?php echo $popularnav; ?>"><a href="popular.php" class="headnav">Popular</a></li>
-				<li class="headnav" id="<?php echo $recentnav; ?>"><a href="recent.php" class="headnav">Recent</a></li>
+				<li class="headnav" id="<?php echo $searchnav; ?>"><a href="search.php" class="headnav"><img src="styles/icons/search_ico.png" border="0" /> Search</a></li>
+				<li class="headnav" id="<?php echo $popularnav; ?>"><a href="popular.php" class="headnav"><img src="styles/icons/popular_ico.png" border="0" /> Popular</a></li>
+				<li class="headnav" id="<?php echo $recentnav; ?>"><a href="recent.php" class="headnav"><img src="styles/icons/recent_ico.png" border="0" /> Recent</a></li>
 			</ul>
 		</div>
 		<div class="usernav">
 			<ul class="usernav">
-				<li class="usernav" id="first"><a href="register.php" class="login">Register</a></li>
-				<li class="usernav"><a href="login.php" class="login">Log In</a></li>
+				<li class="usernav" id="first"><a href="register.php" class="login"><img src="styles/icons/register2_ico.png" border="0" /> Register</a></li>
+				<li class="usernav"><a href="login.php" class="login"><img src="styles/icons/login_ico.png" border="0" /> Log In</a></li>
 			</ul>
 		</div>
 	</div>

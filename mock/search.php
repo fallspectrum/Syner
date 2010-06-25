@@ -13,9 +13,10 @@
 		</div>
 		<div id="rightBox">
 			<div id="content">
-				<h3>Search:</h3>
+				<br />
 				<form><input type="text" name="search" value="" size="40" /><input type="submit" value="Search" /><a href="search_results.php">Click here to see what search results look like</a>
 				</form>
+				
 								<div id="spacer"></div>
 
 				<p>

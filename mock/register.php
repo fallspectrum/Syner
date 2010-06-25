@@ -6,43 +6,62 @@
 	<div id="bigBox">
 		<div id="content">
 			<h2>Registration is simple, fast, and easy!</h2>
-				<div id="spacer"></div>
 				<p>
-					<b>
-						<u>The Synergy Project</u> is here to help you, solve your problems.  To do that, we want to connect you to problems you're most likely to care about, and to people who are trying to solve the same ones.  Once you've registered, you will be able to submit your own content representing the world, and if you choose to.. you can represent an area.
-					</b>
+					<span>
+						The Synergy Project is here to help you, solve your problems. 
+					</span>
 				</p>
-				<div id="minispacer"></div>
+				<table>
+					<tr>
+						<td width="150">
+						</td>
+						<td>
+							To do that, we want to connect you to problems you're most likely to care about.  After registering you'll be able to interact with people who are facing the same problems as you.  Once you've registered, you will be able to submit your own content representing the world, and if you choose to.. you can represent a group.
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td width="150">
+						very small input validation area (simple icons only) like:<img src="styles/icons/reg_notice_ico.png" /><img src="styles/icons/reg_ok_ico.png" />
+						</td>
+						<td width="250">
+							<p>	
+								<form>
+								<b>Username:</b><br /> 
+								<input type="text" name="regusername" title="Your username." size="25"/>	<br /><br />	
+								<b>Email-address:</b> <br />
+								<input type="text" name="regemail" title="Your email address." size="30" /> 
+								</form>
+							</p>
+						</td>
+						<td>
+						Input validation area, provides black transparency text like,"this is why we need this information", red notification of error, red/green- username/email availablity.
+						</td>
+					</tr>
+				</table>
 				<p>
-					<form>
-											Hi, my <b>username</b> is 
-					<input type="text" name="regusername" title="Your username." />.
-						I understand that I need this username to log into my account.  My username will also be attached to any content I submit or edit.
-					</form>
+					<span>
+						To make sure you're human, could you solve this problem for us?
+					</span>
 				</p>
-				<p>
-					<form>
-						My <b>email-address</b> is 
-						<input type="text" name="regemail" title="Your email address." />.  
-						I understand that I need an email to help verify that I am human.  My email will never be publicly displayed, and is not searchable.
-					</form>
-				</p>
-				<div id="minispacer"></div>
-				<p>	
-					<i>
-						Currently The Synergy Project is in testing.  Once an invite is available, you will receive an email notifying you of your access.
-					</i>
-				</p>
-				<p>
-					<b>
-						Just to make sure you're human, could you solve this problem for us?
-					</b>
-				</p>
+				<table>
+					<tr>
+						<td width="150">
+						</td>
+						<td width="450">
+						*Captcha*<br /><br />
+						By registering, you are agreeing to your <a href="">Terms of Use</a>.<br /><br />
+						<form>
+							<input type="submit" value="Register" />(big register button)
+						</form>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</table>
 				
-				*Captcha*<br /><br />
-				<form>
-					<input type="submit" value="Submit" />
-				</form>
+				
 				
 				
 				

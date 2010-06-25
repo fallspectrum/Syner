@@ -34,91 +34,91 @@
 					<div id="spacer"></div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.php">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							(maybe make tags that relate to filter align left, non-relate align right?)Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Title Title</a>
+								<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
-							Tags Tags Tags
+								<table width="100%"><tr><td align="left"><a href="">Tag</a> <a href="">Tag</a></td><td align="right">Tags Tags Tags</td></tr></table>
 							</div>
 							<div id="minispacer"></div>
 						</div>

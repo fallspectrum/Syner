@@ -1,17 +1,10 @@
 <div class="tagMod">
+
 				<ul class="tagBox">
-				<li id="title">Tags</li>
+				<li id="title"><img src="styles/icons/tags_ico.png" border="0" /> Tags</li>
 				<li id="add">
 					<form>
 						<input type="text" name="addtag" value="" size="20" /><input type="submit" value="Add" />
-					</form>
-				</li>
-				<li id="" class="select normal">
-					<form>
-						<input type="radio" name="operation" value="and" title="And" />
-						<input type="radio" name="operation" value="or" title="Or" />
-						<input type="radio" name="operation" value="exclude" title="Exclude" /> 	
-							Character Count Is.... - <a href=""><b>X</b></a>
 					</form>
 				</li>
 				<li id="" class="select normal and">
@@ -19,25 +12,15 @@
 						<input type="radio" name="operation" value="and" title="And" />
 						<input type="radio" name="operation" value="or" title="Or" />
 						<input type="radio" name="operation" value="exclude" title="Exclude" /> 	
-							And - <a href="">X</a>
+							And<a href=""><img src="styles/icons/remove_tag_ico.png" border="0" class="inline"  /></a>
 					</form>
 				</li>
 				<li id="" class="normal ignore">
 					<form>
 						<input type="radio" name="operation" value="and" title="And" />
 						<input type="radio" name="operation" value="or" title="Or" />
-						<input type="radio" name="operation" value="exclude" title="Exclude" /> 
-						<input type="radio" name="operation" value="ignore" title="Ignore" /> 						
-							Ignored - <a href="">X</a>
-					</form>
-				</li>
-				<li id="" class="normal ignore">
-					<form>
-						<input type="radio" name="operation" value="and" title="And" />
-						<input type="radio" name="operation" value="or" title="Or" />
-						<input type="radio" name="operation" value="exclude" title="Exclude" /> 
-						<input type="radio" name="operation" value="ignore" title="Ignore" /> 						
-							Ignored - <a href="">X</a>
+						<input type="radio" name="operation" value="exclude" title="Exclude" /> 						
+							Ignored<a href=""><img src="styles/icons/remove_tag_ico.png" border="0" class="inline"  /></a>
 					</form>
 				</li>
 				<li id="" class="select normal or">
@@ -45,7 +28,7 @@
 						<input type="radio" name="operation" value="and" title="And" />
 						<input type="radio" name="operation" value="or" title="Or" />
 						<input type="radio" name="operation" value="exclude" title="Exclude" /> 	
-							Or - <a href="">X</a>
+							Or<a href=""><img src="styles/icons/remove_tag_ico.png" border="0" class="inline"  /></a>
 					</form>
 				</li>
 				<li id="" class="select normal exclude">
@@ -53,16 +36,7 @@
 						<input type="radio" name="operation" value="and" title="And" />
 						<input type="radio" name="operation" value="or" title="Or" />
 						<input type="radio" name="operation" value="exclude" title="Exclude" /> 	
-							Excluded - <a href="">X</a>
-					</form>
-				</li>
-				<li id="" class="normal ignore">
-					<form>
-						<input type="radio" name="operation" value="and" title="And" />
-						<input type="radio" name="operation" value="or" title="Or" />
-						<input type="radio" name="operation" value="exclude" title="Exclude" /> 
-						<input type="radio" name="operation" value="ignore" title="Ignore" /> 						
-							Ignored - <a href="">X</a>
+							Excluded<a href=""><img src="styles/icons/remove_tag_ico.png" border="0"  class="inline" /></a>
 					</form>
 				</li>
 				<li id="bottom">

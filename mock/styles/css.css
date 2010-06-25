@@ -35,6 +35,16 @@ h2 {
 	color:#009604;
 	font-size:20px;
 }
+span{
+	display:block;
+	background:#ceffcf;
+	padding:5px;
+	font-size:110%;
+	text-align:center;
+}
+
+/*  Basic over all declarations  */
+/* End basic declarations */
 
 /*  *****Layout Begins***** */
 
@@ -139,8 +149,8 @@ div#header{
 				a.headnav{
 					text-decoration:none;
 					color:#ffffff;
-					padding-right:15px;
-					padding-left:15px;
+					padding-right:10px;
+					padding-left:10px;
 				}
 
 				a.headnav:hover{
@@ -152,13 +162,16 @@ div#header{
 		float:right;
 		position:relative;
 		top:-5px;
-		height:38px;
+		height:45px;
 		width:300px;
 		border:0px solid #ff0000;
 	}
 		ul.usernav{
+			border:0px solid #8f8f8f;
 			float:right;
-			height:38;
+			text-align:right;
+			height:;
+			width:250px;
 			list-style-type:none;
 			text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
 		}
@@ -375,7 +388,7 @@ div#body{
 						background: -moz-linear-gradient(top,  #ffffff,  #dddddd); /* for firefox 3.6+ */
 						background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dddddd));
 						height: 24px; /*Set to height of bg image- padding within link (ie: 32px - 4px - 4px)*/
-						padding: 4px 2px 4px 1px;
+						padding: 4px 4px 4px 1px;
 						line-height: 24px; /*Set line-height of bg image- padding within link (ie: 32px - 4px - 4px)*/
 						text-decoration: none;
 						border:1px solid #000000;
@@ -432,7 +445,12 @@ div#body{
 						color:#009604;
 						text-decoration:none;
 					}
-		
+					img.inline{
+						position:relative;
+						top:4px;
+						float:right;
+					}
+					
 		/* End Tag Module */
 	/* End Left Box */
 
@@ -558,28 +576,20 @@ div#body{
 			/* titleBox (used on every topic page)*/
 			/*  change titleBox to titleDisplay */
 			div#titleDisplay {
-				-moz-border-radius-topleft:5px;
-				-moz-border-radius-topright:5px;
-				-moz-border-radius-bottomleft: 5px;
-				-moz-border-radius-bottomright: 5px;
-				-webkit-border-top-left-radius: 5px;
-				-webkit-border-top-right-radius: 5px;
-				-webkit-border-bottom-left-radius: 5px;
-				-webkit-border-bottom-right-radius: 5px;
-				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cacaca'); /* for IE */
-				background: -moz-linear-gradient(top,  #ffffff,  #cacaca); /* for firefox 3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cacaca));
-				border:1px solid #393939;
+				
+				
+				border-right:0px solid #009604;
+				border-left:0px solid #009604;
 				margin-bottom:10px;
 				z-index: 1;
-				width:700px;
+				width:;
 				position: static;
 				top: auto;
 				left: auto;
 				padding: 5px 5px 5px 5px; 
 				text-align:center;
 				font-weight:bold;
-				font-size:16px;
+				font-size:18px;
 			}
 		
 		/*  For each of the topic pages I'm going to list the declarations needed for need each one.  Some declarations are used within other pages as well, these can be consolidated later but for now I'll just list them.   */
@@ -595,7 +605,7 @@ div#body{
 		div#resultstitle{
 			float:left;
 			font-weight:bold;
-			font-size:15px;
+			font-size:20px;
 			
 		}
 		div#pageoptions{
@@ -785,6 +795,7 @@ div#body{
 	div#footer a:hover{
 		color:#009604;
 	}
+	
 	
 	/* End Footer */
 

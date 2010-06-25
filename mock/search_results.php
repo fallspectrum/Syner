@@ -12,7 +12,7 @@
 		</div>
 		<div id="rightBox">
 			<div id="content">
-				<h3>Search:</h3>
+				<br />
 				<form><input type="text" name="search" value="" size="40" /><input type="submit" value="Search" />
 				</form>
 								<div id="spacer"></div>
@@ -44,7 +44,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -53,7 +53,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -62,7 +62,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -71,7 +71,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -80,7 +80,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -89,7 +89,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -98,7 +98,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -107,7 +107,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
@@ -116,7 +116,7 @@
 						</div>
 						<div id="resultItem">
 							<div id="itemTitle">
-							<a href="topic_problem.html">Problem Title</a>
+							<a href="topic_problem.php">Problem Title</a>
 							</div>
 							<div id="itemTags">
 							Tags Tags Tags
