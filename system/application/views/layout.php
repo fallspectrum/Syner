@@ -6,11 +6,25 @@
 		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/css.css" />
 		<title>Syner.org - Solving the problems that affect you.
 		</title>
+		
+		<!--Need description -->
+		 <meta name="description" content="">
+		 <meta name="keywords" content="open, source, open-source, project, synergy, synergism, synergos, working together, problem, solving, problem solving, collaborative, emergence, web, development, developer, community, wiki, wikipedia, free, trending, solution, cloud, crowd, selection, group"></head> 
+		 
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+		<script type="text/javascript">
+			
+			<?if(isset($javascript)) : ?>
+			$(document).ready(function() {
+			
+					<?=$javascript?>
+				
+			});
+			<? endif; ?>
+		</script>
 	</head>
-	<!--Need description -->
- <meta name="description" content="">
- <meta name="keywords" content="open, source, open-source, project, synergy, synergism, synergos, working together, problem, solving, problem solving, collaborative, emergence, web, development, developer, community, wiki, wikipedia, free, trending, solution, cloud, crowd, selection, group"></head> 
- 
+
  <body id="">
  <div id="container">
 	<div id="header">
