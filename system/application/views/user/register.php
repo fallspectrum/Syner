@@ -20,21 +20,26 @@
 				<table>
 					<tr>
 						<td width="150">
-						very small input validation area (simple icons only) like:<img src="<?=SY_SITEPATH?>styles/icons/reg_notice_ico.png" /><img src="<?=SY_SITEPATH?>styles/icons/reg_ok_ico.png" />
+						<!--very small input validation area (simple icons only) like:<img src="<?=SY_SITEPATH?>styles/icons/reg_notice_ico.png" /><img src="<?=SY_SITEPATH?>styles/icons/reg_ok_ico.png" />-->
 						</td>
-						<td width="250">
+						<td width="400">
 							<p>	
 								<form>
+								
 								<b>Username:</b><br /> 
-								<input type="text" name="regusername" title="Your username." size="25"/>	<br /><br />	
+								<input type="text" name="regusername" title="Your username." size="25" id="username" />
+								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />
+								<label style="color: #F00;display: none;" id="username_error"></label>
+								<br /><br />
+								
 								<b>Email-address:</b> <br />
-								<input type="text" name="regemail" title="Your email address." size="30" /> 
+								<input type="text" name="regemail" title="Your email address." size="30" id="email" /> 
+								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="email_icon" />
+								<label style="color: #F00;display: none;" id="email _error"></label>
 								</form>
 							</p>
 						</td>
-						<td>
-						Input validation area, provides black transparency text like,"this is why we need this information", red notification of error, red/green- username/email availablity.
-						</td>
+				
 					</tr>
 				</table>
 				<p>
