@@ -23,20 +23,19 @@
 						<!--very small input validation area (simple icons only) like:<img src="<?=SY_SITEPATH?>styles/icons/reg_notice_ico.png" /><img src="<?=SY_SITEPATH?>styles/icons/reg_ok_ico.png" />-->
 						</td>
 						<td width="400">
-							<p>	
-								<form>
+							<p>
+								<form onSubmit="return validate_register_form();" method="POST" action="">
 								
 								<b>Username:</b><br /> 
-								<input type="text" name="regusername" title="Your username." size="25" id="username" />
+								<input type="text" name="username" title="Your username." size="25" id="username" />
 								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />
-								<label style="color: #F00;display: none;" id="username_error"></label>
+								<label style="color: #F00;display: none;" id="username_error">aha</label>
 								<br /><br />
 								
 								<b>Email-address:</b> <br />
-								<input type="text" name="regemail" title="Your email address." size="30" id="email" /> 
+								<input type="text" name="email" title="Your email address." size="30" id="email" /> 
 								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="email_icon" />
-								<label style="color: #F00;display: none;" id="email _error"></label>
-								</form>
+								<label style="color: #F00;display: none;" id="email_error"></label>
 							</p>
 						</td>
 				
@@ -54,9 +53,8 @@
 						<td width="450">
 						*Captcha*<br /><br />
 						By registering, you are agreeing to your <a href="">Terms of Use</a>.<br /><br />
+							<input type="button" value="Register" onClick="validate_register_form()"/>(big register button)
 						<form>
-							<input type="submit" value="Register" />(big register button)
-						</form>
 						</td>
 						<td>
 						</td>

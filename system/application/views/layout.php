@@ -13,16 +13,13 @@
 		 
 		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-		<script type="text/javascript">
-			
-			<?if(isset($javascript)) : ?>
-			$(document).ready(function() {
-			
-					<?=$javascript?>
-				
-			});
-			<? endif; ?>
-		</script>
+		<?php 
+			if(isset($js_files)) {
+			foreach ($js_files as $file) {
+				echo "<script type='text/javascript' src='" . $file . "'></script>\n";
+			}
+		}
+		?>	
 	</head>
 
  <body id="">
