@@ -27,7 +27,7 @@
 	<div id="header">
 		<div id="logo">
 			<div class="logoBox">
-				<a href="index.php">
+				<a href="<?=SY_SITEPATH?>index.php">
 				<img src="<?=SY_SITEPATH?>styles/logo.png" border="0" />
 				</a>
 			</div>
@@ -41,8 +41,8 @@
 		</div>
 		<div class="usernav">
 			<ul class="usernav">
-				<li class="usernav" id="first"><a href="register.php" class="login"><img src="<?=SY_SITEPATH?>styles/icons/register2_ico.png" border="0" /> Register</a></li>
-				<li class="usernav"><a href="login.php" class="login"><img src="<?=SY_SITEPATH?>styles/icons/login_ico.png" border="0" /> Log In</a></li>
+				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/register/" class="login"><img src="<?=SY_SITEPATH?>styles/icons/register2_ico.png" border="0" /> Register</a></li>
+				<li class="usernav"><a href="<?=SY_SITEPATH?>index.php/user/login/" class="login"><img src="<?=SY_SITEPATH?>styles/icons/login_ico.png" border="0" /> Log In</a></li>
 			</ul>
 		</div>
 	</div>

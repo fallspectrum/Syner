@@ -80,7 +80,7 @@ div#header{
 
 	div#logo{
 		position:absolute;
-		width:300px;
+		width:275px;
 		border:0px solid #ff0000;
 
 	}
@@ -105,7 +105,7 @@ div#header{
 	div#headnav{
 	position:relative;
 	float:left;
-	left:300px;
+	left:265px;
 	height:38px;
 	width:400px;
 	text-align:center;
@@ -742,6 +742,16 @@ div#body{
 		color:#000000;
 		margin-top:20px;
 	}
+	/* END bigBox*/
+	
+	/* Specialized declarations*/
+	
+	p#login{
+		text-indent:300px;
+	}
+	
+	/* end specials*/
+	
 	
 	/* Begin Footer */
 	
