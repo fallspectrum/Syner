@@ -31,8 +31,10 @@ class CI_Form_validation {
 	var $_config_rules			= array();
 	var $_error_array			= array();
 	var $_error_messages		= array();	
-	var $_error_prefix			= '<p>';
-	var $_error_suffix			= '</p>';
+	
+	//Justin - modified so we only use commas for error suffix.
+	var $_error_prefix			= '';
+	var $_error_suffix			= '';
 	var $error_string			= '';
 	var $_safe_form_data 		= FALSE;
 
@@ -184,7 +186,9 @@ class CI_Form_validation {
 	 * @param	string
 	 * @return	void
 	 */	
-	function set_error_delimiters($prefix = '<p>', $suffix = '</p>')
+	
+	//Justin - modified to no prefix and comma for error suffix
+	function set_error_delimiters($prefix = '', $suffix = ',')
 	{
 		$this->_error_prefix = $prefix;
 		$this->_error_suffix = $suffix;
@@ -253,13 +257,19 @@ class CI_Form_validation {
 		
 		// Generate the error string
 		$str = '';
+		
+		//Justin - modified. We don't care for prefix.
+		//Remove new line from end of messages to.
 		foreach ($this->_error_array as $val)
 		{
 			if ($val != '')
 			{
-				$str .= $prefix.$val.$suffix."\n";
+				$str .= $val.$suffix;
 			}
 		}
+		
+		//Justin - remove suffix from lest element
+		$str = substr($str,-strlen($suffix));
 		
 		return $str;
 	}
@@ -662,8 +672,10 @@ class CI_Form_validation {
 				}
 				
 				// Build the error message
-				$message = sprintf($line, $this->_translate_fieldname($row['label']), $param);
-
+				
+				//Justin - Message should be a simple_json compatible array. 
+				$message = array(sprintf($line[0], $this->_translate_fieldname($row['label']), $param),$line[1]);
+				
 				// Save the error message
 				$this->_field_data[$row['field']]['error'] = $message;
 				

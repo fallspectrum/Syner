@@ -29,10 +29,10 @@ function validate_register_form()
 	//send the username and email off to the server.	
 	$.ajax({
 	  url: 'registerajax',
-	  dataType: 'json',
+     	  dataType: 'json',
 	  data: "username=" + username + "&email=" + email,
 	  type:	'POST',
-	  success: function() { }
+	  success: function(data)  { alert (data.responses[0]['reference_id'])  }
 	});
 
 	return false;

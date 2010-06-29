@@ -18,15 +18,13 @@ class Simple_JSON {
 	* @param $reference_id easy way to refrence a paticular return value.
 	         may be null
 	  @param $return_val a return val for the paticular response
-	  @param $return_text text assoicated with the response
 	*/
-	function add_response($reference_id,$return_val,$return_text) 
+	function add_simple_response($reference_id,$return_val) 
 	{
 		//Got to escape quotes so no malformed jquery responses are
 		//made
 		$response['reference_id']= str_replace('"','\"',$reference_id);
 		$response['return_val'] = str_replace('"','\"',$return_val);
-		$response['return_text']=str_replace('"','\"',$return_text);
 		array_push($this->responses,$response);
 	}
 
@@ -36,20 +34,16 @@ class Simple_JSON {
 	function format_response()
 	{
 		$i;
-		if(sizeof($this->responses)>0) {
-			$return_val = '{ "responses" : [ ';
-			for ($i=0;$i<sizeof($this->responses)-1;$i++) {
-				$response = $this->responses[$i];
+		$return_val = '{ "responses" : [ ';
+		foreach ($this->responses as $response) {
 				$return_val .= ' { "reference_id": "' . $response['reference_id'] . '",' . 
-						  '"return_val": "' . $response['return_val'] . '",' .
-						  '"return_text": "' . $response['return_text'] . '" },';
-			}
-			//$i should be at the last element now...
-			$return_val .= ' { "reference_id": "' . $this->responses[$i]['reference_id'] . '",' . 
-					  '"return_val": "' . $this->responses[$i]['return_val'] . '",' .
-					  '"return_text": "' . $this->responses[$i]['return_text'] . '" } ] }';
-		return $return_val;
+						  '"return_val": "' . $response['return_val'] . '"},' ;
 		}
+		
+		//remove the last comma and replace with ]}
+		$return_val = substr($return_val,0,-1) . " ] }";
+		
+		return $return_val;
 	}
 }
 ?>

@@ -30,38 +30,28 @@ class User extends Controller {
 		$this->load->library("simple_json");
 		$json = new Simple_Json();
 		
-		//change invalid to true if input is not to be accepted.
-		$invalid = false;
 		
-		if(isset($_POST['username']))
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('username','username','required|trim|valid_email');
+		$this->form_validation->set_rules('email','email','required|trim|email|valid_email');
+		
+		if($this->form_validation->run() === FALSE) 
 		{
-			//remove html characters from username
-			$s_username = htmlentities($_POST['username']);
-			if($s_username !== $_POST['username']) {
-				$json->add_response("username",-1,"");
-				$invalid = true;
-			}
-			
-		}	
-
-		if(isset($_POST['email'])) {
-			$s_email = htmlentities($_POST['email']);
-			if($s_email !== $_POST['email'])
-			{
-				$json->add_response("email",-1,"");
-				$invalid = true;
+			foreach ($this->form_validation->_error_array as $error)  {
+				$json->add_simple_response($error[0],$error[1]);
 			}
 		}
+		else
+		{
 
-		//check if username exists already
+			//check if username exists already
 
-		//check if email exists already
+			//check if email exists already
 
-		//create user account
-		
-		//if all is good...
-		if(!$invalid) {
-			$json->add_response("success",1,"");
+			//create user account
+			
+			//if all is good...
+				$json->add_response("success",1,"");
 		}
 		echo $json->format_response();
 	}
