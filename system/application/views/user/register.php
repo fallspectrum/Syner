@@ -2,10 +2,11 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-			<h2>Registration is simple, fast, and easy!</h2>
 				<p>
 					<span>
-						The Synergy Project is here to help you, solve your problems. 
+						<b>
+						Registration is simple, fast, and easy!
+						</b>
 					</span>
 				</p>
 				<table>
@@ -13,7 +14,7 @@
 						<td width="150">
 						</td>
 						<td>
-							To do that, we want to connect you to problems you're most likely to care about.  After registering you'll be able to interact with people who are facing the same problems as you.  Once you've registered, you will be able to submit your own content representing the world, and if you choose to.. you can represent a group.
+							The Synergy Project wants to help you solve your problems.  To do that, we want to connect you to problems you're most likely to care about.  Once you've registered, you will be able to submit your own content representing the world, and if you choose to.. you can represent a group.
 						</td>
 					</tr>
 				</table>
@@ -38,7 +39,6 @@
 								<label style="color: #F00;display: none;" id="email_error"></label>
 							</p>
 						</td>
-				
 					</tr>
 				</table>
 				<p>
@@ -52,20 +52,13 @@
 						</td>
 						<td width="450">
 						*Captcha*<br /><br />
-						By registering, you are agreeing to your <a href="">Terms of Use</a>.<br /><br />
-							<input type="button" value="Register" onClick="validate_register_form()"/>(big register button)
+						By registering, you are agreeing to our <a href="">Terms of Use</a>.<br /><br /><!-- Terms of use link = pop up window. -->
+							<input type="button" value="Register" onClick="validate_register_form()"/>
 						<form>
 						</td>
 						<td>
 						</td>
 					</tr>
 				</table>
-				
-				
-				
-				
-				
-				
-				
-			</div>
 		</div>
+	</div>

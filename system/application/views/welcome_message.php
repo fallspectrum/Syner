@@ -8,7 +8,8 @@
 
 <h2>Syner Links</h2>
 <ol>
-	<li><a href="index.php/user/register">User Registration</a></li>
+	<li><a href="<?=SY_SITEPATH?>index.php/user/register">User Registration</a></li>
+	<li><a href="<?=SY_SITEPATH?>index.php/user/login">User Login</a></li>
 </ol>
 
 <hr />

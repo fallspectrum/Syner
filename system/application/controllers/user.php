@@ -55,4 +55,11 @@ class User extends Controller {
 		}
 		echo $json->format_response();
 	}
+
+	function login()
+	{
+		$data['content'] = $this->load->view('user/login.php', '', true);
+		$this->load->view('layout', $data);
+	}
+	
 }
