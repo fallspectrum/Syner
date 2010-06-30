@@ -19,7 +19,7 @@ class Simple_JSON {
 	         may be null
 	  @param $return_val a return val for the paticular response
 	*/
-	function add_simple_response($reference_id,$return_val) 
+	function add_error_response($reference_id,$return_val) 
 	{
 		//Got to escape quotes so no malformed jquery responses are
 		//made
@@ -34,7 +34,7 @@ class Simple_JSON {
 	function format_response()
 	{
 		$i;
-		$return_val = '{ "responses" : [ ';
+		$return_val = '{ "error_responses" : [ ';
 		foreach ($this->responses as $response) {
 				$return_val .= ' { "reference_id": "' . $response['reference_id'] . '",' . 
 						  '"return_val": "' . $response['return_val'] . '"},' ;
