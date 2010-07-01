@@ -47,7 +47,7 @@ function ajax_error(xhr,textStatus,errorThrow)
 function validate_register_form()
 {
 	//strip whitespace from username
-	
+	$('#js_error').hide();
 	var username = $('#username').val();
 	username = username.replace(/^\s*/,"");
 	username = username.replace(/\s*$/,"");
@@ -74,7 +74,7 @@ function validate_register_form()
 
 	//send the username and email off to the server.	
 	$.ajax({
-	  url: 'user/registerajax',
+	  url: 'registerajax',
      	  dataType: 'json',
 	  data: "username=" + username + "&email=" + email,
 	  type:	'POST',
