@@ -26,8 +26,6 @@ class User extends Controller {
 	* This function handles a register user request. It responseds with a json response.
 	* -1 response for malformed input. -2 for input used already. 1 for success.
 	* @check if users exists in validated user account table
-	* @todo generate a temp password
-	* @todo generate validation hash
 	*/
 	function registerajax() {
 
