@@ -21,6 +21,9 @@ function register_form_response(data)
 				case '-2':
 					error_field.html("The entered " + reference_id +" is already taken.");
 					break;
+				case '-3':
+					error_field.html("There was an error communicating with the database.");
+					break;
 			}
 		}
 
@@ -37,7 +40,8 @@ function register_form_response(data)
 */
 function ajax_error(xhr,textStatus,errorThrow)
 {
-	alert("there was an error.");
+	$('#js_error').html("There was an error processing your request.");
+	$('#js_error').show();
 }
 
 function validate_register_form()
@@ -70,7 +74,7 @@ function validate_register_form()
 
 	//send the username and email off to the server.	
 	$.ajax({
-	  url: 'registerajax',
+	  url: 'user/registerajax',
      	  dataType: 'json',
 	  data: "username=" + username + "&email=" + email,
 	  type:	'POST',

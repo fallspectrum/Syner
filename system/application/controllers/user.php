@@ -54,15 +54,27 @@ class User extends Controller {
 			$username = $this->input->post('username');
 			$email = $this->input->post('email');
 			//check if username exists already in pending_users table
+			# Ryan - Catch an exception if the database query fails
 			$this->load->model('Pending_users','',TRUE);
-			if($this->Pending_users->entry_exists($username,'')) {
-				$json->add_error_response('username', -2);
+			try {
+				if($this->Pending_users->entry_exists($username,'')) {
+					$json->add_error_response('username', -2);
+					$invalid = true;
+				}
+			} catch (Exception $e) {
+				$json->add_error_response('username', -3);
 				$invalid = true;
 			}
 		
 			//check for the email now...
-			if($this->Pending_users->entry_exists('',$email)) {
-				$json->add_error_response('email', -2);
+			# Ryan - Catch an exception if the database query fails
+			try {
+				if($this->Pending_users->entry_exists('',$email)) {
+					$json->add_error_response('email', -2);
+					$invalid = true;
+				}
+			} catch (Exception $e) {
+				$json->add_error_response('email', -3);
 				$invalid = true;
 			}
 			

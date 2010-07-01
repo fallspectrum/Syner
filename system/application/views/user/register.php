@@ -30,7 +30,7 @@
 								<b>Username:</b><br /> 
 								<input type="text" name="username" title="Your username." size="25" id="username" />
 								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />
-								<label style="color: #F00;display: none;" id="username_error">aha</label>
+								<label style="color: #F00;display: none;" id="username_error"></label>
 								<br /><br />
 								
 								<b>Email-address:</b> <br />
@@ -53,6 +53,7 @@
 						<td width="450">
 						*Captcha*<br /><br />
 						By registering, you are agreeing to our <a href="">Terms of Use</a>.<br /><br /><!-- Terms of use link = pop up window. -->
+							<label style="color: #F00;display: none;" id="js_error"></label><br />
 							<input type="button" value="Register" onClick="validate_register_form()"/>
 						<form>
 						</td>

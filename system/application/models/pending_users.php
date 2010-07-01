@@ -33,10 +33,19 @@ class Pending_users extends Model {
 		}
 		
 		//get the email and ignore the value. we don't any data really.
+		$this->db->trans_start();
 		$this->db->select('email');
 		$this->db->where($where);
 		$this->db->limit(1);
 		$query = $this->db->get('pending_users');
+		$this->db->trans_complete();
+		throw new Exception('Failed to check if a user entry exists');
+		# Ryan - Throw an exception if the database query failed
+		if($this->db->trans_status() === FALSE) {
+			log_message('debug', 'Failed to check if a user entry exists');
+			
+		}
+		
 		if($query->num_rows() > 0) {
 			return TRUE;
 		}

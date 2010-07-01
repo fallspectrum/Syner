@@ -27,7 +27,7 @@ define('SY_SITEPATH', '/syner/');
 |
 */
 #Justin - Modified base url to point to Syner directory.
-$config['base_url']	= "http://localhost/Syner/";
+$config['base_url']	= "http://localhost/syner/";
 
 #Justin - Added for a quick way to refrene files
 $config['app_url']  = $config['base_url'] . "system/application/";
