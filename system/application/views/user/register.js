@@ -3,16 +3,26 @@
  * @todo redirect user to some other page.
  * @todo add vaid email check here. Although done by the server it will save bandwith.
  */
+ var loading_icon = "/syner/styles/icons/loading.png";
+ var notice_icon = "/syner/styles/icons/reg_notice_ico.png";
+ var ok_icon = "/syner/styles/icons/reg_ok_ico.png"
+ 
 function register_form_response(data)
 {
 	for (var i = 0; i < data.error_responses.length; i++)
 	{
 		var response = data.error_responses[i];
 		var reference_id = response['reference_id'];
+		var field_icon = $("#" + reference_id + "_icon");
+		
 		if(reference_id != "success" )
 		{
 			var error_field = $("#"+ reference_id + "_error");
 			error_field.show();
+			
+			field_icon.attr("src", notice_icon);
+			field_icon.show();
+			
 			switch(response['return_val']) 
 			{
 				case '-1':
@@ -25,10 +35,10 @@ function register_form_response(data)
 					error_field.html("There was an error communicating with the database.");
 					break;
 			}
-		}
-
-		//there should only be 1 success message
-		else {
+		} else {
+			field_icon.attr("src", ok_icon);
+			field_icon.show();
+			
 			alert("Account registered successfully!");	
 		}
 	}
@@ -57,20 +67,32 @@ function validate_register_form()
 	email = email.replace(/^\s*/,"");
 	email = email.replace(/^\s*/,"");
 
+	$('#username_icon').show();
+	
 	if(username.length <=0)
 	{
 		$('#username_error').html("Please supply a username.");
 		$('#username_error').show();
+		$('#username_icon').attr("src", notice_icon);
+		
+		
 		return false;
 	}
 	$('#username_error').hide();
-		
+	$('#username_icon').hide();
+	
+	$('#email_icon').show();
+	
 	if(email.length <= 0) {
 		$('#email_error').html("Please supply a email.");
 		$('#email_error').show();
+		
+		$('#email_icon').attr("src", notice_icon);
+		
 		return false;
 	}
 	$('#email_error').hide();
+	$('#email_icon').hide();
 
 	//send the username and email off to the server.	
 	$.ajax({

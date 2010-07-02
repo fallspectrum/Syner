@@ -23,7 +23,7 @@
 						<td width="150">
 						<!--very small input validation area (simple icons only) like:<img src="<?=SY_SITEPATH?>styles/icons/reg_notice_ico.png" /><img src="<?=SY_SITEPATH?>styles/icons/reg_ok_ico.png" />-->
 						</td>
-						<td width="400">
+						<td width="700px">
 							<p>
 								<form onSubmit="return validate_register_form();" method="POST" action="">
 								
