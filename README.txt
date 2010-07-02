@@ -13,3 +13,7 @@ Installation Instructions-
 5. Go to and open  system/application/config/database.php
 6. Within database.php set your database information such as hostname, username, password, and database.
 
+Resources:
+
+http://www.OneSynergy.org
+http://www.Syner.org
