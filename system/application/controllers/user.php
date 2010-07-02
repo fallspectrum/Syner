@@ -28,7 +28,6 @@ class User extends Controller {
 	* @check if users exists in validated user account table
 	*/
 	function registerajax() {
-
 		$this->load->library("simple_json");
 		$invalid = false;
 		$json = new Simple_Json();
@@ -76,11 +75,18 @@ class User extends Controller {
 				$invalid = true;
 			}
 			
+			
+			//generate an activation hash
+			$char_pool='0123456789abcdefghijklmnopqrstuvwxyzABZCDEFGIJKLMNOPQRSTUVWXYZ';
+			$random_string = "";
+			for($p=0; $p<64; $p++)
+			 	$random_string.=$char_pool[mt_rand(0,strlen($char_pool)-1)];
+			
 			//create user account
 			if (!$invalid ) {
 				//generate a temp password
 				//generate validation hash
-				$this->Pending_users->insert_entry($username,$email,NULL);
+				$this->Pending_users->insert_entry($username,$email,$random_string);
 			}
 			
 			if (! $invalid)	{
