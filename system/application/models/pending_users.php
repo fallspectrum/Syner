@@ -56,14 +56,19 @@ class Pending_users extends Model {
 	/**
 	* This function adds a entry into the pending_users table.
 	* The function relies on correct data on the post variables.
+	* @param $alias alias used by the user (username)
+	* @param $email email address of the user
+	* @param $password_hash sha-256 password hash (not raw, but hex encoded to string)
+	* @param $auth_identifier 64 character string used for validation link
 	* @todo insert error checking
 	*/
 	
-	function insert_entry($alias,$email,$auth_identifier)
+	function insert_entry($alias,$email,$password_hash,$auth_identifier)
 	{
 		$data = array(
 			'alias' => $alias,
 			'email' => $email,
+			'password_hash' => $password_hash,
 			'auth_identifier' => $auth_identifier
 			);
 		$this->db->insert('pending_users',$data);

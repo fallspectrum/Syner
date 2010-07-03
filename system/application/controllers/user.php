@@ -38,6 +38,7 @@ class User extends Controller {
 		//expanding html characters to there co-entities and by using unicode characters.
 		$this->form_validation->set_rules('username','username','required|trim|max_length[15]|htmlentities');
 		$this->form_validation->set_rules('email','email','required|trim|email|valid_email');
+		$this->form_validation->set_rules('password','password','required','min_length[6]');
 		
 		if($this->form_validation->run() === FALSE) 
 		{
@@ -50,6 +51,7 @@ class User extends Controller {
 		{
 			$username = $this->input->post('username');
 			$email = $this->input->post('email');
+			$password_hash = hash("sha256",$this->config->item('encryption_salt') . $this->input->post('password'));
 			//check if username exists already in pending_users table
 			# Ryan - Catch an exception if the database query fails
 			$this->load->model('Pending_users','',TRUE);
@@ -84,9 +86,7 @@ class User extends Controller {
 			
 			//create user account
 			if (!$invalid ) {
-				//generate a temp password
-				//generate validation hash
-				$this->Pending_users->insert_entry($username,$email,$random_string);
+				$this->Pending_users->insert_entry($username,$email,$password_hash,$random_string);
 			}
 			
 			if (! $invalid)	{

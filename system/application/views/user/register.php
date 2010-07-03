@@ -37,7 +37,20 @@
 								<input type="text" name="email" title="Your email address." size="30" id="email" /> 
 								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="email_icon" />
 								<label style="color: #F00;display: none;" id="email_error"></label>
-							</p>
+								<br /><br />
+							
+								<b>Password:</b> <br />
+								<input type="password" name="password" title="Create a password." size="30" id="password" /> 
+								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="password_icon" />
+								<label style="color: #F00;display: none;" id="password_error"></label>
+								<br /><br />
+	
+								<b>Confirm Password:</b> <br />
+								<input type="password" name="confirm_password" title="Please confirm your password." size="30" id="confirm_password" /> 
+								<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="confirm_password_icon" />
+								<label style="color: #F00;display: none;" id="confirm_password_error"></label>
+						
+						</p>
 						</td>
 					</tr>
 				</table>
