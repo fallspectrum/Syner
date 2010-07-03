@@ -193,7 +193,7 @@ $config['directory_trigger'] 	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 4;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -227,6 +227,19 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 |
 */
 $config['cache_path'] = '';
+
+
+//Justin  
+/*
+|--------------------------------------------------------------------------
+| Encryption salt
+|--------------------------------------------------------------------------
+|
+| This value is used for hasing passwords. Use a random character string 
+| including symbols. Should be at least 5 characters long.
+*/
+$config['encryption_salt'] = "$(k@p";
+
 
 /*
 |--------------------------------------------------------------------------

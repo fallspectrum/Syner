@@ -24,8 +24,12 @@ class User extends Controller {
 
 	/**
 	* This function handles a register user request. It responseds with a json response.
-	* -1 response for malformed input. -2 for input used already. 1 for success.
+	* -1 response for malformed input. -2 for input used already. -3 for database error.
+	* -4 for sendmail error. 1 for success. 
+	* Sends email with instructions on how to activate the account.
 	* @check if users exists in validated user account table
+	* @todo Add a check to prevent users from submitting the form multiple times (Make the existing captcha invald)
+	* @todo Localize error and email messages, and add site name to config
 	*/
 	function registerajax() {
 		$this->load->library("simple_json");
@@ -38,6 +42,7 @@ class User extends Controller {
 		//expanding html characters to there co-entities and by using unicode characters.
 		$this->form_validation->set_rules('username','username','required|trim|max_length[15]|htmlentities');
 		$this->form_validation->set_rules('email','email','required|trim|email|valid_email');
+		$this->form_validation->set_rules('password','password','required','min_length[6]');
 		
 		if($this->form_validation->run() === FALSE) 
 		{
@@ -50,6 +55,7 @@ class User extends Controller {
 		{
 			$username = $this->input->post('username');
 			$email = $this->input->post('email');
+			$password_hash = hash("sha256",$this->config->item('encryption_salt') . $this->input->post('password'));
 			//check if username exists already in pending_users table
 			# Ryan - Catch an exception if the database query fails
 			$this->load->model('Pending_users','',TRUE);
@@ -83,10 +89,25 @@ class User extends Controller {
 			 	$random_string.=$char_pool[mt_rand(0,strlen($char_pool)-1)];
 			
 			//create user account
-			if (!$invalid ) {
-				//generate a temp password
-				//generate validation hash
-				$this->Pending_users->insert_entry($username,$email,$random_string);
+			if (!$invalid) {
+				$this->Pending_users->insert_entry($username,$email,$password_hash,$random_string);
+				
+				// Send confirmation email
+				$this->load->library('email');
+				$this->email->subject('Syner Account Activation');
+				$this->email->to($email);
+				$this->email->from('noreply@onesynergy.org', 'Syner Project');
+				
+				$url = $config['base_url']."/user/account_activation?username=".$username."&activation_id=".$random_string;
+				$data['url'] = $url;
+				$text = $this->load->view('user/activation_email.php', $data, true);
+                
+				$this->email->message($text);
+				if(!$this->email->send()) {
+					$json->add_error_response("sendmail", -4, "");
+					$invalid = true;
+				}
+				
 			}
 			
 			if (! $invalid)	{
