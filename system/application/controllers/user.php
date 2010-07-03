@@ -24,8 +24,9 @@ class User extends Controller {
 
 	/**
 	* This function handles a register user request. It responseds with a json response.
-	* -1 response for malformed input. -2 for input used already. 1 for success. Sends email
-	* with instructions on how to activate the account.
+	* -1 response for malformed input. -2 for input used already. -3 for database error.
+	* -4 for sendmail error. 1 for success. 
+	* Sends email with instructions on how to activate the account.
 	* @check if users exists in validated user account table
 	* @todo Add a check to prevent users from submitting the form multiple times (Make the existing captcha invald)
 	* @todo Localize error and email messages, and add site name to config
@@ -92,12 +93,20 @@ class User extends Controller {
 				$this->Pending_users->insert_entry($username,$email,$password_hash,$random_string);
 				
 				// Send confirmation email
-				$title = "Syner Account Activation";
+				$this->load->library('email');
+				$this->email->subject('Syner Account Activation');
+				$this->email->to($email);
+				$this->email->from('noreply@onesynergy.org', 'Syner Project');
+				
 				$url = $config['base_url']."/user/account_activation?username=".$username."&activation_id=".$random_string;
 				$data['url'] = $url;
 				$text = $this->load->view('user/activation_email.php', $data, true);
-                            
-				mail($email, $title, $text, "From: noreply@onesynergy.org");
+                
+				$this->email->message($text);
+				if(!$this->email->send()) {
+					$json->add_error_response("sendmail", -4, "");
+					$invalid = true;
+				}
 				
 			}
 			

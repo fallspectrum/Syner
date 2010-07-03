@@ -34,6 +34,10 @@ function register_form_response(data)
 				case '-3':
 					error_field.html("There was an error communicating with the database.");
 					break;
+				case '-4':
+					$('#js_error').html("There was an error trying to send the activation email.");
+					$('#js_error').show();
+					break;
 			}
 		} else {
 			field_icon.attr("src", ok_icon);
