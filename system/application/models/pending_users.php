@@ -12,13 +12,14 @@ class Pending_users extends Model {
 
 	
 	/**
-	*This function 
+	* This function checks if a user exists based on the input. 
 	* @param $alias a user name
-	* @param @email a email
+	* @param $email a email
+	* @param $activation_id a activation identifier
 	* @return TRUE if entry exists, FALSE otherwise
 	* @todo - add error checking if query failed
 	*/
-	function entry_exists($alias='',$email='')
+	function entry_exists($alias='',$email='',$activation_id='')
 	{
 	
 		$where ='';
@@ -31,7 +32,15 @@ class Pending_users extends Model {
 			}
 			$where .= "email = '" . $email ."'";
 		}
+	
+		if($activation_id !== '' ) {
+			if($where !== '') {
+				$where .= " OR";
+			}
+			$where .= "activation_id = '" . $activation_id . "'";
+		}
 		
+
 		//get the email and ignore the value. we don't any data really.
 		$this->db->select('email');
 		$this->db->where($where);
@@ -69,7 +78,7 @@ class Pending_users extends Model {
 			'alias' => $alias,
 			'email' => $email,
 			'password_hash' => $password_hash,
-			'auth_identifier' => $auth_identifier
+			'activation_id' => $auth_identifier
 			);
 		$this->db->insert('pending_users',$data);
 	}

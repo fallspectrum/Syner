@@ -14,6 +14,62 @@ class User extends Controller {
 	}
 	
 	
+
+	/**
+	* This function is used to activate a users account
+	*/
+	function account_activation()
+	{
+		
+		
+		$valid = true;
+
+		$uri_array = $this->uri->uri_to_assoc(3);
+
+		//Check if username is less then 6 characters
+		try {
+			
+			if(isset($uri_array['username']))
+				$username = $uri_array['username'];
+			else
+				throw new Exception('No username was supplied.');
+
+			if(isset($uri_array['activation_id']))
+				$activation_id = $uri_array['activation_id'];
+			else
+				throw new Exception('No activation_id was supplied.');
+		
+			//When a user registers the username was convertited to htmlentities. Must do same here
+			$username  = htmlentities($username);
+
+		
+			if(strlen($username) < 6) {
+				throw new Exception('Username is not long enough.');
+			}
+
+			if(!ctype_alnum($activation_id) || strlen($activation_id) != 64) {
+				throw new Exception('Invalid activation id.');
+			}
+			
+			$this->load->model('Pending_users','',TRUE);
+			if($this->Pending_users->entry_exists($username,'',$activation_id)) {
+				echo "Account exists.";
+			}
+			else {
+				echo "Account does not exist.";
+			}
+
+		}
+		catch (Exception $e) {
+			echo $e;
+		}
+	}
+
+
+	/**
+	* This function is used to display the register page.
+	*/
+	
 	function register()
 	{
 		$data['js_files'] = array($this->config->item("base_url") . "system/application/views/user/register.js");
@@ -59,7 +115,7 @@ class User extends Controller {
 			# Ryan - Catch an exception if the database query fails
 			$this->load->model('Pending_users','',TRUE);
 			try {
-				if($this->Pending_users->entry_exists($username,'')) {
+				if($this->Pending_users->entry_exists($username,'','')) {
 					$json->add_error_response('username', -2);
 					$invalid = true;
 				}
@@ -71,7 +127,7 @@ class User extends Controller {
 			//check for the email now...
 			# Ryan - Catch an exception if the database query fails
 			try {
-				if($this->Pending_users->entry_exists('',$email)) {
+				if($this->Pending_users->entry_exists('',$email,'')) {
 					$json->add_error_response('email', -2);
 					$invalid = true;
 				}
@@ -93,7 +149,7 @@ class User extends Controller {
 				
 				// Send confirmation email
 				$title = "Syner Account Activation";
-				$url = $config['base_url']."/user/account_activation?username=".$username."&activation_id=".$random_string;
+				$url = $this->config->item('base_url')."/user/account_activation/username/".$username."/activation_id/".$random_string;
 				$data['url'] = $url;
 				$text = $this->load->view('user/activation_email.php', $data, true);
                             
