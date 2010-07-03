@@ -93,12 +93,9 @@ class User extends Controller {
 				
 				// Send confirmation email
 				$title = "Syner Account Activation";
-				$url = $config['base_url']."/user/activate?username=".$username."&activation_id=".$random_string;
-				$text = "Thank you for your interest in Syner! Together we can solve problems and move
-						 our world in the right direction.\n<br />
-						 To activate your account, please click the following link: 
-						 <a href=".$url.">Activate your account</a>. If the link doesn't work, then copy 
-						 and paste this url into your web browser: ".$url;
+				$url = $config['base_url']."/user/account_activation?username=".$username."&activation_id=".$random_string;
+				$data['url'] = $url;
+				$text = $this->load->view('user/activation_email.php', $data, true);
                             
 				mail($email, $title, $text, "From: noreply@onesynergy.org");
 				
