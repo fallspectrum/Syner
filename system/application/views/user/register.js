@@ -39,7 +39,7 @@ function register_form_response(data)
 			field_icon.attr("src", ok_icon);
 			field_icon.show();
 			
-			alert("Account registered successfully!");	
+			alert("Account registered successfully! Please check your email for further instructions on how  to activate your account.");	
 		}
 	}
 	

@@ -24,8 +24,11 @@ class User extends Controller {
 
 	/**
 	* This function handles a register user request. It responseds with a json response.
-	* -1 response for malformed input. -2 for input used already. 1 for success.
+	* -1 response for malformed input. -2 for input used already. 1 for success. Sends email
+	* with instructions on how to activate the account.
 	* @check if users exists in validated user account table
+	* @todo Add a check to prevent users from submitting the form multiple times (Make the existing captcha invald)
+	* @todo Localize error and email messages, and add site name to config
 	*/
 	function registerajax() {
 		$this->load->library("simple_json");
@@ -85,8 +88,20 @@ class User extends Controller {
 			 	$random_string.=$char_pool[mt_rand(0,strlen($char_pool)-1)];
 			
 			//create user account
-			if (!$invalid ) {
+			if (!$invalid) {
 				$this->Pending_users->insert_entry($username,$email,$password_hash,$random_string);
+				
+				// Send confirmation email
+				$title = "Syner Account Activation";
+				$url = $config['base_url']."/user/activate?username=".$username."&activation_id=".$random_string;
+				$text = "Thank you for your interest in Syner! Together we can solve problems and move
+						 our world in the right direction.\n<br />
+						 To activate your account, please click the following link: 
+						 <a href=".$url.">Activate your account</a>. If the link doesn't work, then copy 
+						 and paste this url into your web browser: ".$url;
+                            
+				mail($email, $title, $text, "From: noreply@onesynergy.org");
+				
 			}
 			
 			if (! $invalid)	{
