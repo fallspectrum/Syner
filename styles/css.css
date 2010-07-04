@@ -79,16 +79,16 @@ div#header{
 	/* Begin logo */
 
 	div#logo{
-		position:absolute;
-		width:275px;
+		position:relative;
+		width:240px;
 		border:0px solid #ff0000;
 
 	}
 		div.logoBox{
 			border:0px solid #fff;
 			position:absolute;
-			top:10px;
-			right:-8px;
+			top:12px;
+			left:8px;
 			text-align:center;
 			vertical-align:middle;
 		}
@@ -105,11 +105,12 @@ div#header{
 	div#headnav{
 	position:relative;
 	float:left;
-	left:265px;
+	left:260px;
 	height:38px;
-	width:400px;
-	text-align:center;
+	width:351px;
+	text-align:;
 	vertical-align:middle;
+	border:0px solid #ff0000;
 	}
 		ul#headnav{
 			width:100%;
@@ -117,6 +118,7 @@ div#header{
 			margin:0;
 			list-style-type:none;
 			height:40px;
+			border:0px solid #000000;
 		}
 
 			li.headnav{
@@ -162,8 +164,8 @@ div#header{
 		float:right;
 		position:relative;
 		top:-5px;
-		height:45px;
-		width:300px;
+		height:;
+		width:355px;
 		border:0px solid #ff0000;
 	}
 		ul.usernav{
@@ -171,16 +173,16 @@ div#header{
 			float:right;
 			text-align:right;
 			height:;
-			width:250px;
+			width:355px;
 			list-style-type:none;
 			text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
 		}
 
 			li.usernav{
 				display:inline;
-				height:38px;
+				height:;
 				font-weight:bold;
-				font-size:15px;
+				font-size:14px;
 			}
 
 			li.usernav#first{
@@ -188,7 +190,7 @@ div#header{
 			}
 
 				li.usernav a{
-					height:38px;
+					height:;
 					text-decoration:none;
 					color:#fff;
 					padding-right:10px;
