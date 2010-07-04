@@ -24,9 +24,9 @@ class User extends Controller {
 		
 		$valid = true;
 
+		//skip to 3rd element in the uri. This will create the key/value pair.
 		$uri_array = $this->uri->uri_to_assoc(3);
 
-		//Check if username is less then 6 characters
 		try {
 			
 			if(isset($uri_array['username']))
@@ -43,8 +43,9 @@ class User extends Controller {
 			$username  = htmlentities($username);
 
 		
-			if(strlen($username) < 6) {
-				throw new Exception('Username is not long enough.');
+			//min and max length for username			
+			if(strlen($username) < 1 && strlen($username) > 16) {
+				throw new Exception('Username is not valid.');
 			}
 
 			if(!ctype_alnum($activation_id) || strlen($activation_id) != 64) {
@@ -80,8 +81,9 @@ class User extends Controller {
 
 	/**
 	* This function handles a register user request. It responseds with a json response.
-	* -1 response for malformed input. -2 for input used already. 1 for success. Sends email
-	* with instructions on how to activate the account.
+	* -1 response for malformed input. -2 for input used already. -3 for database error.
+	* -4 for sendmail error. 1 for success. 
+	* Sends email with instructions on how to activate the account.
 	* @check if users exists in validated user account table
 	* @todo Add a check to prevent users from submitting the form multiple times (Make the existing captcha invald)
 	* @todo Localize error and email messages, and add site name to config
@@ -95,7 +97,7 @@ class User extends Controller {
 
 		//note max_length is 15 here. Technically they can have a username longer then 15 characters do to
 		//expanding html characters to there co-entities and by using unicode characters.
-		$this->form_validation->set_rules('username','username','required|trim|max_length[15]|htmlentities');
+		$this->form_validation->set_rules('username','username','required|trim|min_length[1]|max_length[15]|htmlentities');
 		$this->form_validation->set_rules('email','email','required|trim|email|valid_email');
 		$this->form_validation->set_rules('password','password','required','min_length[6]');
 		
@@ -149,11 +151,20 @@ class User extends Controller {
 				
 				// Send confirmation email
 				$title = "Syner Account Activation";
-				$url = $this->config->item('base_url')."/user/account_activation/username/".$username."/activation_id/".$random_string;
+				$url = $this->config->item('base_url')."index.php/user/account_activation/username/".$username."/activation_id/".$random_string;
+				$this->load->library('email');
+				$this->email->subject('Syner Account Activation');
+				$this->email->to($email);
+				$this->email->from('noreply@onesynergy.org', 'Syner Project');
+				
 				$data['url'] = $url;
 				$text = $this->load->view('user/activation_email.php', $data, true);
-                            
-				mail($email, $title, $text, "From: noreply@onesynergy.org");
+                
+				$this->email->message($text);
+				if(!$this->email->send()) {
+					$json->add_error_response("sendmail", -4, "");
+					$invalid = true;
+				}
 				
 			}
 			
