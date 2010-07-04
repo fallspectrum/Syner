@@ -53,12 +53,35 @@ class User extends Controller {
 			}
 			
 			$this->load->model('Pending_users','',TRUE);
-			if($this->Pending_users->entry_exists($username,'',$activation_id)) {
-				echo "Account exists.";
+			$query = $this->Pending_users->get_user($username,'',$activation_id);
+			
+			//Message displayed to the user.
+			$activation_message="";
+
+			if($query->num_rows() > 0 ) {
+				//get move user into new table
+				$this->load->model("Users");
+				$row = $query->result_array();
+				
+				//get the first result (should be only result)
+				$row = $row[0];
+				
+				//get rid of activation id
+				unset($row['activation_id']);
+				$this->Users->add_user($row);
+				
+				//delete old entry
+				$this->Pending_users->delete_user($row['username'],$row['email'],'');
+
+				$activation_message="Thank you for for activating your account! Feel free to log in and use the site.";
 			}
 			else {
-				echo "Account does not exist.";
+				$activation_message =  "I'm sorry, we were unable to activate your account. Please try again. If problem persists contact the site adminsitrator.";
 			}
+			
+			$activation_data = array('result_msg' => $activation_message);
+			$layout_data['content']= $this->load->view('user/account_activation',$activation_data,true);
+			$this->load->view('layout', $layout_data);
 
 		}
 		catch (Exception $e) {
@@ -116,8 +139,11 @@ class User extends Controller {
 			//check if username exists already in pending_users table
 			# Ryan - Catch an exception if the database query fails
 			$this->load->model('Pending_users','',TRUE);
+			$this->load->model('Users','',TRUE);
 			try {
-				if($this->Pending_users->entry_exists($username,'','')) {
+				$query_pending = $this->Pending_users->get_user($username,'','');
+				$query_users = $this->Users->get_user(array('username'=>$username));
+				if($query_pending->num_rows() > 0 || $query_users->num_rows() > 0 ) {
 					$json->add_error_response('username', -2);
 					$invalid = true;
 				}
@@ -129,15 +155,17 @@ class User extends Controller {
 			//check for the email now...
 			# Ryan - Catch an exception if the database query fails
 			try {
-				if($this->Pending_users->entry_exists('',$email,'')) {
+				$query_pending = $this->Pending_users->get_user('',$email,'');
+				$query_users = $this->Users->get_user(array('email'=>$email)); 
+				if($query_pending->num_rows() > 0 || $query_users->num_rows() > 0 ) {
 					$json->add_error_response('email', -2);
 					$invalid = true;
 				}
+				
 			} catch (Exception $e) {
 				$json->add_error_response('email', -3);
 				$invalid = true;
 			}
-			
 			
 			//generate an activation hash
 			$char_pool='0123456789abcdefghijklmnopqrstuvwxyzABZCDEFGIJKLMNOPQRSTUVWXYZ';

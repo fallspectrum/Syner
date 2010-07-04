@@ -12,15 +12,14 @@ class Pending_users extends Model {
 
 
 	/**
-	* This function checks if a user exists based on the input.
+	* This function retreives the row for a given input.
 	* Please note if activation_id is given then username MUST be given.
 	* @param $username a user name
 	* @param $email a email
 	* @param $activation_id a activation identifier
 	* @return TRUE if entry exists, FALSE otherwise
-	* @todo - add error checking if query failed
 	*/
-	function entry_exists($username='',$email='',$activation_id='')
+	function get_user($username='',$email='',$activation_id='')
 	{
 	
 		$where ='';
@@ -36,7 +35,7 @@ class Pending_users extends Model {
 	
 		if($activation_id !== '' ) {
 			if($username === '') {
-				throw new Exception('Username is required when queriring for activation id.');
+				throw new Exception('Username is required when querying for activation id.');
 			}
 
 			if($where !== '') {
@@ -46,27 +45,68 @@ class Pending_users extends Model {
 		}
 		
 
-		//get the email and ignore the value. we don't any data really.
-		$this->db->select('email');
+		//Get all data from row.
 		$this->db->where($where);
 		$this->db->limit(1);
 		$query = $this->db->get('pending_users');
 
 		# Ryan - Throw an exception if the database query failed
 		if(!$query) {
-			log_message('debug', 'Failed to check if a user entry exists');
-			throw new Exception('Failed to check if a user entry exists');
+			log_message('debug', 'Failed to get user from pending table.');
+			throw new Exception('Failed to get user from pending table.');
 		}
-		
-		if($query->num_rows() > 0) {
-			return TRUE;
-		}
-
-		else {
-			return FALSE;
-		}
+	
+		return $query;
 	}
 	
+	/**
+	* This function deletes a row for a given input.
+	* Please note if activation_id is given then username MUST be given.
+	* @param $username a user name
+	* @param $email a email
+	* @param $activation_id a activation identifier
+	* @return TRUE if entry exists, FALSE otherwise
+	*/
+	function delete_user($username='',$email='',$activation_id='')
+	{
+	
+		$where ='';
+		if($username !== '') {
+			$where .= "username ='" . $username ."'";
+		}
+		if($email !== '') {
+			if($where !== '') {
+				$where .= " OR ";
+			}
+			$where .= "email = '" . $email ."'";
+		}
+	
+		if($activation_id !== '' ) {
+			if($username === '') {
+				throw new Exception('Username is required when querying for activation id.');
+			}
+
+			if($where !== '') {
+				$where .= " AND ";
+			}
+			$where .= "activation_id = '" . $activation_id . "'";
+		}
+		
+
+		//Get all data from row.
+		$this->db->where($where);
+		
+		$query = $this->db->delete('pending_users');
+
+		# Ryan - Throw an exception if the database query failed
+		if(!$query) {
+			log_message('debug', 'Failed to delete pending user.');
+			throw new Exception('Failed to delete pending users.');
+		}
+	
+		return $query;
+	}
+		
 	/**
 	* This function adds a entry into the pending_users table.
 	* The function relies on correct data on the post variables.
@@ -76,7 +116,6 @@ class Pending_users extends Model {
 	* @param $auth_identifier 64 character string used for validation link
 	* @todo insert error checking
 	*/
-	
 	function insert_entry($username,$email,$password_hash,$auth_identifier)
 	{
 		$data = array(
