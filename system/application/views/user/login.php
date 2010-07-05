@@ -17,7 +17,7 @@
 											<b>Username:</b>
 										</td>
 										<td align="left">
-											<input type="text" name="username" title="Your username." size="25" />
+											<input type="text" name="username" title="Your username." id="username" size="25" />
 											<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />
 											<label style="color: #F00;display: none;" id="username_error"></label>
 </td>
@@ -27,7 +27,7 @@
 											<b>Password:</b>
 										</td>
 										<td  align="left">
-											<input type="text" name="password" title="Your password." size="25" /><br />
+											<input type="text" name="password" title="Your password." id="password" size="25" /><br />
 											<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="password_icon" />
 											<label style="color: #F00;display: none;" id="password_error"></label>
 										</td>
@@ -39,7 +39,7 @@
 										<td  align="left">
 										<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="js_icon" />
 										<p id="js_error" style="display:hidden"></p>
-										<input type="button" value="Log In" /><br />
+										<input type="button" value="Log In" onclick="validate_login_form()" /><br />
 										<a href="">Forgot your password?</a>
 										</td>
 									</tr>

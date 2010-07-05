@@ -19,17 +19,18 @@ class User_Session
 	*/
 	function login($username,$password)
 	{
-		
-		$password_hash = hash('sha256',$this->config->item('encryption_salt') . $password);
+		$CI = & get_instance();
+		$password_hash = hash('sha256',$CI->config->item('encryption_salt') . $password);
 		$login_info = array(	'username'=>$username,
 					'password_hash'=>$password_hash);
-		$this->load->model('Users','',TRUE);
-		$query = $this->users->get_user($login_info);
+		$CI->load->model('Users','',TRUE);
+		$query = $CI->Users->get_user($login_info);
 		if($query->num_rows() > 0 ) {
-			$this->load->library('Sessions');
-			$user_row = $query[0]->row_array();
+			$CI->load->library('session');
+			$user_row = $query->result_array();
+			$user_row = $user_row[0];
 			$session_data = array("user_id"=>$user_row['id'], "privilege" => $user_row['privilege']);
-			$this->session->set_userdata($session_data);
+			$CI->session->set_userdata($session_data);
 			return 0;
 		}
 		else {
@@ -44,7 +45,8 @@ class User_Session
 	*/
 	function get_privilege() 
 	{
-		$privilege = $this->session->userdata('user_id');
+		$CI =& get_instance();
+		$privilege = $CI->session->userdata('privilege');
 		if ($privilege === FALSE) {
 			$privilege = 0;
 		}
@@ -56,7 +58,8 @@ class User_Session
 	*/
 	function logout()
 	{
-		$this->session->sess_destroy();	
+		$CI =& get_instance();
+		$CI->session->sess_destroy();	
 	}
 }
 

@@ -206,11 +206,29 @@ class User extends Controller {
 
 	function login()
 	{
-		$data['js_files'] = array(SY_SITEPATH . "system/application/views/user/login.js");
-		$data['content'] = $this->load->view('user/login.php', '', true);
+		$this->load->library('user_session');
+		if($this->user_session->get_privilege() == 0) {
+			$data['js_files'] = array(SY_SITEPATH . "system/application/views/user/login.js");
+			$data['content'] = $this->load->view('user/login.php', '', true);
+		}
+		else {
+			$data['content'] = "Hey, you are already logged in.";
+		}
 		$this->load->view('layout', $data);
 	}
 
+	function logout()
+	{
+		$this->load->library('user_session');
+		if($this->user_session->get_privilege() != 0 ) {
+			$this->user_session->logout();
+			$data['content'] = "Log out successful.";
+		}
+		else {
+			$data['content'] = "Hey, you aren't logged in.";
+		}
+		$this->load->view('layout',$data);
+	}
 	function login_ajax() 
 	{
 		

@@ -7,7 +7,7 @@
  var notice_icon = "/syner/styles/icons/reg_notice_ico.png";
  var ok_icon = "/syner/styles/icons/reg_ok_ico.png"
  
-function register_form_response(data)
+function login_form_response(data)
 {
 	for (var i = 0; i < data.error_responses.length; i++)
 	{
@@ -32,10 +32,12 @@ function register_form_response(data)
 		case '-5':
 			error_field.html("Sorry, a incorrect username or password was given. Please try logging in again.");
 			error_field.show();
+			break;
 		case '0':
 			error_field.html("You are now logged in!");
 			field_icon.attr("src", ok_icon);
 			field_icon.show();
+			break;
 				
 		}
 	}
@@ -80,7 +82,7 @@ function validate_login_form()
 	$('#password_icon').show();
 	
 	if(password.length < 6) {
-		$('#password_error').html("Please must be at least 6 characters.");
+		$('#password_error').html("Password must be at least 6 characters.");
 		$('#password_error').show();
 		
 		$('#password_icon').attr("src", notice_icon);
@@ -92,11 +94,11 @@ function validate_login_form()
 	
 	//send the username and email off to the server.	
 	$.ajax({
-	  url: 'registerajax',
+	  url: 'login_ajax',
      	  dataType: 'json',
-	  data: "username=" + username + "&email=" + email + "&password=" + password,
+	  data: "username=" + username + "&password=" + password,
 	  type:	'POST',
-	  success: register_form_response,
+	  success: login_form_response,
 	  error: ajax_error 
 
 	});
