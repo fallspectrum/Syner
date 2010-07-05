@@ -38,6 +38,7 @@ class Install extends Controller
 		$this->dbforge->drop_table("topic_contents");
 		$this->dbforge->drop_table("topic_content_revisions");
 		$this->dbforge->drop_table("solution_content_revisions");
+		$this->dbforge->drop_table("ci_sessions");
 	}
 	
 	/*
@@ -145,6 +146,16 @@ solution_id INTEGER UNSIGNED NOT NULL,
 content TEXT NOT NULL,
 user_id INTEGER UNSIGNED NOT NULL
 ) CHARACTER SET utf8 ');
+
+$this->db->query('
+CREATE TABLE ci_sessions (
+session_id varchar(40) DEFAULT "0" NOT NULL,
+ip_address varchar(16) DEFAULT "0" NOT NULL,
+user_agent varchar(50) NOT NULL,
+last_activity int(10) unsigned DEFAULT 0 NOT NULL,
+user_data text NOT NULL,
+PRIMARY KEY (session_id)
+) CHARACTER SET utf8');
 	}
 }
 ?>
