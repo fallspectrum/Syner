@@ -3,9 +3,6 @@
  * @todo redirect user to some other page.
  * @todo add vaid email check here. Although done by the server it will save bandwith.
  */
- var loading_icon = "/syner/styles/icons/loading.png";
- var notice_icon = "/syner/styles/icons/reg_notice_ico.png";
- var ok_icon = "/syner/styles/icons/reg_ok_ico.png"
  
 function register_form_response(data)
 {
@@ -20,7 +17,7 @@ function register_form_response(data)
 			var error_field = $("#"+ reference_id + "_error");
 			error_field.show();
 			
-			field_icon.attr("src", notice_icon);
+			field_icon.attr("src", SY_NOTICE_ICON);
 			field_icon.show();
 			
 			switch(response['return_val']) 
@@ -40,22 +37,13 @@ function register_form_response(data)
 					break;
 			}
 		} else {
-			field_icon.attr("src", ok_icon);
+			field_icon.attr("src", SY_OK_ICON);
 			field_icon.show();
 			
 			alert("Account registered successfully! Please check your email for further instructions on how  to activate your account.");	
 		}
 	}
 	
-}
-
-/*
-* @todo find a better way to let the user know an error occured
-*/
-function ajax_error(xhr,textStatus,errorThrow)
-{
-	$('#js_error').html("There was an error processing your request.");
-	$('#js_error').show();
 }
 
 function validate_register_form()
@@ -81,7 +69,7 @@ function validate_register_form()
 	{
 		$('#username_error').html("Please supply a username.");
 		$('#username_error').show();
-		$('#username_icon').attr("src", notice_icon);
+		$('#username_icon').attr("src", SY_NOTICE_ICON);
 		
 		
 		return false;
@@ -95,7 +83,7 @@ function validate_register_form()
 		$('#email_error').html("Please supply a email.");
 		$('#email_error').show();
 		
-		$('#email_icon').attr("src", notice_icon);
+		$('#email_icon').attr("src", SY_NOTICE_ICON);
 		
 		return false;
 	}
@@ -110,7 +98,7 @@ function validate_register_form()
 		$('#password_error').html("Please use a password at least 6 characters.");
 		$('#password_error').show();
 		
-		$('#password_icon').attr("src", notice_icon);
+		$('#password_icon').attr("src", SY_NOTICE_ICON);
 		
 		return false;
 	}
@@ -124,7 +112,7 @@ function validate_register_form()
 		$('#confirm_password_error').html("Confirmation password does not match.");
 		$('#confirm_password_error').show();
 		
-		$('#confirm_password_icon').attr("src", notice_icon);
+		$('#confirm_password_icon').attr("src", SY_NOTICE_ICON);
 		
 		return false;
 	}

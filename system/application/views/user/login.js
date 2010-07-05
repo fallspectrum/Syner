@@ -3,9 +3,6 @@
  * @todo redirect user to some other page.
  * @todo add vaid email check here. Although done by the server it will save bandwith.
  */
- var loading_icon = "/syner/styles/icons/loading.png";
- var notice_icon = "/syner/styles/icons/reg_notice_ico.png";
- var ok_icon = "/syner/styles/icons/reg_ok_ico.png"
  
 function login_form_response(data)
 {
@@ -18,7 +15,7 @@ function login_form_response(data)
 		var error_field = $("#"+ reference_id + "_error");
 		error_field.show();
 
-		field_icon.attr("src", notice_icon);
+		field_icon.attr("src", SY_NOTICE_ICON);
 		field_icon.show();
 
 		switch(response['return_val']) 
@@ -35,22 +32,13 @@ function login_form_response(data)
 			break;
 		case '0':
 			error_field.html("You are now logged in!");
-			field_icon.attr("src", ok_icon);
+			field_icon.attr("src", SY_OK_ICON);
 			field_icon.show();
 			break;
 				
 		}
 	}
 	
-}
-
-/*
-* @todo find a better way to let the user know an error occured
-*/
-function ajax_error(xhr,textStatus,errorThrow)
-{
-	$('#js_error').html("There was an error processing your request.");
-	$('#js_error').show();
 }
 
 function validate_login_form()
@@ -70,7 +58,7 @@ function validate_login_form()
 	{
 		$('#username_error').html("Please supply a username.");
 		$('#username_error').show();
-		$('#username_icon').attr("src", notice_icon);
+		$('#username_icon').attr("src", SY_NOTICE_ICON);
 		
 		
 		return false;
@@ -85,7 +73,7 @@ function validate_login_form()
 		$('#password_error').html("Password must be at least 6 characters.");
 		$('#password_error').show();
 		
-		$('#password_icon').attr("src", notice_icon);
+		$('#password_icon').attr("src", SY_NOTICE_ICON);
 		
 		return false;
 	}

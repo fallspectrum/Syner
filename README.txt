@@ -8,7 +8,7 @@ Installation Instructions-
 
 1. Unpack Syner into your web directory of choice.
 2. Go to and open  system/application/config/config.php
-3. Within config.php define the SY_SITEPATH constant, notes are within the
+3. Within config.php and global.js define the SY_SITEPATH constant, notes are within the
 config file. Include the trailing slash.
 4. Within config.php define the Base Site URL. Including the trailing slash.
 5. Go to and open  system/application/config/database.php
