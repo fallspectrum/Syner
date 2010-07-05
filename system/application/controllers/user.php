@@ -206,8 +206,56 @@ class User extends Controller {
 
 	function login()
 	{
+		$data['js_files'] = array(SY_SITEPATH . "system/application/views/user/login.js");
 		$data['content'] = $this->load->view('user/login.php', '', true);
 		$this->load->view('layout', $data);
+	}
+
+	function login_ajax() 
+	{
+		
+		$this->load->library("simple_json");
+		$invalid = false;
+		$json = new Simple_Json();
+	
+		$this->load->library('form_validation');
+
+		//note max_length is 15 here. Technically they can have a username longer then 15 characters do to
+		//expanding html characters to there co-entities and by using unicode characters.
+		$this->form_validation->set_rules('username','username','required|trim|min_length[1]|max_length[15]|htmlentities');
+		$this->form_validation->set_rules('password','password','required','min_length[6]');
+		
+		if($this->form_validation->run() === FALSE) 
+		{
+			foreach ($this->form_validation->_error_array as $error)  {
+				$json->add_error_response($error[0],$error[1]);
+				$invalid = true;
+			}
+		}
+		else
+		{
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+
+			$this->load->library('user_session');
+			try {
+				if($this->user_session->login($username,$password) != 0) {
+					$json->add_error_response('js',-5);
+					$invalid = true;
+				}
+			}
+			catch (Exception $e) {
+				$json->add_error_response('js',-5);
+				$invalid= TRUE;
+			}
+
+			if (! $invalid)	{
+				//if all is good 
+				$json->add_error_response("js",0);
+			}
+			
+		}
+		echo $json->format_response();
 	}
 	
 }

@@ -5,6 +5,46 @@
 
 class Install extends Controller
 {
+	function _ci_initialize() 
+	{
+		// Assign all the class objects that were instantiated by the
+		// front controller to local class variables so that CI can be
+		// run as one big super object.
+		$classes = array(
+				    'config'    => 'Config',
+				    'input'     => 'Input',
+				    'benchmark' => 'Benchmark',
+				    'uri'       => 'URI',
+				    'output'    => 'Output',
+				    'lang'      => 'Language',
+				    'router'    => 'Router'
+				    );
+		
+		foreach ($classes as $var => $class)
+		{
+		    $this->$var =& load_class($class);
+		}
+
+		// In PHP 5 the Loader class is run as a discreet
+		// class.  In PHP 4 it extends the Controller
+		if (floor(phpversion()) >= 5)
+		{
+		    $this->load =& load_class('Loader');
+		}
+		else
+		{
+		    // sync up the objects since PHP4 was working from a copy
+		    foreach (array_keys(get_object_vars($this)) as $attribute)
+		    {
+			if (is_object($this->$attribute))
+			{
+			    $this->load->$attribute =& $this->$attribute;
+			}
+		    }
+		}
+
+	}
+	
 	function Install() 
 	{
 		parent::Controller();

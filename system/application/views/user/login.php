@@ -18,7 +18,9 @@
 										</td>
 										<td align="left">
 											<input type="text" name="username" title="Your username." size="25" />
-										</td>
+											<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />
+											<label style="color: #F00;display: none;" id="username_error"></label>
+</td>
 									</tr>
 									<tr>
 										<td align="right">
@@ -26,6 +28,8 @@
 										</td>
 										<td  align="left">
 											<input type="text" name="password" title="Your password." size="25" /><br />
+											<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="password_icon" />
+											<label style="color: #F00;display: none;" id="password_error"></label>
 										</td>
 									</tr>
 									<tr>
@@ -33,6 +37,8 @@
 											
 										</td>
 										<td  align="left">
+										<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="js_icon" />
+										<p id="js_error" style="display:hidden"></p>
 										<input type="button" value="Log In" /><br />
 										<a href="">Forgot your password?</a>
 										</td>

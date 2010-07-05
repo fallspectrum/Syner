@@ -39,18 +39,16 @@ class User_Session
 	}
 
 	/**
-	* This function checks if the current user is logged in based
-	* on the current session data.
-	* @return TRUE if they are logged in, FALSE otherwise
+	* This function returns the current privilege of the user. 
+	* @return 0 if they are not logged in, otherwise a non zero number.
 	*/
-	function is_logged_in() 
+	function get_privilege() 
 	{
-		if ($this->session->userdata('user_id') !== false) {
-			return TRUE;
+		$privilege = $this->session->userdata('user_id');
+		if ($privilege === FALSE) {
+			$privilege = 0;
 		}
-		else {
-			return FALSE;
-		}
+		return $privilege;
 	}
 
 	/**
