@@ -188,10 +188,10 @@ class User extends Controller {
 				$text = $this->load->view('user/activation_email.php', $data, true);
                 
 				$this->email->message($text);
-				//if(!$this->email->send()) {
-				//	$json->add_error_response("sendmail", -4);
-				//	$invalid = true;
-				//}
+				if(!$this->email->send()) {
+					$json->add_error_response("sendmail", -4);
+					$invalid = true;
+				}
 				
 			}
 			

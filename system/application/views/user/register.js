@@ -84,6 +84,16 @@ function validate_register_form()
 		$('#email_icon').attr("src", SY_NOTICE_ICON);
 		
 		return false;
+	} else {
+		var regex = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+		if(!regex.test(email)) {
+			$('#email_error').html("Invalid email address.");
+			$('#email_error').show();
+			
+			$('#email_icon').attr("src", SY_NOTICE_ICON);
+			
+			return false;	
+		}	
 	}
 	$('#email_error').hide();
 	$('#email_icon').hide();
