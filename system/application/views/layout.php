@@ -1,3 +1,4 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -45,21 +46,25 @@
 		<div class="usernav">
 			<ul class="usernav">
 			
-				<!-- These are the post-logged in usernav LI items, remove this comment block to display them.  Note: (the first LI item ACP = Admin Control Panel, this would only been seen by a user with admin priviledges
-				Move the HTML note end tag to see what the ACP would look like)
-			
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/admin/control/"><img src="<?=SY_SITEPATH?>styles/icons/acp_ico.png" border="0" /> ACP</a></li>
-				-->
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/home/"><img src="<?=SY_SITEPATH?>styles/icons/home_ico.png" border="0" /> Home</a></li>
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/settings/"><img src="<?=SY_SITEPATH?>styles/icons/settings_ico.png" border="0" /> Settings</a></li>
-				<li class="usernav"><a href="<?=SY_SITEPATH?>index.php/user/logout/"><img src="<?=SY_SITEPATH?>styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
-				 <!-- -->
+				<?php if ($this->user_session->get_privilege() === 0) { echo '	
 				
-				<!-- These are the pre-logged in usernav LI items, remove this comment block to display them.  
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/register/"><img src="' . SY_SITEPATH . 'styles/icons/register2_ico.png" border="0" /> Register</a></li>
+				<li class="usernav"><a href="' . SY_SITEPATH  .'index.php/user/login"><img src=" ' . SY_SITEPATH . 'styles/icons/login_ico.png" border="0" /> Log In</a></li>
+				'; } 
 				
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/register/"><img src="<?=SY_SITEPATH?>styles/icons/register2_ico.png" border="0" /> Register</a></li>
-				<li class="usernav"><a href="<?=SY_SITEPATH?>index.php/user/login/"><img src="<?=SY_SITEPATH?>styles/icons/login_ico.png" border="0" /> Log In</a></li>
-				-->
+				else { echo '
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/home/"><img src="' . SY_SITEPATH . 'styles/icons/home_ico.png" border="0" /> Home</a></li>
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/settings/"><img src="' . SY_SITEPATH . 'styles/icons/settings_ico.png" border="0" /> Settings</a></li>
+				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/logout/"><img src="' . SY_SITEPATH . 'styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
+				';}
+				
+				if ($this->user_session->get_privilege() === 2) {
+				echo '
+					<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/admin/control/"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
+				';
+				}
+				
+				?>
 			</ul>
 		</div>
 	</div>

@@ -19,3 +19,11 @@ function ajax_error(xhr,textStatus,errorThrow)
 	$('#js_error').show();
 }
 
+
+/**
+ *  This function is used to redirect the user.
+ */
+function redirect(page)
+{
+	window.location = page;
+}

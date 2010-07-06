@@ -31,15 +31,17 @@ function login_form_response(data)
 			error_field.show();
 			break;
 		case '0':
-			error_field.html("You are now logged in!");
+			error_field.html("You are now logged in. Redirecting you to your home page.");
 			field_icon.attr("src", SY_OK_ICON);
 			field_icon.show();
+			redirect("home");
 			break;
 				
 		}
 	}
 	
 }
+
 
 function validate_login_form()
 {
