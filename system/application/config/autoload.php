@@ -51,7 +51,7 @@ $autoload['libraries'] = array('session', 'user_session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('user');
 
 
 /*

@@ -46,7 +46,7 @@
 		<div class="usernav">
 			<ul class="usernav">
 			
-				<?php if ($this->user_session->get_privilege() === 0) { echo '	
+				<?php if (get_user_privilege() === 0) { echo '	
 				
 				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/register/"><img src="' . SY_SITEPATH . 'styles/icons/register2_ico.png" border="0" /> Register</a></li>
 				<li class="usernav"><a href="' . SY_SITEPATH  .'index.php/user/login"><img src=" ' . SY_SITEPATH . 'styles/icons/login_ico.png" border="0" /> Log In</a></li>
@@ -58,7 +58,7 @@
 				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/logout/"><img src="' . SY_SITEPATH . 'styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
 				';}
 				
-				if ($this->user_session->get_privilege() === 2) {
+				if (get_user_privilege() === 2) {
 				echo '
 					<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/admin/control/"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
 				';
