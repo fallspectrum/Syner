@@ -37,10 +37,8 @@ function register_form_response(data)
 					break;
 			}
 		} else {
-			field_icon.attr("src", SY_OK_ICON);
-			field_icon.show();
-			
-			alert("Account registered successfully! Please check your email for further instructions on how  to activate your account.");	
+			$("#register_container").fadeOut("slow");
+			$("#success_container").delay(600).fadeIn("Fast");
 		}
 	}
 	
