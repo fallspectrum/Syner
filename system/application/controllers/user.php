@@ -267,7 +267,7 @@ class User extends Controller {
 				}
 			}
 			catch (Exception $e) {
-				$json->add_error_response('js',-5);
+				$json->add_error_response('js',-3);
 				$invalid= TRUE;
 			}
 
