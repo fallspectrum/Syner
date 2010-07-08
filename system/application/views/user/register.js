@@ -129,7 +129,7 @@ function validate_register_form()
 
 	//send the username and email off to the server.	
 	$.ajax({
-	  url: 'registerajax',
+	  url: SY_SITEPATH + 'index.php/user/registerajax',
      	  dataType: 'json',
 	  data: "username=" + username + "&email=" + email + "&password=" + password,
 	  type:	'POST',
