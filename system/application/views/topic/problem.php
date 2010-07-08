@@ -3,4 +3,4 @@
 	<div id="tiny_mce_div" class="tiny_mce_div">
 	</div>
 </form>
-<a href="javascript:toggleEditor('tiny_mce_div');">Disable/Enable view</a>
+<a href="javascript:toggle_editor();">Disable/Enable view</a>

@@ -13,26 +13,26 @@ tinyMCEInitParam = {
 	theme_advanced_toolbar_align: "left",
 	theme_advanced_statusbar_location: "bottom",
 	width: "100%",
-	save_onsavecallback: "my_tiny_mce_save",
-	init_instance_callback: "my_tiny_mce_init_callback",
+	save_onsavecallback: "tinyMCE_save",
+	init_instance_callback: "tinyMCE_init_callback",
 	add_form_submit_trigger: false
 };
 
 tinyMCE.init(tinyMCEInitParam);
-function my_toggle_editor(id) {
-	if (!tinyMCE.getInstanceById(id)) {
-		tinyMCE.execCommand('mceAddControl', false, id);
+function toggle_editor() {
+	if (!tinyMCE.getInstanceById('tiny_mce_div')) {
+		tinyMCE.execCommand('mceAddControl', false, 'tiny_mce_div');
 	}
 	else {
-		tinyMCE.execCommand('mceToggleEditor',false,id);
+		tinyMCE.execCommand('mceToggleEditor',false,'tiny_mce_div');
 	}
 }
 
-function my_tiny_mce_init_callback() {
+function tinyMCE_init_callback() {
 	tinyMCE.execCommand('mceToggleEditor',false,'tiny_mce_div');
 }
 
-function my_tiny_mce_save(element_id,html,body) {
+function tinyMCE_save(element_id,html,body) {
 	return html;
 }
 
