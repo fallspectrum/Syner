@@ -7,6 +7,7 @@ $config['protocol']= 'sendmail'; //Protocol to usse for email. Can be mail,sendm
 
 //Below are used if you are sending a email via smtp
 //$config['smtp_host'] = ''; //SMTP server address.
+//$config['smtp_user'] = ''; //SMTP username
 //$config['smtp_pass'] = ''; //SMTP password;
 //$config['smtp_port'] = ''; //SMTP Port;
 //$config['smtp_timeout'] = ''; //SMTP Timeout (in seconds);
