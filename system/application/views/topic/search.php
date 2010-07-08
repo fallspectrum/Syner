@@ -24,7 +24,8 @@
 					This is the view used for searching. It uses the layout.php. But can be changed via search.php view.
 				</p>
 				<p>
-				<a href="problem/topic_id/0">Click here to view the problem submission page for topic 0</a>
+				<a href="problem/topic_id/0">Click here to view topic 0</a><br />
+				<a href="submit/">Click here to view problem submission</a>
 				</p>
 				<p>
 					We could include the submit option at the bottom of this search page.  It could also appear at the bottom of the search result listing.  As long as we encourage some type of "seach before submit" mentality.

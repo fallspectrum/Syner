@@ -28,6 +28,14 @@ class Topic extends Controller
 	}
 
 	/**
+	* This function will display the submission form for a problem.
+	*/
+	function submit() 
+	{
+		$data['content'] = $this->load->view("topic/submit",'',TRUE);	
+		$this->load->view("layout",$data);
+	}
+	/**
 	* This function will display the problem to be viewed, and can be
 	* then editied.
 	*/
