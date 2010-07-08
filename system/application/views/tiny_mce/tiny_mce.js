@@ -19,7 +19,7 @@ tinyMCEInitParam = {
 };
 
 tinyMCE.init(tinyMCEInitParam);
-function toggleEditor(id) {
+function my_toggle_editor(id) {
 	if (!tinyMCE.getInstanceById(id)) {
 		tinyMCE.execCommand('mceAddControl', false, id);
 	}
