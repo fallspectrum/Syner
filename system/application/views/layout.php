@@ -38,7 +38,7 @@
 		</div>
 		<div id="headnav">
 			<ul id="headnav">
-				<li class="headnav" id="#"><a href="search.php" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
+				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/search" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
 				<li class="headnav" id="#"><a href="popular.php" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
 				<li class="headnav" id="#"><a href="recent.php" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
 			</ul>
