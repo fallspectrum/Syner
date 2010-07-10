@@ -68,13 +68,17 @@ function validate_login_form()
 	
 	if(username.length <=0)
 	{
+		$('#username').css('border', '1px solid #F00');
+		$('#username').css('background', 'url('+notice_icon+') no-repeat center right');
 		$('#username_error').html("Please supply a username.");
-		$('#username_error').show();
-		$('#username_icon').attr("src", notice_icon);
+		$('#username_error').css('display', 'block');
+		//$('#username_icon').attr("src", notice_icon);
 		
 		
 		return false;
 	}
+	$('#username').css('border', '1px solid #AAA');
+	$('#username').css('background', '#FFF');
 	$('#username_error').hide();
 	$('#username_icon').hide();
 	
@@ -82,13 +86,16 @@ function validate_login_form()
 	$('#password_icon').show();
 	
 	if(password.length < 6) {
+		$('#password').css('border', '1px solid #F00');
+		$('#password').css('background', 'url('+notice_icon+') no-repeat center right');
 		$('#password_error').html("Password must be at least 6 characters.");
-		$('#password_error').show();
-		
-		$('#password_icon').attr("src", notice_icon);
+		$('#password_error').css('display', 'block');
+		//$('#password_icon').attr("src", notice_icon);
 		
 		return false;
 	}
+	$('#password').css('border', '1px solid #AAA');
+	$('#password').css('background', '#FFF');
 	$('#password_error').hide();
 	$('#password_icon').hide();
 	
