@@ -14,6 +14,7 @@ function login_form_response(data)
 		
 		var error_field = $("#"+ reference_id + "_error");
 		error_field.show();
+		var field = $("#"+reference_id);
 
 		field_icon.attr("src", SY_NOTICE_ICON);
 		field_icon.show();
@@ -21,19 +22,25 @@ function login_form_response(data)
 		switch(response['return_val']) 
 		{
 		case '-1':
+			field.css('border', '1px solid #F00');
+			field.css('background', 'url('+SY_NOTICE_ICON+') no-repeat center right');
 			error_field.html("The entered " + reference_id + " is invalid.");
+			error_field.css('display', 'block');
 			break;
 		case '-3':
+			field.css('border', '1px solid #F00');
+			field.css('background', 'url('+SY_NOTICE_ICON+') no-repeat center right');
 			error_field.html("There was an error communicating with the database.");
+			error_field.css('display', 'block');
 			break;
 		case '-5':
+			field.css('border', '1px solid #F00');
+			field.css('background', 'url('+SY_NOTICE_ICON+') no-repeat center right');
 			error_field.html("Sorry, a incorrect username or password was given. Please try logging in again.");
-			error_field.show();
+			error_field.css('display', 'block');
 			break;
 		case '0':
 			error_field.html("You are now logged in. Redirecting you to your home page.");
-			field_icon.attr("src", SY_OK_ICON);
-			field_icon.show();
 			redirect("home");
 			break;
 				
@@ -59,7 +66,7 @@ function validate_login_form()
 	if(username.length <=0)
 	{
 		$('#username').css('border', '1px solid #F00');
-		$('#username').css('background', 'url('+notice_icon+') no-repeat center right');
+		$('#username').css('background', 'url('+SY_NOTICE_ICON+') no-repeat center right');
 		$('#username_error').html("Please supply a username.");
 		$('#username_error').css('display', 'block');
 		//$('#username_icon').attr("src", notice_icon);
@@ -77,7 +84,7 @@ function validate_login_form()
 	
 	if(password.length < 6) {
 		$('#password').css('border', '1px solid #F00');
-		$('#password').css('background', 'url('+notice_icon+') no-repeat center right');
+		$('#password').css('background', 'url('+SY_NOTICE_ICON+') no-repeat center right');
 		$('#password_error').html("Password must be at least 6 characters.");
 		$('#password_error').css('display', 'block');
 		//$('#password_icon').attr("src", notice_icon);
