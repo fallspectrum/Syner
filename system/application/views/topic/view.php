@@ -11,8 +11,18 @@
 			</div>
 			
 			<div class="controlnav">
-				<ul id="controlnav"> 
-					<li class="edit"><a href="javascript:toggle_editor();"><img src="<?=SY_SITEPATH?>styles/icons/edit_ico.png" border="0" /> Edit</a></li> 
+				<ul id="controlnav">
+					<?php 
+					if (get_user_privilege() !== 0) {
+						echo "
+						<li class='edit'><a href='../../edit/topic_id/" . $topic_id ."'><img src='" . SY_SITEPATH . "styles/icons/edit_ico.png' border='0' /> Edit</a></li> 
+						</ul> ";}
+					else {
+						echo "
+						<li class='edit'><a><img src='" . SY_SITEPATH . "styles/icons/edit_ico.png' border='0' /> Please log in to edit this page</a></li> ";
+					}
+					
+					?>
 				</ul> 
 			</div>
 			
@@ -20,13 +30,12 @@
 				<div id="titleDisplay">
 				Topic Title Field
 				</div>
-				<p>
-				<!-- Tiny MCE form display -->
-					<form src="problemajax" name="mceeditor">
-					<div id="tiny_mce_div" class="tiny_mce_div">
-					</div>
-					</form>
-				</p>
+				<div id="tagDisplay">
+				Tags: tag1 tag2 tag3
+				</div>
+				<div id="contentDisplay">
+				This is some test content
+				</div>
 				<p>
 				Basically when a user would approach a problem for the first time, they would see the Title, Tags, and Description in plain text.  When they hit the "Edit" button then the page loads TinyMCE for the problem description, and then two separate fields for the title, and tags.  When the user selects a button "Save" then then their changes are placed, an action is created that defines the changes and places it within the history feature (action page) and they're returned to the page in non-editor mode (plain text).  It would probably be helpful to have a "preview" option before the user submits.  It may even be helpful if we force the user to preview before submitting.  I see TinyMCE has a built in preview option.
 				</p>

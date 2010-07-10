@@ -14,6 +14,26 @@
 		<div id="rightBox">
 			<div id="content">
 				<b>Problem Submission Form:</b><br />
+				<form>
+					<p>
+						<label for="title">Title:</label>
+						<input type="text" id="title" name="title" />
+					</p>
+					
+					<p>
+						<label for="Description">Description:</label>
+						<textarea class="tinyMCE" id="problem_content"></textarea>
+					</p>
+					
+					<p>Tags:<br />
+						<input type="text" name="tag1" id="tag1"/>
+						<input type="text" name="tag2" id="tag1"/>
+						<input type="text" name="tag3" id="tag1"/>
+						<input type="text" name="tag4" id="tag1"/>
+						<input type="text" name="tag5" id="tag1"/>
+					</p>
+					<input type="button" value="Create Topic" />
+				</form>
 				<p>Includes Title, Description, Tags, and Group.  We could employ a tag suggestion feature that scans the contents of the description that the user has typed, and based on that input would suggest tags for them to use: <a href="http://swift.ushahidi.com/extend/silcc/">http://swift.ushahidi.com/extend/silcc/</a></p>
 				<p>After a user submits this form a topic is created based on the input.  The user can continue to edit their topic from there.</p>
 				
@@ -21,3 +41,4 @@
 			</div>
 			
 		</div>
+

@@ -2,11 +2,11 @@
 
 tinyMCEInitParam = {
 	//General options
-	mode: "exact",
-	elements: "tiny_mce_div",
+	mode: "specific_textareas",
+	editor_selector: "tinyMCE",
 	theme: "advanced",
-	plugins: "safari,print,save,searchreplace,fullscreen,preview,table",
-	theme_advanced_buttons1: "save,|,fontsizeselect,|,italic,bold,underline,strikethrough,|,sub,sup,bullist,numlist,|,hr,|,justifyleft,justifycenter,justifyright,|,outdent,indent,|,anchor,link,unlink,|,search,replace,|,fullscreen,preview,|,help",
+	plugins: "safari,print,searchreplace,fullscreen,preview,table",
+	theme_advanced_buttons1: ",fontsizeselect,|,italic,bold,underline,strikethrough,|,sub,sup,bullist,numlist,|,hr,|,justifyleft,justifycenter,justifyright,|,outdent,indent,|,anchor,link,unlink,|,search,replace,|,fullscreen,preview,|,help",
 	theme_advanced_buttons2: "tablecontrols",
 	theme_advanced_buttons3: "",
 	theme_advanced_toolbar_location: "top",
@@ -14,25 +14,8 @@ tinyMCEInitParam = {
 	theme_advanced_statusbar_location: "bottom",
 	width: "100%",
 	save_onsavecallback: "tinyMCE_save",
-	init_instance_callback: "tinyMCE_init_callback",
 	add_form_submit_trigger: false
 };
 
 tinyMCE.init(tinyMCEInitParam);
-function toggle_editor() {
-	if (!tinyMCE.getInstanceById('tiny_mce_div')) {
-		tinyMCE.execCommand('mceAddControl', false, 'tiny_mce_div');
-	}
-	else {
-		tinyMCE.execCommand('mceToggleEditor',false,'tiny_mce_div');
-	}
-}
-
-function tinyMCE_init_callback() {
-	tinyMCE.execCommand('mceToggleEditor',false,'tiny_mce_div');
-}
-
-function tinyMCE_save(element_id,html,body) {
-	return html;
-}
 
