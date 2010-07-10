@@ -21,20 +21,21 @@
 				<p><span>Step 1 - Select the group that this problem belongs to.  *hint icon, question mark*<br />
 				<------------
 				</span></p>
-					<label for="title">Title:</label>
-					<input type="text" id="title" name="title" />
 				
 				<p>When a user clicks the hint icon, they're given details about what each group is for, Global is for a problem that affects all people, country for country, personal are for personal problems.</p>
 				<p><span>Step 2 - Title your problem.  *hint icon*</span></p>
 				<p>When the user clicks the hint icon, they are told to summarize the problem in a short sentence.</p>
 				<p>
+				<label for="title">Title:</label>
+				<input type="text" id="title" name="title" />
+				</p>		
+				<p><span>Step 3 - Describe your problem.  *hint icon*</span></p>
+				<p>This is where the Tiny_MCE editor would be displayed.  If a user clicks the hint icon, they're given details about the tiny-MCE abilities, such as linking to outside/inside content, images, videos, etc.</p>
+				<p>
 					<label for="Description">Description:</label>
 					<textarea class="tinyMCE" id="problem_content"></textarea>
 				</p>
-				
-				<p><span>Step 3 - Describe your problem.  *hint icon*</span></p>
-				<p>This is where the Tiny_MCE editor would be displayed.  If a user clicks the hint icon, they're given details about the tiny-MCE abilities, such as linking to outside/inside content, images, videos, etc.</p>
-				<p><span>Step 4 - Tag your problem.  *hint icon*</span></p>
+<p><span>Step 4 - Tag your problem.  *hint icon*</span></p>
 				<p>This field should have some sort of suggestion feature above or near it.  An example of a tag suggestion feature is:  <a href="http://swift.ushahidi.com/extend/silcc/">SiLCC</a>.  SiLCC takes the description content, and analyzes it to make quick suggestions for tags for the user.  When the user clicks the hint icon, they're told that tags are used to categorize problems, and are also used to help people find problem they're interested in.  
 				<p>Tags:<br />
 						<input type="text" name="tag1" id="tag1"/>
