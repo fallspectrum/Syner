@@ -189,7 +189,7 @@ class User extends Controller {
                 
 				$this->email->message($text);
 				if(!$this->email->send()) {
-					$json->add_error_response("sendmail", -4, "");
+					$json->add_error_response("sendmail", -4);
 					$invalid = true;
 				}
 				
@@ -197,7 +197,7 @@ class User extends Controller {
 			
 			if (! $invalid)	{
 				//if all is good 
-				$json->add_error_response("success",1,"");
+				$json->add_error_response("success",1);
 			}
 			
 		}
@@ -206,27 +206,32 @@ class User extends Controller {
 
 	function login()
 	{
-		$this->load->library('user_session');
 		if($this->user_session->get_privilege() == 0) {
 			$data['js_files'] = array(SY_SITEPATH . "system/application/views/user/login.js");
 			$data['content'] = $this->load->view('user/login.php', '', true);
 		}
 		else {
-			$data['content'] = "Hey, you are already logged in.";
+			$data['general_message']= "Hey, you are already logged in.";
+			$data['content'] = $this->load->view("general",$data,true);
 		}
 		$this->load->view('layout', $data);
 	}
 
 	function logout()
 	{
-		$this->load->library('user_session');
 		if($this->user_session->get_privilege() != 0 ) {
+			//Justin - bit of a hack. seems like sessions aren't destroyed
+			//destroyed until connection is closed is done loading. Set privilege to 0
+			//so right links will show.
+			$this->user_session->set_privilege(0);
 			$this->user_session->logout();
-			$data['content'] = "Log out successful.";
-		}
+			$data['general_message'] = "Log out successful.";
+
+					}
 		else {
-			$data['content'] = "Hey, you aren't logged in.";
+			$data['general_message'] = "Hey, you aren't logged in.";
 		}
+		$data['content'] = $this->load->view('general',$data,true);
 		$this->load->view('layout',$data);
 	}
 	function login_ajax() 
@@ -255,7 +260,6 @@ class User extends Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
-			$this->load->library('user_session');
 			try {
 				if($this->user_session->login($username,$password) != 0) {
 					$json->add_error_response('js',-5);
@@ -263,17 +267,34 @@ class User extends Controller {
 				}
 			}
 			catch (Exception $e) {
-				$json->add_error_response('js',-5);
+				$json->add_error_response('js',-3);
 				$invalid= TRUE;
 			}
 
 			if (! $invalid)	{
 				//if all is good 
-				$json->add_error_response("js",0);
+				$json->add_error_response("success",0);
 			}
 			
 		}
 		echo $json->format_response();
+	}
+
+	function home() 
+	{
+                $privilege = $this->user_session->get_privilege(); 
+                if($privilege != 0) { 
+                        $data['username'] = $this->user_session->get_username(); 
+                        $data['content'] = $this->load->view("home",$data,true); 
+ 
+                } 
+                else { 
+                        $data['general_message'] = "Hey you aren't logged in yet. Click the login button to login."; 
+                        $data['content'] = $this->load->view("general",$data,true); 
+ 
+                } 
+                $this->load->view("layout",$data);
+	
 	}
 	
 }

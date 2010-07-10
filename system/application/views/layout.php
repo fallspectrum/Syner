@@ -1,3 +1,4 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,8 +16,9 @@
 		 
 		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+		<script type="text/javascript" src="<?=SY_SITEPATH?>system/application/config/global.js"></script>
 		<?php 
-			if(isset($js_files)) {
+		if(isset($js_files)) {
 			foreach ($js_files as $file) {
 				echo "<script type='text/javascript' src='" . $file . "'></script>\n";
 			}
@@ -36,29 +38,33 @@
 		</div>
 		<div id="headnav">
 			<ul id="headnav">
-				<li class="headnav" id="#"><a href="search.php" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
-				<li class="headnav" id="#"><a href="popular.php" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
-				<li class="headnav" id="#"><a href="recent.php" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
+				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/search" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
+				<li class="headnav" id="#"><a href="" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
+				<li class="headnav" id="#"><a href="" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
 			</ul>
 		</div>
 		<div class="usernav">
 			<ul class="usernav">
 			
-				<!-- These are the post-logged in usernav LI items, remove this comment block to display them.  Note: (the first LI item ACP = Admin Control Panel, this would only been seen by a user with admin priviledges
-				Move the HTML note end tag to see what the ACP would look like)
-			
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/admin/control/"><img src="<?=SY_SITEPATH?>styles/icons/acp_ico.png" border="0" /> ACP</a></li>
-				-->
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/home/"><img src="<?=SY_SITEPATH?>styles/icons/home_ico.png" border="0" /> Home</a></li>
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/settings/"><img src="<?=SY_SITEPATH?>styles/icons/settings_ico.png" border="0" /> Settings</a></li>
-				<li class="usernav"><a href="<?=SY_SITEPATH?>index.php/user/logout/"><img src="<?=SY_SITEPATH?>styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
-				 <!-- -->
+				<?php if (get_user_privilege() === 0) { echo '	
 				
-				<!-- These are the pre-logged in usernav LI items, remove this comment block to display them.  
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/register/"><img src="' . SY_SITEPATH . 'styles/icons/register2_ico.png" border="0" /> Register</a></li>
+				<li class="usernav"><a href="' . SY_SITEPATH  .'index.php/user/login"><img src=" ' . SY_SITEPATH . 'styles/icons/login_ico.png" border="0" /> Log In</a></li>
+				'; } 
 				
-				<li class="usernav" id="first"><a href="<?=SY_SITEPATH?>index.php/user/register/"><img src="<?=SY_SITEPATH?>styles/icons/register2_ico.png" border="0" /> Register</a></li>
-				<li class="usernav"><a href="<?=SY_SITEPATH?>index.php/user/login/"><img src="<?=SY_SITEPATH?>styles/icons/login_ico.png" border="0" /> Log In</a></li>
-				-->
+				else { echo '
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/home/"><img src="' . SY_SITEPATH . 'styles/icons/home_ico.png" border="0" /> Home</a></li>
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/settings/"><img src="' . SY_SITEPATH . 'styles/icons/settings_ico.png" border="0" /> Settings</a></li>
+				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/logout/"><img src="' . SY_SITEPATH . 'styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
+				';}
+				
+				if (get_user_privilege() === 2) {
+				echo '
+					<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/admin/control/"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
+				';
+				}
+				
+				?>
 			</ul>
 		</div>
 	</div>
@@ -77,7 +83,7 @@
 			</ul>
 				
 			
-			 Powered By <a href="">Syner <img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
+			 Powered By <a href=""><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
 		</div>
 	</div>
 </body>

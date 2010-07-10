@@ -13,7 +13,7 @@ CREATE TABLE users (
 	password_hash VARCHAR(64) NOT NULL,
 	full_name VARCHAR(30),
 	use_alias BOOLEAN NOT NULL DEFAULT 1, 
-	default_location VARCHAR(30),
+	default_location_id VARCHAR(30),
 	privilege TINYINT UNSIGNED NOT NULL DEFAULT 1
 ) CHARACTER SET utf8;
 
@@ -28,7 +28,7 @@ CREATE TABLE tagged_topics (
 ) CHARACTER SET utf8;
 
 CREATE TABLE locations ( 
-        location_abbreviation VARCHAR(30) PRIMARY KEY UNIQUE NOT NULL,   #instead of using nested sets it will be much easier to update if we have a string showing the parents. For example "global-usa-ca" means that this location is in the usa, and its name abbreviation is ca.
+        location_id VARCHAR(30) PRIMARY KEY UNIQUE NOT NULL,   #instead of using nested sets it will be much easier to update if we have a string showing the parents. For example "global-usa-ca" means that this location is in the usa, and its name abbreviation is ca.
 	name VARCHAR(30) NOT NULL #name of the location. From the example above, California.
 ) CHARACTER SET utf8;
 

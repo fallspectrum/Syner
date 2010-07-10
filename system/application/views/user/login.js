@@ -3,9 +3,6 @@
  * @todo redirect user to some other page.
  * @todo add vaid email check here. Although done by the server it will save bandwith.
  */
- var loading_icon = "/syner/styles/icons/loading.png";
- var notice_icon = "/syner/styles/icons/reg_notice_ico.png";
- var ok_icon = "/syner/styles/icons/reg_ok_ico.png"
  
 function login_form_response(data)
 {
@@ -18,7 +15,7 @@ function login_form_response(data)
 		var error_field = $("#"+ reference_id + "_error");
 		error_field.show();
 
-		field_icon.attr("src", notice_icon);
+		field_icon.attr("src", SY_NOTICE_ICON);
 		field_icon.show();
 
 		switch(response['return_val']) 
@@ -34,9 +31,10 @@ function login_form_response(data)
 			error_field.show();
 			break;
 		case '0':
-			error_field.html("You are now logged in!");
-			field_icon.attr("src", ok_icon);
+			error_field.html("You are now logged in. Redirecting you to your home page.");
+			field_icon.attr("src", SY_OK_ICON);
 			field_icon.show();
+			redirect("home");
 			break;
 				
 		}
@@ -44,14 +42,6 @@ function login_form_response(data)
 	
 }
 
-/*
-* @todo find a better way to let the user know an error occured
-*/
-function ajax_error(xhr,textStatus,errorThrow)
-{
-	$('#js_error').html("There was an error processing your request.");
-	$('#js_error').show();
-}
 
 function validate_login_form()
 {

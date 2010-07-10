@@ -29,7 +29,7 @@ class User_Session
 			$CI->load->library('session');
 			$user_row = $query->result_array();
 			$user_row = $user_row[0];
-			$session_data = array("user_id"=>$user_row['id'], "privilege" => $user_row['privilege']);
+			$session_data = array("user_id"=>$user_row['id'], "privilege" => $user_row['privilege'], "username" => $user_row['username']);
 			$CI->session->set_userdata($session_data);
 			return 0;
 		}
@@ -38,10 +38,36 @@ class User_Session
 		}
 
 	}
+	
+	/**
+	* This function returns the username of the user, if logged in.
+	* @return string there username if logged in, "" if they are not.
+	*/
+	function get_username()
+	{
+		$CI = &get_instance();
+		$username = $CI->session->userdata('username');
+		if ($username === FALSE ) {
+			$username = "";
+		}
+		return $username;
+	}
 
+	
+	/** 
+	* This function can change the privilege of a user on the fly.
+	* This shouldn't be used except in rare cases where needed.
+	* @param $privilege privilege number to set
+	*/
+	function set_privilege($privilege)
+	{
+		$CI =& get_instance();
+		$CI->session->set_userdata('privilege',$privilege);
+	}
+	
 	/**
 	* This function returns the current privilege of the user. 
-	* @return 0 if they are not logged in, otherwise a non zero number.
+	* @return integer 0 if they are not logged in, otherwise a non zero number.
 	*/
 	function get_privilege() 
 	{

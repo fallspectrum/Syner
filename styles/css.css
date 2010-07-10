@@ -231,8 +231,9 @@ div#body{
 /* Begin leftBox - wraps Group Module, and Tag Module */
 
 	div#leftBox{
+		border:;
 		width:220px;
-		margin-top:20px;
+		margin-top:23px;
 		margin-bottom:20px;
 		margin-left:;
 		float:left;
@@ -490,10 +491,10 @@ div#body{
 			ul#topicnav { 
 				text-align:left; 
 				margin: 0 0 0 0; 
-				font: bold 11px verdana, arial, sans-serif; 
+				font: bold 13px verdana, arial, sans-serif; 
 				border-bottom: 1px solid #000; 
 				list-style-type: none;
-				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+				padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
 
  
@@ -502,7 +503,7 @@ div#body{
 			}
 
 			ul#topicnav li a { 
-				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				padding: 5px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 				border: 1px solid #000; 
 				background-color:#dddddd; 
 				color: #000; 
@@ -527,10 +528,10 @@ div#body{
 			ul#controlnav {
 				text-align:right; 
 				margin: 0 0 0 0; 
-				font: bold 11px verdana, arial, sans-serif; 
+				font: bold 13px verdana, arial, sans-serif; 
 				border-bottom: 1px solid #000;
 				list-style-type: none;
-				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+				padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
 			
 			ul#controlnav li { 
@@ -538,7 +539,7 @@ div#body{
 			}
 			
 			ul#controlnav li a { 
-				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				padding: 5px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 				border: 1px solid #000; 
 				background-color:#dddddd; 
 				color: #000;
