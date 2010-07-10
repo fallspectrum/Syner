@@ -34,7 +34,7 @@ CREATE TABLE locations (
 
 CREATE TABLE topics ( 
 	id INTEGER UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	name VARCHAR(100) UNIQUE,
+	title VARCHAR(100) UNIQUE NOT NULL,
 	date_created TIMESTAMP NOT NULL,
 	subscription_count INTEGER NOT NULL,
 	for_count INTEGER UNSIGNED NOT NULL,
@@ -92,3 +92,6 @@ CREATE TABLE ci_sessions (
 	user_data text NOT NULL,
 	PRIMARY KEY (session_id)
 ) CHARACTER SET utf8;
+
+#Create default locations
+INSERT INTO locations VALUES ("global","Global"),("cnt","Country"),("personal","Personal");
