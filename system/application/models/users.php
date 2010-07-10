@@ -7,7 +7,7 @@ class Users extends Model
 {
 	function User()
 	{
-		parrent::Model();
+		parent::Model();
 	}
 
 	/**
