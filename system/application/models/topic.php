@@ -17,7 +17,7 @@ class Topic extends Model
 	*/
 	function add_entry($title, $date_created, $location) 
 	{
-		$topicData['name'] = $title;
+		$topicData['title'] = $title;
 		$topicData['date_created'] = $date_created;
 		$topicData['location_id'] = $location_id;
 		
