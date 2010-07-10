@@ -92,3 +92,6 @@ CREATE TABLE ci_sessions (
 	user_data text NOT NULL,
 	PRIMARY KEY (session_id)
 ) CHARACTER SET utf8;
+
+#Create default locations
+INSERT INTO locations VALUES ("global","Global"),("cnt","Country"),("personal","Personal");

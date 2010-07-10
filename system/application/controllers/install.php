@@ -56,8 +56,8 @@ class Install extends Controller
 		$this->_drop_old_tables();
 		echo "Creating new tables... <br>";
 		$this->_create_tables();
-		echo "Database creation is done.";
-		echo "Please delete the installation controller, located at " . $this->config->item('SY_SITEPATH') . "system/application/controllers/install.php, so the wizard can't be run again.";
+		echo "Database creation is done. " .
+		 	"Please delete the installation controller, located at " . $this->config->item('SY_SITEPATH') . "system/application/controllers/install.php, so the wizard can't be run again.";
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Install extends Controller
 		
 		foreach($queries as $query)
 		{
-			if(!empty($query)) 
+			if(!preg_match('/^$/',$query))
 			{
 				$this->db->simple_query($query) or die('<br /><h3>Error</h3><b>Query:</b> '.$query.'<br /><b>Error:</b> '.$this->db->_error_message()."<br />");
 			}
