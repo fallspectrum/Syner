@@ -10,7 +10,7 @@
 						</td>
 						<td width="200">
 							<br />
-							<form>
+							<form onsubmit="return validate_login_form();">
 								<table>
 									<tr>
 										<td align="right">	
@@ -39,7 +39,7 @@
 										<td  align="left">
 										<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="js_icon" />
 										<p id="js_error" style="display:hidden"></p>
-										<input type="button" value="Log In" onclick="validate_login_form()" /><br />
+										<input type="submit" value="Log In" /><br />
 										<a href="">Forgot your password?</a>
 										</td>
 									</tr>
