@@ -39,7 +39,7 @@ class Topic extends Model
 	function set_topic_content($topic, $content, $user)
 	{
 		$row_data['topic_id'] = $topic;
-		$query = $this->db->get_where('topic_content', $row_data, 1);
+		$query = $this->db->get_where('topic_contents', $row_data, 1);
 		
 		// If there is no existing entry
 		if($query->num_rows() <= 0) {
@@ -47,7 +47,7 @@ class Topic extends Model
 			$data['content'] = $content;
 			$data['user_id'] = $user;
 			
-			$query = $this->db->insert('topic_content', $data);
+			$query = $this->db->insert('topic_contents', $data);
 			if(!$query) {
 				throw new Exception('Unable to insert new topic content');
 			}
@@ -58,7 +58,7 @@ class Topic extends Model
 			$data['user_id'] = $id;
 			
 			$this->db->where('topic_id', $topic);
-			$query = $this->db->update('topic_content', $data);
+			$query = $this->db->update('topic_contents', $data);
 			
 			if(!$query) {
 				throw new Exception('Unable to update topic content');
