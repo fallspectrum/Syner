@@ -1,5 +1,4 @@
-/*  README first before digging through this */
-/*  I use Notepadd++ so I like to tab/indent a declaration if it is wrapped by another
+/*  Trav - I use Notepadd++ so I like to tab/indent a declaration if it is wrapped by another
  This should help you understand the way I've organized the declarations since I also like to do the same
 with HTML tags that wrap each-other */
 
@@ -25,10 +24,10 @@ html,body{
 	
 }
 a{
-	color:#ffffff
+	color:#ffffff;
 }
 h1 {	
-	font-size:;
+	font-size:25px;
 	
 }
 h2 {
@@ -44,6 +43,26 @@ span{
 }
 
 /*  Basic over all declarations  */
+
+span#small{
+	font-size:80%;
+}
+
+div#spacer{
+	margin-top:10px;
+	margin-bottom:10px;
+	height:2px;
+	display:block;
+	background-color:#8f8f8f;
+}
+div#minispacer{
+	margin-top:5px;
+	margin-bottom:5px;
+	height:1px;
+	display:block;
+	background-color:#000;
+}
+
 /* End basic declarations */
 
 /*  *****Layout Begins***** */
@@ -579,8 +598,6 @@ div#body{
 			/* titleBox (used on every topic page)*/
 			/*  change titleBox to titleDisplay */
 			div#titleDisplay {
-				
-				
 				border-right:0px solid #009604;
 				border-left:0px solid #009604;
 				margin-bottom:10px;
@@ -715,25 +732,7 @@ div#body{
 		}
 
 		/*  End Solution Page   */
-		
-		/* These are used for various pages */
 
-		div#spacer{
-			margin-top:10px;
-			margin-bottom:10px;
-			height:2px;
-			display:block;
-			background-color:#8f8f8f;
-		}
-		div#minispacer{
-			margin-top:5px;
-			margin-bottom:5px;
-			height:1px;
-			display:block;
-			background-color:#000;
-		}
-		
-		
 	/* END rightBox */
 		
 	/* bigBox is used for standard pages that require no group/tag/topic navigation (such as index and footer links) */	
@@ -816,10 +815,46 @@ div#body{
 	
 	
 
+/*  Usernav Display Options  */
 
-
+/*  User Home Page */
+ div#hometut{
+	margin:15px;
+	padding:10px;
+	border:1px solid #009604;
+ }
+ div#homecontainer{
+	height:525px;
+	margin:15px;
+ }
  
-
+ div#homeleft{
+	float:left;
+	padding:10px;
+	height:500px;
+	width:470px;
+	border:1px solid #000000;
+ }
+	div#updatedisplay{
+		height:430px;
+	}
+	div#updatecontrol{
+		text-align:right;
+	}
+	a.bold{
+		font-weight:bold;
+	}
+	b.big {
+		font-size:110%;
+	}
+ 
+ div#homeright{
+	float:right;
+	padding:10px;
+	width:350px;
+	border:1px solid #000000;
+ }
+ 
 
 
 

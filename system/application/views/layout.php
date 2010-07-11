@@ -83,7 +83,7 @@
 			</ul>
 				
 			
-			 Powered By <a href=""><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
+			 Powered By <a href="http://www.syner.org"><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
 		</div>
 	</div>
 </body>

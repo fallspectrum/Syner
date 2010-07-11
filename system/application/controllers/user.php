@@ -225,7 +225,7 @@ class User extends Controller {
 			//so right links will show.
 			$this->user_session->set_privilege(0);
 			$this->user_session->logout();
-			$data['general_message'] = "Log out successful.";
+			$data['general_message'] = "You've logged out successfully.";
 
 					}
 		else {
@@ -285,7 +285,7 @@ class User extends Controller {
                 $privilege = $this->user_session->get_privilege(); 
                 if($privilege != 0) { 
                         $data['username'] = $this->user_session->get_username(); 
-                        $data['content'] = $this->load->view("home",$data,true); 
+                        $data['content'] = $this->load->view("user/home",$data,true); 
  
                 } 
                 else { 

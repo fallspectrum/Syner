@@ -3,14 +3,12 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-				<div id="register_container">
-					<p>
+				<div id="register_container"
 						<span>
 							<b>
 							Registration is simple, fast, and easy!
 							</b>
 						</span>
-					</p>
 					<table>
 						<tr>
 							<td width="150">
