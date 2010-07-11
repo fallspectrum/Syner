@@ -28,7 +28,7 @@
 							</td>
 							<td width="700px">
 								<p>
-									<form onSubmit="return validate_register_form();" method="POST" action="">
+									<form onSubmit="return validate_register_form();">
 									
 									<b>Username:</b><br /> 
 									<input type="text" name="username" title="Your username." size="25" id="username" />
@@ -70,7 +70,7 @@
 							*Captcha*<br /><br />
 							By registering, you are agreeing to our <a href="">Terms of Use</a>.<br /><br /><!-- Terms of use link = pop up window. -->
 								<label style="color: #F00;display: none;" id="js_error"></label><br />
-								<input type="button" value="Register" onClick="validate_register_form()"/>
+								<input type="submit" value="Register"/>
 							<form>
 							</td>
 							<td>
