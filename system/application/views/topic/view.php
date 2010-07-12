@@ -29,7 +29,7 @@
 			<div id="content" class="topic problem">
 				<div id="groupdisplay">
 					
-						<a href="">Root Group</a> > <a href="">Next Group</a> > <a href=""><b>Current Group</b></a> <i>(display depends on hierarchy of group location)</i>
+						<a href="">Root Group</a> > <a href="">Parent Group</a> > <a href=""><b>Current Group</b></a> <i>(display depends on hierarchy of group location)</i>
 					
 				</div>
 				<div id="titleDisplay">

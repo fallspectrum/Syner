@@ -204,6 +204,7 @@ class User extends Controller {
 		echo $json->format_response();
 	}
 
+	//log in function
 	function login()
 	{
 		if($this->user_session->get_privilege() == 0) {
@@ -295,6 +296,18 @@ class User extends Controller {
                 } 
                 $this->load->view("layout",$data);
 	
+	}
+	
+	function settings()
+	{
+		if($this->user_session->get_privilege() != 0) {
+			$data['content'] = $this->load->view('user/settings', '', true);
+		}
+		else {
+			$data['general_message']= "You need to be logged in to check your account settings.";
+			$data['content'] = $this->load->view("general",$data,true);
+		}
+		$this->load->view('layout', $data);
 	}
 	
 }

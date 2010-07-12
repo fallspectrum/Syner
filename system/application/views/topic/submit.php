@@ -44,7 +44,7 @@
 						<input type="text" name="tag4" id="tag1"/>
 						<input type="text" name="tag5" id="tag1"/>
 				</p>
-					<input type="button" value="Create Topic" />
+					<input type="button" value="Create Topic" class="button" />
 				</form>
 				<p><i>Notes: maybe during the submission process, rather than having "hint icons" we could allocate the right part of the form to display input instructions while the user's cursor is within that field.  For example, when the user first selects within the title field, a display area tells the user some details about making a good title. When they move from title to description, the title helpful fades out, and the description helper fades in.  </i></p>
 			</div>

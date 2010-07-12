@@ -68,7 +68,7 @@
 							*Captcha*<br /><br />
 							By registering, you are agreeing to our <a href="">Terms of Use</a>.<br /><br /><!-- Terms of use link = pop up window. -->
 								<label style="color: #F00;display: none;" id="js_error"></label><br />
-								<input type="submit" value="Register"/>
+								<input type="submit" value="Register" class="button" />
 							<form>
 							</td>
 							<td>
