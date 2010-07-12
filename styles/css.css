@@ -46,6 +46,9 @@ input {
 	margin: 0;
 }
 
+
+/*  Basic over all declarations  */
+
 label.error {
 	background-color: #FFC;
 	border: 1px solid #AAA; 
@@ -70,7 +73,10 @@ label.jserror {
 	width: auto;
 }
 
-/*  Basic over all declarations  */
+input.error{
+	background-color:#ffdcdc;
+	border:1px solid #ff0000;
+}
 
 span#small{
 	font-size:80%;
