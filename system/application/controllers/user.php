@@ -204,6 +204,7 @@ class User extends Controller {
 		echo $json->format_response();
 	}
 
+	//log in function
 	function login()
 	{
 		if($this->user_session->get_privilege() == 0) {
@@ -225,7 +226,7 @@ class User extends Controller {
 			//so right links will show.
 			$this->user_session->set_privilege(0);
 			$this->user_session->logout();
-			$data['general_message'] = "Log out successful.";
+			$data['general_message'] = "You've logged out successfully.";
 
 					}
 		else {
@@ -285,7 +286,7 @@ class User extends Controller {
                 $privilege = $this->user_session->get_privilege(); 
                 if($privilege != 0) { 
                         $data['username'] = $this->user_session->get_username(); 
-                        $data['content'] = $this->load->view("home",$data,true); 
+                        $data['content'] = $this->load->view("user/home",$data,true); 
  
                 } 
                 else { 
@@ -295,6 +296,18 @@ class User extends Controller {
                 } 
                 $this->load->view("layout",$data);
 	
+	}
+	
+	function settings()
+	{
+		if($this->user_session->get_privilege() != 0) {
+			$data['content'] = $this->load->view('user/settings', '', true);
+		}
+		else {
+			$data['general_message']= "You need to be logged in to check your account settings.";
+			$data['content'] = $this->load->view("general",$data,true);
+		}
+		$this->load->view('layout', $data);
 	}
 	
 }

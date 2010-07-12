@@ -44,7 +44,7 @@
 						<input type="text" id="tag1"/> <span id="tag1_error" style="display:none"></span>
 						<input type="text" id="tag2"/> <span id="tag2_error" style="display:none"></span> 
 				</p>
-					<input type="button" onclick="validate_topic_form()" value="Create Topic" />
+					<input type="button" onclick="validate_topic_form()" value="Create Topic" class="button" />
 				</form>
 				<p><i>Notes: maybe during the submission process, rather than having "hint icons" we could allocate the right part of the form to display input instructions while the user's cursor is within that field.  For example, when the user first selects within the title field, a display area tells the user some details about making a good title. When they move from title to description, the title helpful fades out, and the description helper fades in.  </i></p>
 			</div>

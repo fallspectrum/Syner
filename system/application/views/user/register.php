@@ -3,14 +3,12 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-				<div id="register_container">
-					<p>
+				<div id="register_container"
 						<span>
 							<b>
 							Registration is simple, fast, and easy!
 							</b>
 						</span>
-					</p>
 					<table>
 						<tr>
 							<td width="150">
@@ -70,7 +68,7 @@
 							*Captcha*<br /><br />
 							By registering, you are agreeing to our <a href="">Terms of Use</a>.<br /><br /><!-- Terms of use link = pop up window. -->
 								<label style="color: #F00;display: none;" id="js_error"></label><br />
-								<input type="submit" value="Register"/>
+								<input type="submit" value="Register" class="button" />
 							<form>
 							</td>
 							<td>
