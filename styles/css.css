@@ -29,7 +29,7 @@ a{
 h1 {	
 	font-size:25px;
 	
-}
+}s
 h2 {
 	color:#009604;
 	font-size:20px;
@@ -40,6 +40,34 @@ span{
 	padding:5px;
 	font-size:110%;
 	text-align:center;
+}
+
+input {
+	margin: 0;
+}
+
+label.error {
+	background-color: #FFC;
+	border: 1px solid #AAA; 
+	border-top: 0; 
+	color: #000; 
+	font-size: 12px;
+	display: none; 
+	margin-bottom: 8px; 
+	padding: 2px; 
+	width: auto;
+}
+
+label.jserror {
+	background-color: #FFC;
+	border: 1px solid #AAA; 
+	margin: 4px;
+	color: #000; 
+	font-size: 12px;
+	display: none; 
+	margin-bottom: 8px; 
+	padding: 2px; 
+	width: auto;
 }
 
 /*  Basic over all declarations  */
@@ -234,9 +262,8 @@ div#body{
 /* Begin leftBox - wraps Group Module, and Tag Module */
 
 	div#leftBox{
-		border:;
 		width:220px;
-		margin-top:23px;
+		margin-top:20px;
 		margin-bottom:20px;
 		margin-left:;
 		float:left;
@@ -494,10 +521,10 @@ div#body{
 			ul#topicnav { 
 				text-align:left; 
 				margin: 0 0 0 0; 
-				font: bold 13px verdana, arial, sans-serif; 
+				font: bold 11px verdana, arial, sans-serif; 
 				border-bottom: 1px solid #000; 
 				list-style-type: none;
-				padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
+				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
 
  
@@ -506,7 +533,7 @@ div#body{
 			}
 
 			ul#topicnav li a { 
-				padding: 5px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 				border: 1px solid #000; 
 				background-color:#dddddd; 
 				color: #000; 
@@ -531,10 +558,10 @@ div#body{
 			ul#controlnav {
 				text-align:right; 
 				margin: 0 0 0 0; 
-				font: bold 13px verdana, arial, sans-serif; 
+				font: bold 11px verdana, arial, sans-serif; 
 				border-bottom: 1px solid #000;
 				list-style-type: none;
-				padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
+				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
 			
 			ul#controlnav li { 
@@ -542,7 +569,7 @@ div#body{
 			}
 			
 			ul#controlnav li a { 
-				padding: 5px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 				border: 1px solid #000; 
 				background-color:#dddddd; 
 				color: #000;

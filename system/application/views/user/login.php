@@ -17,9 +17,9 @@
 											<b>Username:</b>
 										</td>
 										<td align="left">
-											<input type="text" name="username" title="Your username." id="username" size="25" />
-											<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />
-											<label style="color: #F00;display: none;" id="username_error"></label>
+											<input type="text" style="margin: 0;" name="username" title="Your username." id="username" size="25" />
+											<!--<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="username_icon" />-->
+											<label class="error" id="username_error"></label>
 </td>
 									</tr>
 									<tr>
@@ -27,9 +27,9 @@
 											<b>Password:</b>
 										</td>
 										<td  align="left">
-											<input type="text" name="password" title="Your password." id="password" size="25" /><br />
-											<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="password_icon" />
-											<label style="color: #F00;display: none;" id="password_error"></label>
+											<input type="password" name="password" title="Your password." id="password" size="25" /><br />
+											<!--<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="password_icon" />-->
+											<label class="error" id="password_error"></label>
 										</td>
 									</tr>
 									<tr>
@@ -37,8 +37,8 @@
 											
 										</td>
 										<td  align="left">
-										<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="js_icon" />
-										<p id="js_error" style="display:hidden"></p>
+										<!--<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="js_icon" />-->
+										<label class="jserror" id="js_error"></label>
 										<input type="submit" value="Log In" /><br />
 										<a href="">Forgot your password?</a>
 										</td>
