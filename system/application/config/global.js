@@ -46,8 +46,10 @@ function validate_form(rules)
 		var element_error_id = element_id + "_error";
 		var element_value= $(element_id).val();
 
-		//hide old error message
+		//hide old error message, remove highlight if set.
 		$(element_error_id).hide();
+		$(element_id).removeClass("error");
+
 		var checks = rules[i][2].split("|");
 		for (var j in checks) {
 			var more_checks = 0;
@@ -67,7 +69,7 @@ function validate_form(rules)
 				length = result[1];
 				//make sure value is the right length.
 				if(element_value.length < length) {
-					handle_bad_element(element_id, element_title + " must be atleast " + length + " characters long.");
+					handle_bad_element(element_id, element_title + " must be at least " + length + " characters long.");
 					return;
 				}
 			}
@@ -85,5 +87,6 @@ function handle_bad_element(css_selector,error_msg)
 	element_error_id = css_selector + "_error";
 	$(element_error_id).html(error_msg);
 	$(element_error_id).show();
+	$(css_selector).addClass("error");
 	$('html, body').animate({ scrollTop: $(css_selector).offset().top - 100 }, 500);
 }

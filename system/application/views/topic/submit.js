@@ -8,7 +8,7 @@ function validate_topic_form()
 	form_rules.push(new Array('#problem_title','Title','trim|min_length[10]'));
 	
 	//validate problem content
-	form_rules.push(new Array('#problem_content', 'The description of the problem','trim|min_length[10]'));
+	form_rules.push(new Array('#problem_content', 'The description of the problem','min_length[20]'));
 	
 	//validate each tag
 	for(var i=0;i<=tag_count;i++){
