@@ -94,7 +94,7 @@ class Install extends Controller
 		
 		foreach($queries as $query)
 		{
-			if(!preg_match('/^$/',$query)) 
+			if(!preg_match('/^\n?\r?$/',$query)) 
 			{
 				$this->db->simple_query($query) or die('<br /><h3>Error</h3><b>Query:</b> '.$query.'<br /><b>Error:</b> '.$this->db->_error_message()."<br />");
 			}

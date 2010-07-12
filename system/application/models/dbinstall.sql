@@ -28,8 +28,8 @@ CREATE TABLE tagged_topics (
 ) CHARACTER SET utf8;
 
 CREATE TABLE locations ( 
-        location_id VARCHAR(30) PRIMARY KEY UNIQUE NOT NULL,   #instead of using nested sets it will be much easier to update if we have a string showing the parents. For example "global-usa-ca" means that this location is in the usa, and its name abbreviation is ca.
-	name VARCHAR(30) NOT NULL #name of the location. From the example above, California.
+        location_id VARCHAR(30) PRIMARY KEY UNIQUE NOT NULL, 
+	name VARCHAR(30) NOT NULL 
 ) CHARACTER SET utf8;
 
 CREATE TABLE topics ( 
@@ -63,7 +63,6 @@ CREATE TABLE solution_votes (
 	user_id INTEGER NOT NULL
 ) CHARACTER SET utf8;
 
-#this table is used to hold the current content for each topic page
 CREATE TABLE topic_contents (
 	topic_id INTEGER UNSIGNED NOT NULL,
 	content TEXT NOT NULL,
