@@ -76,6 +76,48 @@ class Topic extends Controller
 		}
 		$this->load->view("layout",$data);
 	}
+	
+	/**
+	* This function handles submition of a new topic 
+	*/
+	function new_topic_ajax() {
+		$this->load->library("simple_json");
+		$invalid = false;
+		$json = new Simple_Json();
+		$this->load->library('form_validation');
+	
+		//validate form input, we got to do tags manually.
+		$this->form_validation->set_rules('problem_title','problem title','required|trim|main_length[10],max_length[100]');
+		$this->form_validation->set_rules('problem_description','problem description','required|trim|min_length[10]');
+		if($this->form_validation->run() === FALSE) 
+		{
+			foreach ($this->form_validation->_error_array as $error) {
+				$json->add_error_response($error[0],$error[1]);
+				$invalid = true;
+			}
+		}
+		else {
+			//look for tags. Must be at least 3 of them.
+			$tags = array();
+			for($i=0; $i<3; $i++)
+			{
+				$tag_element = "tag" . $i;
+				$tag_name = $this->input->post($tag_element);
+				$tag_name = trim($tag_name);
+				
+				//tag must contain atleast 4 characters.
+				if($tag_name === FALSE || strlen($tag_name) < 4) {
+					$json->add_error_response($tag_element,$json->error_codes['invalid'],'tag');
+					$invalid = true;
+				}
+			}
+			if(!$invalid) {
+				$json->add_error_response('success',$json->error_codes['success']);
+			}
+		}
+		echo $json->format_response();
+	}
+	
 	/**
 	* This function will display the topic to be viewed.
 	*/

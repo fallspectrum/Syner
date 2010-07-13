@@ -22,7 +22,10 @@ class User extends Controller {
 		
 		
 		$valid = true;
-
+		
+		//variable below is used for view data.
+		$data = "";
+		
 		//skip to 3rd element in the uri. This will create the key/value pair.
 		$uri_array = $this->uri->uri_to_assoc(3);
 
@@ -36,7 +39,7 @@ class User extends Controller {
 			if(isset($uri_array['activation_id']))
 				$activation_id = $uri_array['activation_id'];
 			else
-				throw new Exception('No activation_id was supplied.');
+				throw new Exception('No activation identifier was supplied.');
 		
 			//When a user registers the username was convertited to htmlentities. Must do same here
 			$username  = htmlentities($username);
@@ -80,12 +83,14 @@ class User extends Controller {
 			
 			$activation_data = array('result_msg' => $activation_message);
 			$layout_data['content']= $this->load->view('user/account_activation',$activation_data,true);
-			$this->load->view('layout', $layout_data);
 
 		}
 		catch (Exception $e) {
-			echo $e;
+				
+			$data['general_message'] = $e->getMessage();
+			$data['content'] = $this->load->view("general",$data,true);
 		}
+			$this->load->view('layout', $layout_data);
 	}
 
 

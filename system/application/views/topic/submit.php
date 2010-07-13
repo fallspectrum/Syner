@@ -33,16 +33,16 @@
 				<p><span>Step 3 - Describe your problem.  *hint icon*</span></p>
 				<p>This is where the Tiny_MCE editor would be displayed.  If a user clicks the hint icon, they're given details about the tiny-MCE abilities, such as linking to outside/inside content, images, videos, etc.</p>
 				<p>
-					<label for="problem_content">Description:</label>
-					<span id="problem_content_error"></span>
-					<textarea class="tinyMCE" id="problem_content"></textarea>
+					<label for="problem_description">Description:</label>
+					<span id="problem_description_error"></span>
+					<textarea class="tinyMCE" id="problem_description"></textarea>
 				</p>
 <p><span>Step 4 - Tag your problem.  *hint icon*</span></p>
 				<p>This field should have some sort of suggestion feature above or near it.  An example of a tag suggestion feature is:  <a href="http://swift.ushahidi.com/extend/silcc/">SiLCC</a>.  SiLCC takes the description content, and analyzes it to make quick suggestions for tags for the user.  When the user clicks the hint icon, they're told that tags are used to categorize problems, and are also used to help people find problem they're interested in.  
 				<p>Tags:<br />
-						<input type="text" id="tag0"/> <span id="tag0_error" style="display:none"></span>
-						<input type="text" id="tag1"/> <span id="tag1_error" style="display:none"></span>
-						<input type="text" id="tag2"/> <span id="tag2_error" style="display:none"></span> 
+						<input type="text" id="tag0"/> <span id="tag0_error" style="display:none"></span><br>
+						<input type="text" id="tag1"/> <span id="tag1_error" style="display:none"></span><br>
+						<input type="text" id="tag2"/> <span id="tag2_error" style="display:none"></span><br>
 				</p>
 					<input type="button" onclick="validate_topic_form()" value="Create Topic" class="button" />
 				</form>

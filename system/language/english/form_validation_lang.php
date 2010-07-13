@@ -2,15 +2,16 @@
 
 
 //Justin These variables are now contain a array. The array will be constructed to form
-//a jason response. Each array will have 3 fields.
-//field 1, field identifier used in json response. Can use %s to have codeigniter use field name
-//field 2, return value
+//a jason response. Each array will have 2 fields.
+//check simple_json.php for error codes.
 
 //Standards return values: 
 //-1 data structured incorrectly
 //-2 data is not unique
 $lang['required'] 			= array("%s",-1);
 $lang['valid_email']			= array("%s",-1);
+$lang['min_length']			= array("%s",-1);
+$lang['max_length']			= array("%s",-1);
 /*
 $lang['isset']				= "The %s field must have a value.";
 $lang['valid_emails'] 		= "The %s field must contain all valid email addresses.";

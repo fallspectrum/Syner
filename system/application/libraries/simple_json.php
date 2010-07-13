@@ -9,17 +9,23 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Simple_JSON {
 	var $responses;
+	var $error_codes = array(	'success' => 1,
+					'invalid' => -1,
+					'duplicate' => -2,
+					'db_error' => -3,
+					'email_error' => -4
+				);
+				
 	function __construct()
 	{
 		$this->responses=array();
 	}
 
 	/*
-	* @param $reference_id easy way to refrence a paticular return value.
-	         may be null
-	  @param $return_val a return val for the paticular response
+	* @param $reference_id is the id of the bad element on the page.
+	* @param $return_val a return val for the paticular response
 	*/
-	function add_error_response($reference_id,$return_val) 
+	function add_error_response($reference_id,$return_val,$formal_name='') 
 	{
 		//Got to escape quotes so no malformed jquery responses are
 		//made
