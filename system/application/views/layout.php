@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head> 
-		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/css.css" />
+		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/layout.css" />
+		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/content.css" />
+
 		<title>Syner.org - Solving the problems that affect you.
 		</title>
 		
@@ -37,14 +39,14 @@
 			</div>
 		</div>
 		<div id="headnav">
-			<ul id="headnav">
+			<ul id="headlist">
 				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/search" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
 				<li class="headnav" id="#"><a href="" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
 				<li class="headnav" id="#"><a href="" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
 			</ul>
 		</div>
-		<div class="usernav">
-			<ul class="usernav">
+		<div id="usernav">
+			<ul id="userlist">
 			
 				<?php if (get_user_privilege() === 0) { echo '	
 				
@@ -81,9 +83,7 @@
 				<li class="footnav" id="border"><a href="">Terms of Use</a></li>
 				<li class="footnav" id=""><a href="">Privacy</a></li>
 			</ul>
-				
-			
-			 Powered By <a href="http://www.syner.org"><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
+			 <a href="http://www.syner.org"><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
 		</div>
 	</div>
 </body>

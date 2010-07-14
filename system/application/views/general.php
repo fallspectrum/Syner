@@ -2,9 +2,9 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-				<span>
+				<h1>
 				<?=$general_message?>
-				</span>
+				</h1>
 		</div>
 	</div>
 </div>

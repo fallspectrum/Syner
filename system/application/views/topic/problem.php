@@ -17,9 +17,9 @@
 			</div>
 			
 			<div id="content" class="topic problem">
-				<div id="titleDisplay">
+				<h3>
 				Topic Title Field
-				</div>
+				</h3>
 				<div id="minispacer"></div>
 				<p>
 				<!-- Tiny MCE form display -->

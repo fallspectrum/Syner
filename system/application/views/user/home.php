@@ -3,9 +3,9 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-				<span>
+				<h1>
 					Welcome home <?=$username?>!
-				</span>
+				</h1>
 				<div id="hometut">
 					This is your home page.  Here you can track all the updates associated with any problems that you have chosen to follow.  At the moment you don't have any problems that you're following, to change that, simply click on the "Follow The Action" button when looking at a problem's Action Page. *insert tutorial graphics* 
 				</div>

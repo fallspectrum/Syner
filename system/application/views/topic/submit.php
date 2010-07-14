@@ -1,52 +1,40 @@
 <!-- div body tag opens in " ".php and closes in footer.php-->
 <div id="body">
 	<div id="leftBox">
-			<div class="groupMod">
-				<ul class="groupBox">
-				<li id="title"><img src="<?=SY_SITEPATH?>styles/icons/groups3_ico.png" border="0" /> Groups</li>
-				<li><a href="" class="normal"><img src="<?=SY_SITEPATH?>styles/icons/global_ico.png" border="0" /> Global</a></li>
-				<li><a href="" class="normal"><img src="<?=SY_SITEPATH?>styles/icons/country_ico.png" border="0" /> Country</a></li>
-				<li><a href="" class=""><img src="<?=SY_SITEPATH?>styles/icons/personal_ico.png" border="0" /> Personal</a></li>
-				</ul>
-			</div>
+			<?php
+				require('groupmodule.php');
+			?>
 			
 		</div>
 		<div id="rightBox">
 			<div id="content">
-				<b>Problem Submission Form:</b><br />
+				<h1>Problem Submission Form</h1>
 				<form>
-				<p>Includes Title, Description, Tags, and Group.  We could employ a tag suggestion feature that scans the contents of the description that the user has typed, and based on that input would suggest tags for them to use: <a href="http://swift.ushahidi.com/extend/silcc/">http://swift.ushahidi.com/extend/silcc/</a></p>
-				<p>After a user submits this form a topic is created based on the input.  The user can continue to edit their topic from there.</p>
+				<!-- Includes Title, Description, Tags, and Group.  We could employ a tag suggestion feature that scans the contents of the description that the user has typed, and based on that input would suggest tags for them to use: http://swift.ushahidi.com/extend/silcc/
+				After a user submits this form a topic is created based on the input.  The user can continue to edit their topic from there.
+				-->
+				<h3>What group does this problem belong to? <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
+				<p>*img with arrow point to the group module to the left here*</p>
 				
-				<p><span>Step 1 - Select the group that this problem belongs to.  *hint icon, question mark*<br />
-				<------------
-				</span></p>
-				
-				<p>When a user clicks the hint icon, they're given details about what each group is for, Global is for a problem that affects all people, country for country, personal are for personal problems.</p>
-				<p><span>Step 2 - Title your problem.  *hint icon*</span></p>
-				<p>When the user clicks the hint icon, they are told to summarize the problem in a short sentence.</p>
-				<p>
+				<h3>How would you title this problem in a short phrase? <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
 				<label for="title">Title:</label>
-				<input type="text" id="problem_title" />
+				<input type="text" id="problem_title" size="80" />
 				<label for="title" id="problem_title_error" style="display:none"></label>
 				</p>		
-				<p><span>Step 3 - Describe your problem.  *hint icon*</span></p>
-				<p>This is where the Tiny_MCE editor would be displayed.  If a user clicks the hint icon, they're given details about the tiny-MCE abilities, such as linking to outside/inside content, images, videos, etc.</p>
+				<h3>Could you describe this problem as best you can? <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
 				<p>
 					<label for="problem_description">Description:</label>
 					<span id="problem_description_error"></span>
 					<textarea class="tinyMCE" id="problem_description"></textarea>
 				</p>
-<p><span>Step 4 - Tag your problem.  *hint icon*</span></p>
-				<p>This field should have some sort of suggestion feature above or near it.  An example of a tag suggestion feature is:  <a href="http://swift.ushahidi.com/extend/silcc/">SiLCC</a>.  SiLCC takes the description content, and analyzes it to make quick suggestions for tags for the user.  When the user clicks the hint icon, they're told that tags are used to categorize problems, and are also used to help people find problem they're interested in.  
+				<h3>We need you to tag this problem, so other people can find it. <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
 				<p>Tags:<br />
 						<input type="text" id="tag0"/> <span id="tag0_error" style="display:none"></span><br>
 						<input type="text" id="tag1"/> <span id="tag1_error" style="display:none"></span><br>
 						<input type="text" id="tag2"/> <span id="tag2_error" style="display:none"></span><br>
 				</p>
-					<input type="button" onclick="validate_topic_form()" value="Create Topic" class="button" />
+					<input type="button" onclick="validate_topic_form()" value="Submit Problem" class="button" />
 				</form>
-				<p><i>Notes: maybe during the submission process, rather than having "hint icons" we could allocate the right part of the form to display input instructions while the user's cursor is within that field.  For example, when the user first selects within the title field, a display area tells the user some details about making a good title. When they move from title to description, the title helpful fades out, and the description helper fades in.  </i></p>
 			</div>
 			
 		</div>

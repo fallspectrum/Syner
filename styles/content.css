@@ -1,0 +1,204 @@
+/*  This is the content css file.  
+It contains all of the styling for anything within the content div. 
+For general layout changes, see the layout.css */
+
+/* 
+Basic legend for hex colors:
+
+#000(black)
+#393939(dark grey)
+#8f8f8f(grey)
+#dddddd(light grey)
+#fff(white)
+#009604(green)
+#ceffcf(light green)
+
+*/
+
+/* ### Starting Title ### */
+/* $$$ Ending Title $$$ */
+
+
+/* ### Content Div Styling ### */
+
+	#content{
+		padding:15px;
+		background-color:#ffffff;
+		color:#000000;
+		border:1px solid #000000;
+		margin-bottom:20px;
+		}
+		/* apply this class when displaying topic/control navigation above the content div*/
+		#content.topic{
+		border-top:none;
+		}
+		#content a{
+			text-decoration:none;
+			color:#009604;
+		}
+
+/* $$$ End Content Div Styling $$$ */
+
+/* ### Globals ### */
+
+span{
+
+}
+
+h1 {	
+	margin-top:0px;
+	background:#ceffcf;
+	padding:5px;
+	font-size:110%;
+	text-align:center;
+}
+h2 {
+	color:#009604;
+	font-size:20px;
+}
+h3{
+	margin:5px 20px 10px;
+	background:#dddddd;
+	padding:5px;
+	font-size:100%;
+	text-align:center;
+}
+h4{
+
+}
+h5{
+
+}
+h6{
+
+}
+p{
+
+}
+code{
+	
+}
+input {
+	margin: 0;
+}
+
+/* $$$ End Globals $$$ */
+
+/* ### Error Styling ### */
+
+label.error {
+	background-color: #FFC;
+	border: 1px solid #AAA; 
+	border-top: 0; 
+	color: #000; 
+	font-size: 12px;
+	display: none; 
+	margin-bottom: 8px; 
+	padding: 2px; 
+	width: auto;
+}
+
+label.jserror {
+	background-color: #FFC;
+	border: 1px solid #AAA; 
+	margin: 4px;
+	color: #000; 
+	font-size: 12px;
+	display: none; 
+	margin-bottom: 8px; 
+	padding: 2px; 
+	width: auto;
+}
+
+input.error{
+	background-color:#ffdcdc;
+	border:1px solid #ff0000;
+}
+
+/* $$$ End Error Styling $$$ */
+
+input.button{
+	font-weight:bold;
+	font-size:105%;
+	
+}
+
+
+/* ### Spacers ### */
+
+div#spacer{
+	margin-top:10px;
+	margin-bottom:10px;
+	height:2px;
+	display:block;
+	background-color:#8f8f8f;
+}
+div#minispacer{
+	margin-top:5px;
+	margin-bottom:5px;
+	height:1px;
+	display:block;
+	background-color:#000;
+}
+
+/* $$$ Spacers $$$ */
+
+		
+		
+/* ###### Page Styles ###### */
+/* This area will categorize each set of specific page styles based upon the controller type that is used to display that view.
+For example: login, register, home page, user account settings, theses are all views load from the user.php controller.
+Therefore any declarations associated associated with those views are under the user category.
+ */
+
+		
+/*  User Category */
+
+	/* Home Page - user/home.php view  */
+	 div#hometut{
+		margin:15px;
+		padding:10px;
+		border:1px solid #009604;
+	 }
+	 div#homecontainer{
+		height:525px;
+		margin:15px;
+	 }
+	 
+	 div#homeleft{
+		float:left;
+		padding:10px;
+		height:500px;
+		width:470px;
+		border:1px solid #000000;
+	 }
+		div#updatedisplay{
+			height:430px;
+		}
+		div#updatecontrol{
+			text-align:right;
+		}
+		a.bold{
+			font-weight:bold;
+		}
+		b.big {
+			font-size:110%;
+		}
+	 
+	 div#homeright{
+		float:right;
+		padding:10px;
+		width:350px;
+		border:1px solid #000000;
+	 }
+ 
+ /*  Topic Category */
+ 
+	/* Topic Problem Page - topic/view.php view */
+	
+	#tagDisplay{
+		text-align:center;
+		font-weight:bold;
+	}
+ 
+/* $$$$$$ End Page Styles $$$$$$ */

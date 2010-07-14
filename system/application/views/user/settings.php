@@ -3,9 +3,9 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-				<span>
+				<h1>
 					User Account Settings
-				</span>
+				</h1>
 				
 				<ul>
 				Here the user can: 
