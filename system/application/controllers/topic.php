@@ -79,6 +79,7 @@ class Topic extends Controller
 	
 	/**
 	* This function handles submition of a new topic 
+	* @todo set max tag lenth
 	*/
 	function new_topic_ajax() {
 		$this->load->library("simple_json");
@@ -99,20 +100,77 @@ class Topic extends Controller
 		else {
 			//look for tags. Must be at least 3 of them.
 			$tags = array();
-			for($i=0; $i<3; $i++)
-			{
+			$i=0;
+
+			while (true) {
 				$tag_element = "tag" . $i;
 				$tag_name = $this->input->post($tag_element);
-				$tag_name = trim($tag_name);
 				
-				//tag must contain atleast 4 characters.
-				if($tag_name === FALSE || strlen($tag_name) < 4) {
+				//don't want to trim false, it will make tag_name not null.
+				if($tag_name !== FALSE) {
+					$tag_name = trim($tag_name);
+				}
+
+				//if we don't have atleast 3 tags, or tag length does not contain 4 characters.
+				if( $i<3 && ($tag_name === FALSE || mb_strlen($tag_name) < 4)) {
 					$json->add_error_response($tag_element,$json->error_codes['invalid'],'tag');
 					$invalid = true;
 				}
+				
+				//if we run into a tag not submitted and we already checked the
+				//first 3 tags... We only will allow 10 tags to be submitted to.
+				else if ( $tag_name === FALSE && $i >=3  || $i > 10)
+				{
+					break;
+				}
+
+				//if the tag has more then 30 characters or less then 4, notify them it's invalid
+				else if (mb_strlen($tag_name) < 4 || strlen($tag_name) > 30) {
+					$json->add_error_response($tag_element,$json->error_codes['invalid'],'tag');
+					$invalid = true;
+				}
+				
+				//else the tag is good!
+				else {
+					array_push($tags,$tag_name);
+				}
+				
+				$i++;
 			}
+		
 			if(!$invalid) {
-				$json->add_error_response('success',$json->error_codes['success']);
+				
+				$this->load->model("Topics",'',TRUE);
+				$this->load->model("Tags",'',TRUE);
+
+				//check to see if the topic title already exists
+				if( $this->Topics->topic_exists($this->input->post('problem_title'))) {
+					$json->add_error_response("problem_title",$json->error_codes['duplicate']);
+				}
+				
+				else {	
+					//Lets add the topic to the database.
+					try {
+						$topic_id = $this->Topics->add_entry(	$this->user_session->get_user_id(),
+											$this->input->post('problem_title'),
+											date('Y-m-d H:i:s', time()), 
+											"global");
+
+						$this->Topics->set_topic_content($topic_id,
+										$this->input->post('problem_description'),
+										$this->user_session->get_user_id());
+						
+						$this->Tags->add_tags($tags);		
+						$tag_ids = $this->Tags->get_tag_ids($tags);
+						$this->Tags->tag_topic($topic_id,$tag_ids);
+
+						$json->add_error_response('success',$json->error_codes['success']);
+					}
+					catch (Exception $e) {
+						//althought get_user_id may throw a exception, just consider it a db error.
+						$json->add_error_response("js",$json->error_codes['db_error']);
+					}
+				}
 			}
 		}
 		echo $json->format_response();

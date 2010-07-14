@@ -40,6 +40,21 @@ class User_Session
 	}
 	
 	/**
+	* This function returns the id of the user, if logged in.
+	* @return integer 0+ is logged in. Throws exception if not logged in.
+	*/
+	function get_user_id() 
+	{
+		$CI = &get_instance();
+		$id = $CI->session->userdata('user_id');
+		if($id === FALSE) {
+			throw new Exception ("User is not logged in.");
+		}
+		return $id;
+
+	}
+	
+	/**
 	* This function returns the username of the user, if logged in.
 	* @return string there username if logged in, "" if they are not.
 	*/

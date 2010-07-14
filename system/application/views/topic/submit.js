@@ -1,7 +1,7 @@
 //default number of tags on page - 1
 tag_count = 2;
 
-function ajax_response() {
+function simple_json_success() {
 	alert("Coool!");
 }
 
@@ -11,6 +11,7 @@ var formal_names = new Array();
 formal_names['tag0'] = "tag";
 formal_names['tag1'] = "tag";
 formal_names['tag2'] = "tag";
+formal_names['problem_title'] = "problem title";
 
 function validate_topic_form()  
 {

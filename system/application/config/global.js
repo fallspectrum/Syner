@@ -140,42 +140,39 @@ function simple_json_response_handler(data)
         for (var i = 0; i < data.error_responses.length; i++)
         {
                 var response = data.error_responses[i];
-                var reference_id = response['reference_id'];
-                var field_icon = $("#" + reference_id + "_icon");
-                var formal_name = reference_id;
+                var reference_id = "#" + response['reference_id'];
+		var formal_name = response['reference_id'];
+                var error_id = reference_id + "_error";
 		//check if there is a formal name of the id.
-		if(typeof(formal_names[reference_id]) != "undefined" )
+		if(typeof(formal_names[formal_name]) != "undefined" )
 		{
-			formal_name = formal_names[reference_id];
+			formal_name = formal_names[formal_name];
 		}
-		if(reference_id != "success" )
-                {
-                        var error_field = $("#"+ reference_id + "_error");
-                        error_field.show();
-                        
-                        field_icon.attr("src", SY_NOTICE_ICON);
-                        field_icon.show();
-                        
-                        switch(response['return_val']) 
-                        {
-                                case '-1':
-                                        error_field.html("The entered " + formal_name + " is invalid.");
-                                        break;
-                                case '-2':
-                                        error_field.html("The entered " + formal_name + " is already taken.");
-                                        break;
-                                case '-3':
-                                        error_field.html("There was an error communicating with the database.");
-                                        break;
-                                case '-4':
-                                        $('#js_error').html("There was an error trying to send the activation email.");
-                                        $('#js_error').show();
-                                        break;
-                        }
-                } else {
-                        simple_json_success();
-                }
-        }
+		switch(response['return_val']) 
+               	{
+			
+			case '1': 
+				simple_json_success();
+				break;
+			case '-1':
+				handle_bad_element(reference_id, "The entered " + formal_name + " is invalid.");
+				scroll_to_element(error_id); 
+				break;
+			case '-2':
+				handle_bad_element(reference_id, "The entered " + formal_name + " is already taken.");
+				scroll_to_element(error_id); 
+				break;
+			case '-3':
+				handle_bad_element(reference_id, "There was an error communicating with the database.");
+				scroll_to_element(error_id); 
+				break;
+			case '-4':
+				$(error_id).html("There was an error trying to send the activation email.");
+				$(error_id).show();
+				scroll_to_element(element_id); 
+				break;
+		}
+	}
         
 }
 
