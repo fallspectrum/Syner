@@ -46,7 +46,7 @@ class User_Session
 	function get_user_id() 
 	{
 		$CI = &get_instance();
-		$id = $CI->session->userdata('user_id');
+		$id = (int) $CI->session->userdata('user_id');
 		if($id === FALSE) {
 			throw new Exception ("User is not logged in.");
 		}
@@ -87,7 +87,7 @@ class User_Session
 	function get_privilege() 
 	{
 		$CI =& get_instance();
-		$privilege = $CI->session->userdata('privilege');
+		$privilege = (int)$CI->session->userdata('privilege');
 		if ($privilege === FALSE) {
 			$privilege = 0;
 		}
