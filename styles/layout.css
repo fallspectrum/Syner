@@ -528,6 +528,55 @@ a{
 		
 		
 		
+		/* Start Admin Navigation -  */
+		div.adminnav{
+		vertical-align:bottom;
+		}
+		
+			ul#adminnav { 
+				text-align:left; 
+				margin: 0 0 0 0; 
+				font: bold 12px verdana, arial, sans-serif; 
+				border-bottom: 1px solid #000; 
+				list-style-type: none;
+				padding: 3px 10px 7px 10px; /* THIRD number must change with respect to padding-top (X) below */
+			}
+
+ 
+			ul#adminnav li { 
+			display: inline;
+			}
+
+			ul#adminnav li a { 
+				padding: 7px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				border: 1px solid #000; 
+				background-color:#dddddd; 
+				color: #1c1c1c; 
+				margin-right: 1px; 
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			ul#adminnav a:hover { 
+				border-top:2px solid #009604;
+			}
+			
+			div#anb li.anb, div#mnb li.mnb, div#users li.users, div#groups li.groups, div#system li.system { /* settings for selected tab */
+				border-bottom: 0px solid #fff; 
+			}
+ 
+			div#anb li.anb a, div#mnb li.mnb a, div#users li.users a, div#groups li.groups a, div#system li.system a { /* settings for selected tab link */
+				background-color: #fff; 
+				color: #000; 
+				position: relative;
+				top: 1px;
+				padding-top: 7px; /* must change with respect to padding (X) above and below */
+				border-top:2px solid #009604;
+			}
+			
+		/* End Admin Navigation */
+		
+		
 		/* bigBox is used for standard pages that require no group/tag/topic navigation (such as welcome_message.php, general.php, etc.) */	
 	#bigBox{
 		margin-top:20px;

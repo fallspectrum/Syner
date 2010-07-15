@@ -203,5 +203,22 @@ class Topic extends Controller
 		}
 		$this->load->view("layout",$data);
 	}
+	/**
+	* This function displays the search view.
+	*/
+	function popular() 
+	{
+		$data['content'] = $this->load->view("topic/popular",'',TRUE);	
+		$this->load->view("layout",$data);
+	}
+	/**
+	* This function displays the search view.
+	*/
+	function recent() 
+	{
+		$data['content'] = $this->load->view("topic/recent",'',TRUE);	
+		$this->load->view("layout",$data);
+	}
+	
 }
 ?>

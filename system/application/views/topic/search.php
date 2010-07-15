@@ -11,7 +11,7 @@
 				<br />
 				<form>
 					<input type="text" name="search" value="" size="40" />
-					<input type="submit" value="Search" />
+					<input type="submit" value="Search" class="button" />
 				</form>
 				<div id="spacer"></div>
 				<p>
