@@ -78,6 +78,18 @@ p{
 code{
 	
 }
+
+ul{
+	list-style:disc;
+}
+ol{
+	margin-left:40px;
+	list-style:upper-roman;
+}
+li{
+	
+}
+
 input {
 	margin: 0;
 }
@@ -192,6 +204,11 @@ Therefore any declarations associated associated with those views are under the 
 		border:1px solid #000000;
 	 }
  
+	/* Account Settings Page - user/settings.php view  */
+	div#asettingsmargin{
+		margin-right:100px; 
+		margin-left:100px;
+	}
  /*  Topic Category */
  
 	/* Topic Problem Page - topic/view.php view */

@@ -204,7 +204,7 @@ class Topic extends Controller
 		$this->load->view("layout",$data);
 	}
 	/**
-	* This function displays the popular view.
+	* This function displays the search view.
 	*/
 	function popular() 
 	{
@@ -212,7 +212,7 @@ class Topic extends Controller
 		$this->load->view("layout",$data);
 	}
 	/**
-	* This function displays the recent view.
+	* This function displays the search view.
 	*/
 	function recent() 
 	{
