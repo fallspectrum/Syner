@@ -86,7 +86,8 @@ class Topic extends Controller
 		$invalid = false;
 		$json = new Simple_Json();
 		$this->load->library('form_validation');
-	
+		$tags = array();
+		
 		//validate form input, we got to do tags manually.
 		$this->form_validation->set_rules('problem_title','problem title','required|trim|main_length[10],max_length[100]');
 		$this->form_validation->set_rules('problem_description','problem description','required|trim|min_length[10]');
@@ -96,46 +97,31 @@ class Topic extends Controller
 				$json->add_error_response($error[0],$error[1]);
 				$invalid = true;
 			}
-		}
-		else {
-			//look for tags. Must be at least 3 of them.
-			$tags = array();
-			$i=0;
-
-			while (true) {
-				$tag_element = "tag" . $i;
-				$tag_name = $this->input->post($tag_element);
-				
-				//don't want to trim false, it will make tag_name not null.
-				if($tag_name !== FALSE) {
-					$tag_name = trim($tag_name);
+		} else { // If the validation succeeds, check the tags
+	
+			$tags = explode(',', $this->input->post('problem_tags'));
+			
+			//if we don't have atleast 3 tags
+			if(count($tags) < 3) {
+				$json->add_error_response('problem_tags',$json->error_codes['invalid'],'tag');
+				$invalid = true;
+			} 
+			else {
+				foreach($tags as $key => $tag) {
+					$tag = trim($tag);
+					
+					// Remove empty tags
+					if(empty($tag)) {
+						unset($tags[$key]);
+						continue;
+					}
+					
+					//if the tag has more then 30 characters or less then 4, notify them it's invalid
+					if(strlen($tag) < 4 || strlen($tag) > 30) {
+						$json->add_error_response('problem_tags',$json->error_codes['invalid'],'tag '.$tag);
+						$invalid = true;
+					}
 				}
-
-				//if we don't have atleast 3 tags, or tag length does not contain 4 characters.
-				if( $i<3 && ($tag_name === FALSE || mb_strlen($tag_name) < 4)) {
-					$json->add_error_response($tag_element,$json->error_codes['invalid'],'tag');
-					$invalid = true;
-				}
-				
-				//if we run into a tag not submitted and we already checked the
-				//first 3 tags... We only will allow 10 tags to be submitted to.
-				else if ( $tag_name === FALSE && $i >=3  || $i > 10)
-				{
-					break;
-				}
-
-				//if the tag has more then 30 characters or less then 4, notify them it's invalid
-				else if (mb_strlen($tag_name) < 4 || strlen($tag_name) > 30) {
-					$json->add_error_response($tag_element,$json->error_codes['invalid'],'tag');
-					$invalid = true;
-				}
-				
-				//else the tag is good!
-				else {
-					array_push($tags,$tag_name);
-				}
-				
-				$i++;
 			}
 		
 			if(!$invalid) {
@@ -147,9 +133,7 @@ class Topic extends Controller
 				if( $this->Topics->topic_exists($this->input->post('problem_title'))) {
 					$json->add_error_response("problem_title",$json->error_codes['duplicate']);
 				}
-				
-				else {	
-					//Lets add the topic to the database.
+				else {	//Lets add the topic to the database.
 					try {
 						$topic_id = $this->Topics->add_entry(	$this->user_session->get_user_id(),
 											$this->input->post('problem_title'),
@@ -173,6 +157,7 @@ class Topic extends Controller
 				}
 			}
 		}
+		
 		echo $json->format_response();
 	}
 	

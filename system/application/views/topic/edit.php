@@ -36,13 +36,8 @@
 						<textarea id="problem_content" class="tinyMCE"></textarea>
 						</form>
 					</p>
-					<p>Problem tags: 
-						<input type="text" name="tag1" />
-						<input type="text" name="tag1" />
-						<input type="text" name="tag1" />
-						<input type="text" name="tag1" />
-						<input type="text" name="tag1" />
-					</p>
+					<label>Problem tags:</label><br />
+					<textarea id="problem_tags" cols="25" rows="2"></textarea>
 					<p>
 						<input type="button" value="Submit" />
 					</p>
