@@ -4,9 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head> 
-		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/css.css" />
-		<title>Syner.org - Solving the problems that affect you.
+		<title>
+			Syner.org - Solving the problems that affect you.
 		</title>
+		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/layout.css" />
+		<link rel="stylesheet" type="text/css" href="<?=SY_SITEPATH?>styles/content.css" />
 		
 		<!--Need description -->
 		 <meta name="description" content="">
@@ -37,16 +39,24 @@
 			</div>
 		</div>
 		<div id="headnav">
-			<ul id="headnav">
+			<ul id="headlist">
 				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/search" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
-				<li class="headnav" id="#"><a href="" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
-				<li class="headnav" id="#"><a href="" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
+				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/popular" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
+				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/recent" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
 			</ul>
 		</div>
-		<div class="usernav">
-			<ul class="usernav">
+		<div id="usernav">
+			<ul id="userlist">
 			
-				<?php if (get_user_privilege() === 0) { echo '	
+				<?php 
+				
+				if (get_user_privilege() === 2) {
+				echo '
+					<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/admin/anb/"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
+				';
+				}
+				
+				if (get_user_privilege() === 0) { echo '	
 				
 				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/register/"><img src="' . SY_SITEPATH . 'styles/icons/register2_ico.png" border="0" /> Register</a></li>
 				<li class="usernav"><a href="' . SY_SITEPATH  .'index.php/user/login"><img src=" ' . SY_SITEPATH . 'styles/icons/login_ico.png" border="0" /> Log In</a></li>
@@ -58,12 +68,6 @@
 				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/logout/"><img src="' . SY_SITEPATH . 'styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
 				';}
 				
-				if (get_user_privilege() === 2) {
-				echo '
-					<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/admin/control/"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
-				';
-				}
-				
 				?>
 			</ul>
 		</div>
@@ -74,16 +78,13 @@
 			<div id="footer">
 			<!-- Footnav LI items should be controlled from within the ACP -->
 			<ul class="footnav">
-				<li class="footnav" id="border"><a href="">FAQ</a></li>
-				<li class="footnav" id="border"><a href="">Support</a></li>
-				<li class="footnav" id="border"><a href="">About</a></li>
-				<li class="footnav" id="border"><a href="">Contact Us</a></li>
+				<li class="footnav" id="border"><a href="">User Guide</a></li>
+				<li class="footnav" id="border"><a href="">About Us</a></li>
+				<li class="footnav" id="border"><a href="">Code of Conduct</a></li>
 				<li class="footnav" id="border"><a href="">Terms of Use</a></li>
 				<li class="footnav" id=""><a href="">Privacy</a></li>
 			</ul>
-				
-			
-			 Powered By <a href="http://www.syner.org"><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
+			 <a href="http://www.syner.org"><img src="<?=SY_SITEPATH?>styles/syner.png" border="0" id="syner" /></a>
 		</div>
 	</div>
 </body>

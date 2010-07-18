@@ -4,11 +4,11 @@
 	<div id="bigBox">
 		<div id="content">
 				<div id="register_container"
-						<span>
+						<h1>
 							<b>
 							Registration is simple, fast, and easy!
 							</b>
-						</span>
+						</h1>
 					<table>
 						<tr>
 							<td width="150">
@@ -56,9 +56,9 @@
 						</tr>
 					</table>
 					<p>
-						<span>
+						<h1>
 							To make sure you're human, could you solve this problem for us?
-						</span>
+						</h1>
 					</p>
 					<table>
 						<tr>

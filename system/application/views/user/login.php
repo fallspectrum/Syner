@@ -2,7 +2,7 @@
 <div id="body">
 	<div id="bigBox">
 		<div id="content">
-			<span><b>Log In</b></span>
+			<h1>Log In</h1>
 				
 				<table>
 					<tr>

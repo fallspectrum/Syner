@@ -13,10 +13,16 @@
 			<div class="controlnav">
 				<ul id="controlnav">
 					<?php 
+					
+					if (get_user_privilege() === 2) {
+						echo '
+						<li><a href="' . SY_SITEPATH . 'index.php/"><img src="' . SY_SITEPATH .'styles/icons/control_ico.png" border="0" /> Control</a></li>
+							';}
+					
 					if (get_user_privilege() !== 0) {
 						echo "
 						<li class='edit'><a href='../../edit/topic_id/" . $topic_id ."'><img src='" . SY_SITEPATH . "styles/icons/edit_ico.png' border='0' /> Edit</a></li> 
-						</ul> ";}
+						";}
 					else {
 						echo "
 						<li class='edit'><a><img src='" . SY_SITEPATH . "styles/icons/edit_ico.png' border='0' /> Please log in to edit this page</a></li> ";
@@ -29,19 +35,21 @@
 			<div id="content" class="topic problem">
 				<div id="groupdisplay">
 					
-						<a href="">Root Group</a> > <a href="">Parent Group</a> > <a href=""><b>Current Group</b></a> <i>(display depends on hierarchy of group location)</i>
+						<a href="">Root Group</a> > <a href="">Parent Group</a> > <a href=""><b>Current Group</b></a> <!--(display depends on hierarchy of group location) -->
 					
 				</div>
-				<div id="titleDisplay">
-				<span>Topic Title Field</span>
-				</div>
+				
+				<h3>Topic Title Field</h3>
+				
 				<div id="problem_content">
 				<p>
 				Basically when a user would approach a problem for the first time, they would see the Title, Tags, and Description in plain text.  When they hit the "Edit" button then the page loads TinyMCE for the problem description, and then two separate fields for the title, and tags.  When the user selects a button "Save" then then their changes are placed, an action is created that defines the changes and places it within the history feature (action page) and they're returned to the page in non-editor mode (plain text).  It would probably be helpful to have a "preview" option before the user submits.  It may even be helpful if we force the user to preview before submitting.  I see TinyMCE has a built in preview option.
 				</p>
 				</div>
 				<div id="minispacer"></div>
-				Tags displayed down here.
+				<div id="tagDisplay">
+				<a href="">Problem</a> <a href="">Tag</a> <a href="">Something</a> <a href="">Kinda</a> <a href="">Maybe</a>
+				</div>
 			</div>
 			
 		</div>

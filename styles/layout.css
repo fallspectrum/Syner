@@ -1,114 +1,112 @@
-/*  Trav - I use Notepadd++ so I like to tab/indent a declaration if it is wrapped by another
- This should help you understand the way I've organized the declarations since I also like to do the same
-with HTML tags that wrap each-other */
+/*  This is the layout css file.  It contains all of the styling for for the layout view.  This includes everything except what would normally be displayed within the "content" div. */
 
 /* 
-Here is a basic legend for hex colors:
+Basic legend for hex colors:
 
-#000000(black)
+#000(black)
 #393939(dark grey)
 #8f8f8f(grey)
 #dddddd(light grey)
-#ffffff(white)
+#fff(white)
 #009604(green)
+#ceffcf(light green)
 
 */
 
 
-/*  non class/id declarations */
+
+
+/* Browser Reset */
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+ 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+section, header, footer, aside, article {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+        z-index: 0;
+}
+body {
+        line-height: 1;
+}
+ol, ul {
+        list-style:;
+}
+blockquote, q {
+        quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+        content: '';
+        content: none;
+}
+ 
+/* remember to define focus styles! */
+:focus {
+        outline: 0;
+}
+ 
+/* remember to highlight inserts somehow! */
+ins {
+        text-decoration: none;
+}
+del {
+        text-decoration: line-through;
+}
+ 
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+        border-collapse: collapse;
+        border-spacing: 0;
+}
+
+/*  End Reset */
+
+
+/* Globals */
+
+
+
 html,body{
-	margin:0; 
-	padding:0; 
 	background-color:#393939;
-	font: 100% trebuchet ms,arial,sans-serif
-	
+	font: 100% trebuchet ms,arial,sans-serif;
+	min-height: 100%; 
+	margin-bottom: 1px;
 }
 a{
-	color:#ffffff;
-}
-h1 {	
-	font-size:25px;
-	
-}s
-h2 {
-	color:#009604;
-	font-size:20px;
-}
-span{
-	display:block;
-	background:#ceffcf;
-	padding:5px;
-	font-size:110%;
-	text-align:center;
-}
-
-input {
-	margin: 0;
+	color:#fff;
 }
 
 
-/*  Basic over all declarations  */
 
-label.error {
-	background-color: #FFC;
-	border: 1px solid #AAA; 
-	border-top: 0; 
-	color: #000; 
-	font-size: 12px;
-	display: none; 
-	margin-bottom: 8px; 
-	padding: 2px; 
-	width: auto;
+code{
+	text-indent:50px;
 }
 
-label.jserror {
-	background-color: #FFC;
-	border: 1px solid #AAA; 
-	margin: 4px;
-	color: #000; 
-	font-size: 12px;
-	display: none; 
-	margin-bottom: 8px; 
-	padding: 2px; 
-	width: auto;
-}
-
-input.error{
-	background-color:#ffdcdc;
-	border:1px solid #ff0000;
-}
-
-span#small{
-	font-size:80%;
-}
-
-div#spacer{
-	margin-top:10px;
-	margin-bottom:10px;
-	height:2px;
-	display:block;
-	background-color:#8f8f8f;
-}
-div#minispacer{
-	margin-top:5px;
-	margin-bottom:5px;
-	height:1px;
-	display:block;
-	background-color:#000;
-}
-
-/* End basic declarations */
 
 /*  *****Layout Begins***** */
 
 /*Container wraps entire layout = header & body*/
-div#container{
+#container{
 	margin:0 auto; 
 	width:960px; 
 }
 	
 	/* Header wraps = logo, headnav, and usernav*/
-div#header{
+#header{
 	-khtml-border-radius-bottomright: 5px;
 	-khtml-border-radius-bottomleft: 5px;
 	-moz-border-radius-bottomright: 5px;
@@ -131,62 +129,51 @@ div#header{
 
 	/* Begin logo */
 
-	div#logo{
+	#logo{
 		position:relative;
 		width:240px;
-		border:0px solid #ff0000;
-
 	}
-		div.logoBox{
-			border:0px solid #fff;
+		.logoBox{
 			position:absolute;
 			top:12px;
 			left:8px;
-			text-align:center;
-			vertical-align:middle;
 		}
-		div.logoBox a{
+		.logoBox a{
 			border:0;
 			text-decoration:none;
 		}
-		div.logoBox a:hover{
+		.logoBox a:hover{
 			border-bottom:1px solid #009604;
 		}
 	/* End logo */
 	 
 	/* Begin Headnav - The headnav contains the links (Search, Popular, and Recent) */
-	div#headnav{
+	#headnav{
 	position:relative;
 	float:left;
 	left:260px;
 	height:38px;
 	width:351px;
-	text-align:;
 	vertical-align:middle;
-	border:0px solid #ff0000;
 	}
-		ul#headnav{
+		#headlist{
 			width:100%;
 			padding:0;
 			margin:0;
 			list-style-type:none;
 			height:40px;
-			border:0px solid #000000;
 		}
 
 			li.headnav{
+				/* Rounded corners */
 				-khtml-border-radius-bottomright: 5px;
 				-khtml-border-radius-bottomleft: 5px;
-	
 				-moz-border-radius-bottomright: 5px;
 				-moz-border-radius-bottomleft: 5px;
-	
 				border-bottom-right-radius: 5px;
 				border-bottom-left-radius: 5px;
-
 				-webkit-border-bottom-left-radius: 5px;
 				-webkit-border-bottom-right-radius: 5px;
-				
 				display:inline;
 				border:1px solid #8f8f8f;
 				border-top:none;
@@ -213,15 +200,15 @@ div#header{
 				}
 	/* End Headnav */
 	/* Begin User Navigation - Contains Register, Login, Logout, Settings, Home, and Admin Control Panel*/
-	div.usernav{
+	#usernav{
 		float:right;
 		position:relative;
-		top:-5px;
+		top:15px;
 		height:;
 		width:355px;
 		border:0px solid #ff0000;
 	}
-		ul.usernav{
+		#userlist{
 			border:0px solid #8f8f8f;
 			float:right;
 			text-align:right;
@@ -245,7 +232,7 @@ div#header{
 				li.usernav a{
 					height:;
 					text-decoration:none;
-					color:#fff;
+					color:#dddddd;
 					padding-right:10px;
 					padding-left:10px;
 					font-weight:bold;
@@ -258,8 +245,9 @@ div#header{
 				
 /* End Header */
 
+
 /* Begin Body - Body wraps leftBox(Group & Tag Modules), rightBox(Topic Navigation & Content), bigBox(basic content page), and the footer */
-div#body{
+#body{
 	position:relative;
 	height:500px;
 	width:960px;
@@ -267,7 +255,7 @@ div#body{
 
 /* Begin leftBox - wraps Group Module, and Tag Module */
 
-	div#leftBox{
+	#leftBox{
 		width:220px;
 		margin-top:20px;
 		margin-bottom:20px;
@@ -275,19 +263,17 @@ div#body{
 		float:left;
 		color:;
 	}
-	div#leftBox.topic{
+	#leftBox.topic{
 		margin-top:39px;
 	}
 		/*  Control the Title over the Group Module, namely the word: "Groups" */
 		
-			/*   Begin Group Box */
-			div.groupMod{
-				width:; /*width of menu*/
+			/*   Begin Group Module */
+			#groupMod{
 				border-style:0px;
-				margin-left:;
 			}
 
-				ul.groupBox{
+				.groupBox{
 					list-style-type: none;
 					margin:0;
 					padding:0;
@@ -350,8 +336,6 @@ div#body{
 						color:#009604;
 						text-align:;
 						height:56px;
-						
-						
 						left:1px;
 						background:#ffffff;
 					}
@@ -527,10 +511,10 @@ div#body{
 			ul#topicnav { 
 				text-align:left; 
 				margin: 0 0 0 0; 
-				font: bold 11px verdana, arial, sans-serif; 
+				font: bold 12px verdana, arial, sans-serif; 
 				border-bottom: 1px solid #000; 
 				list-style-type: none;
-				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+				padding: 3px 10px 7px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
 
  
@@ -539,10 +523,10 @@ div#body{
 			}
 
 			ul#topicnav li a { 
-				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				padding: 7px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 				border: 1px solid #000; 
 				background-color:#dddddd; 
-				color: #000; 
+				color: #1c1c1c; 
 				margin-right: 1px; 
 				text-decoration: none;
 				border-bottom: none;
@@ -567,7 +551,7 @@ div#body{
 				font: bold 11px verdana, arial, sans-serif; 
 				border-bottom: 1px solid #000;
 				list-style-type: none;
-				padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+				padding: 3px 10px 7px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
 			
 			ul#controlnav li { 
@@ -575,7 +559,7 @@ div#body{
 			}
 			
 			ul#controlnav li a { 
-				padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				padding: 7px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
 				border: 1px solid #000; 
 				background-color:#dddddd; 
 				color: #000;
@@ -604,172 +588,63 @@ div#body{
 								color: #000; 
 								position: relative;
 								top: 1px;
-								padding-top: 4px; /* must change with respect to padding (X) above and below */
+								padding-top: 7px; /* must change with respect to padding (X) above and below */
 								border-top:2px solid #009604;
 							}
 		
 		
 		
-		/* Begin Content  */
-		
-		
-		div#content{
-		padding:15px;
-		background-color:#ffffff;
-		color:#000000;
-		border:1px solid #000000;
-		margin-bottom:20px;
-		}
-		div#content.topic{
-		border-top:none;
-		}
-		div#content a{
-			text-decoration:none;
-			color:#009604;
+		/* Start Admin Navigation -  */
+		div.adminnav{
+		vertical-align:bottom;
 		}
 		
-			/* titleBox (used on every topic page)*/
-			/*  change titleBox to titleDisplay */
-			div#titleDisplay {
-				border-right:0px solid #009604;
-				border-left:0px solid #009604;
-				margin-bottom:10px;
-				z-index: 1;
-				width:;
-				position: static;
-				top: auto;
-				left: auto;
-				padding: 5px 5px 5px 5px; 
-				text-align:center;
-				font-weight:bold;
-				font-size:18px;
+			ul#adminnav { 
+				text-align:left; 
+				margin: 0 0 0 0; 
+				font: bold 12px verdana, arial, sans-serif; 
+				border-bottom: 1px solid #000; 
+				list-style-type: none;
+				padding: 3px 10px 7px 10px; /* THIRD number must change with respect to padding-top (X) below */
 			}
-		
-		/*  For each of the topic pages I'm going to list the declarations needed for need each one.  Some declarations are used within other pages as well, these can be consolidated later but for now I'll just list them.   */
-		
-		/* Begin Problem Page */
-		
-		
-		
-		div#resultsheader{
-			height:25px;
-			border:0px solid #000;
-		}
-		div#resultstitle{
-			float:left;
-			font-weight:bold;
-			font-size:20px;
-			
-		}
-		div#pageoptions{
-			float:right;
-			font-size:18px;
-		}
-		
-		div#itemTitle{
-			font-weight:bold;
-			
-		}
-		div#itemTags{
-				text-align:right;
-		}
-		/* change from tagBox to tagDisplay */
-		div#tagDisplay {
-			-moz-border-radius-topleft:5px;
-			-moz-border-radius-topright:5px;
-			-moz-border-radius-bottomleft: 5px;
-			-moz-border-radius-bottomright: 5px;
-			-webkit-border-top-left-radius: 5px;
-			-webkit-border-top-right-radius: 5px;
-			-webkit-border-bottom-left-radius: 5px;
-			-webkit-border-bottom-right-radius: 5px;
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cacaca'); /* for IE */
-			background: -moz-linear-gradient(top,  #ffffff,  #cacaca); /* for firefox 3.6+ */
-			background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cacaca));
-			border:1px solid #393939;
-			margin-top:10px;
-			z-index: 1;
-			width:700px;
-			position: static;
-			top: auto;
-			left: auto;
-			padding: 5px 5px 5px 5px; 
-			text-align:left;
-			font-weight:bold;
-			font-size:16px;
-			text-decoration:none;
-		}
+
  
-		div#tagBox  a{
-			color:#000000;
-			text-decoration:none;
-		}
+			ul#adminnav li { 
+			display: inline;
+			}
+
+			ul#adminnav li a { 
+				padding: 7px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+				border: 1px solid #000; 
+				background-color:#dddddd; 
+				color: #1c1c1c; 
+				margin-right: 1px; 
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			ul#adminnav a:hover { 
+				border-top:2px solid #009604;
+			}
+			
+			div#anb li.anb, div#mnb li.mnb, div#users li.users, div#groups li.groups, div#system li.system { /* settings for selected tab */
+				border-bottom: 0px solid #fff; 
+			}
+ 
+			div#anb li.anb a, div#mnb li.mnb a, div#users li.users a, div#groups li.groups a, div#system li.system a { /* settings for selected tab link */
+				background-color: #fff; 
+				color: #000; 
+				position: relative;
+				top: 1px;
+				padding-top: 7px; /* must change with respect to padding (X) above and below */
+				border-top:2px solid #009604;
+			}
+			
+		/* End Admin Navigation */
 		
-		/* End Problem Page */
 		
-		/*  Action Page   */
-		div#actionBox{
-			width:710px;
-			border:0px solid #ff0000;
-		}
-		div#historyBox{
-			float:left;
-			width:340px;
-			margin-bottom:20px;
-			border:2px solid #000;
-		}
-
-		div#eventBox{
-			margin-bottom:20px;
-			float:right;
-			height:350px;
-			width:340px;
-			border:2px solid #000;
-		}
-
-		div#timelineBox{
-			clear:both;
-			height:400px;
-			border:2px solid #000;
-		}
-		/*  End Action Page   */
-		
-		/*  Begin Discussion Page   */
-		div#discussionBox{
-			width:710px;
-		}
-		/*  End Discussion Page   */
-
-		/*  Solution Page   */
-
-		div#solutionsBox{
-			width:710px;
-		}
-		div#solutionOptions{
-			font-weight:bold;
-			font-size:20px;
-
-		}
-		div#solutionListing{
-
-		}
-		div#solutionItem{
-			height:30px;
-
-		}
-		div#solutionTitle{
-			float:left;
-		}
-		div#solutionVote{
-			float:right;
-		}
-
-		/*  End Solution Page   */
-
-	/* END rightBox */
-		
-	/* bigBox is used for standard pages that require no group/tag/topic navigation (such as index and footer links) */	
-	div#bigBox{
+		/* bigBox is used for standard pages that require no group/tag/topic navigation (such as welcome_message.php, general.php, etc.) */	
+	#bigBox{
 		margin-top:20px;
 		position:;
 		float:left;
@@ -779,18 +654,10 @@ div#body{
 	}
 	/* END bigBox*/
 	
-	/* Specialized declarations*/
-	
-	p#login{
-		text-indent:300px;
-	}
-	
-	/* end specials*/
-	
 	
 	/* Begin Footer */
 	
-	div#footer{
+	#footer{
 	-webkit-radius: 5px;
 	-khtml-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -831,67 +698,15 @@ div#body{
 				border-right:1px solid #009604;
 			}
 	
-	div#footer a{
+	#footer a{
 		color:#ffffff;
 		text-decoration:none;
 		font-weight:bold;
 		text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
 	}
-	div#footer a:hover{
+	#footer a:hover{
 		color:#009604;
 	}
 	
 	
 	/* End Footer */
-
-	
-	
-	
-
-/*  Usernav Display Options  */
-
-/*  User Home Page */
- div#hometut{
-	margin:15px;
-	padding:10px;
-	border:1px solid #009604;
- }
- div#homecontainer{
-	height:525px;
-	margin:15px;
- }
- 
- div#homeleft{
-	float:left;
-	padding:10px;
-	height:500px;
-	width:470px;
-	border:1px solid #000000;
- }
-	div#updatedisplay{
-		height:430px;
-	}
-	div#updatecontrol{
-		text-align:right;
-	}
-	a.bold{
-		font-weight:bold;
-	}
-	b.big {
-		font-size:110%;
-	}
- 
- div#homeright{
-	float:right;
-	padding:10px;
-	width:350px;
-	border:1px solid #000000;
- }
- 
-
-
-
-
-
-
-
