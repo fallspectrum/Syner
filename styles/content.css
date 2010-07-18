@@ -47,6 +47,7 @@ span{
 
 h1 {	
 	margin-top:0px;
+	margin-bottom:15px;
 	background:#ceffcf;
 	padding:5px;
 	font-size:110%;
@@ -88,6 +89,10 @@ ol{
 }
 li{
 	
+}
+
+dd{
+	text-indent:30px;
 }
 
 input {

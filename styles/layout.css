@@ -76,12 +76,11 @@ table {
 /*  End Reset */
 
 
+/* Globals */
 
 
 
 html,body{
-	margin:0; 
-	padding:0; 
 	background-color:#393939;
 	font: 100% trebuchet ms,arial,sans-serif;
 	min-height: 100%; 
@@ -92,6 +91,10 @@ a{
 }
 
 
+
+code{
+	text-indent:50px;
+}
 
 
 /*  *****Layout Begins***** */
@@ -229,7 +232,7 @@ a{
 				li.usernav a{
 					height:;
 					text-decoration:none;
-					color:#fff;
+					color:#dddddd;
 					padding-right:10px;
 					padding-left:10px;
 					font-weight:bold;
@@ -254,7 +257,7 @@ a{
 
 	#leftBox{
 		width:220px;
-		margin-top:21px;
+		margin-top:20px;
 		margin-bottom:20px;
 		margin-left:;
 		float:left;
@@ -268,7 +271,6 @@ a{
 			/*   Begin Group Module */
 			#groupMod{
 				border-style:0px;
-				margin-top:2px;
 			}
 
 				.groupBox{

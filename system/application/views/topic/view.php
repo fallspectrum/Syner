@@ -13,10 +13,16 @@
 			<div class="controlnav">
 				<ul id="controlnav">
 					<?php 
+					
+					if (get_user_privilege() === 2) {
+						echo '
+						<li><a href="' . SY_SITEPATH . 'index.php/"><img src="' . SY_SITEPATH .'styles/icons/control_ico.png" border="0" /> Control</a></li>
+							';}
+					
 					if (get_user_privilege() !== 0) {
 						echo "
 						<li class='edit'><a href='../../edit/topic_id/" . $topic_id ."'><img src='" . SY_SITEPATH . "styles/icons/edit_ico.png' border='0' /> Edit</a></li> 
-						</ul> ";}
+						";}
 					else {
 						echo "
 						<li class='edit'><a><img src='" . SY_SITEPATH . "styles/icons/edit_ico.png' border='0' /> Please log in to edit this page</a></li> ";
