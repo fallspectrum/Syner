@@ -82,7 +82,7 @@ table {
 
 html,body{
 	background-color:#393939;
-	font: 100% trebuchet ms,arial,sans-serif;
+	font: 100% helvetica, trebuchet ms,arial,sans-serif;
 	min-height: 100%; 
 	margin-bottom: 1px;
 }
@@ -117,7 +117,7 @@ code{
 	-webkit-border-bottom-right-radius: 5px;
 	position:relative;
 	width:960px;
-	height:50px;
+	height:60px;
 	background:#1c1c1c;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#1c1c1c'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#1c1c1c)); /* for webkit browsers */
@@ -135,15 +135,15 @@ code{
 	}
 		.logoBox{
 			position:absolute;
-			top:12px;
-			left:8px;
+			top:9px;
+			left:27px;
 		}
 		.logoBox a{
 			border:0;
 			text-decoration:none;
 		}
 		.logoBox a:hover{
-			border-bottom:1px solid #009604;
+			border-bottom:1px solid #4bb9f8;
 		}
 	/* End logo */
 	 
@@ -152,52 +152,48 @@ code{
 	position:relative;
 	float:left;
 	left:260px;
-	height:38px;
-	width:351px;
-	vertical-align:middle;
+	width:305px;
+	border:0px solid #ffffff;
 	}
 		#headlist{
-			width:100%;
-			padding:0;
-			margin:0;
 			list-style-type:none;
-			height:40px;
 		}
 
-			li.headnav{
-				/* Rounded corners */
-				-khtml-border-radius-bottomright: 5px;
-				-khtml-border-radius-bottomleft: 5px;
-				-moz-border-radius-bottomright: 5px;
-				-moz-border-radius-bottomleft: 5px;
-				border-bottom-right-radius: 5px;
-				border-bottom-left-radius: 5px;
-				-webkit-border-bottom-left-radius: 5px;
-				-webkit-border-bottom-right-radius: 5px;
-				display:inline;
-				border:1px solid #8f8f8f;
-				border-top:none;
-				color:#009604;
-				font-weight:bold;
-				font-size:20px;
-			}
-
-			li.headnav#active{
-				border:1px solid #009604;
-				border-bottom:2px solid #009604;
-				background:#1c1c1c;
-			}
 
 				a.headnav{
+					/* Rounded corners */
+					-khtml-border-radius-bottomright: 5px;
+					-khtml-border-radius-bottomleft: 5px;
+					-moz-border-radius-bottomright: 5px;
+					-moz-border-radius-bottomleft: 5px;
+					border-bottom-right-radius: 5px;
+					border-bottom-left-radius: 5px;
+					-webkit-border-bottom-left-radius: 5px;
+					-webkit-border-bottom-right-radius: 5px;
+					display:block;
+					float:left;
+					border:1px solid #8f8f8f;
+					border-top:none;
+					font-weight:;
+					font-size:20px;
+					padding: 10px 5px 6px;
+					margin: 0px 2px 0px;
 					text-decoration:none;
 					color:#ffffff;
-					padding-right:10px;
-					padding-left:10px;
+					background:#393939;
 				}
 
 				a.headnav:hover{
-					border-bottom:2px solid #009604;
+					border-bottom:2px solid #4bb9f8;
 				}
+				
+				a.headnav#active{
+				padding: 16px 5px 6px;
+				border:1px solid #4bb9f8;
+				border-bottom:2px solid #4bb9f8;
+				background:#1c1c1c;
+			
+			}
 	/* End Headnav */
 	/* Begin User Navigation - Contains Register, Login, Logout, Settings, Home, and Admin Control Panel*/
 	#usernav{
@@ -205,41 +201,36 @@ code{
 		position:relative;
 		top:15px;
 		height:;
-		width:355px;
+		width:390px;
 		border:0px solid #ff0000;
 	}
 		#userlist{
-			border:0px solid #8f8f8f;
-			float:right;
-			text-align:right;
-			height:;
-			width:355px;
 			list-style-type:none;
-			text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
+			
 		}
 
-			li.usernav{
-				display:inline;
-				height:;
-				font-weight:bold;
-				font-size:14px;
-			}
-
-			li.usernav#first{
-				border-right:1px solid #009604;
-			}
-
 				li.usernav a{
-					height:;
+					display:block;
+					float:right;
+					font-weight:bold;
+					font-size:14px;
 					text-decoration:none;
 					color:#dddddd;
-					padding-right:10px;
-					padding-left:10px;
+					padding:5px 10px;
 					font-weight:bold;
+					height:22px;
 				}
 				
 				li.usernav a:hover{
-					color:#009604;
+					color:#4bb9f8;
+				}
+				
+				li.usernav a.border{
+					border-right:1px solid #4bb9f8;
+				}
+				
+				li.usernav a#active{
+					border-bottom:1px solid #4bb9f8;
 				}
 /* End User Navigation */
 				
@@ -320,20 +311,20 @@ code{
 					}
                      
 					ul.groupBox a:hover{
-					color: #009604;
+					color: #4bb9f8;
 					}
 
 					/*  brings the selected group item to the right, meshing it with the content */
 					ul.groupBox a.select{
 					position:relative;
-						color:#009604;
+						color:#4bb9f8;
 						left:1px;
 						background:#ffffff;
 					}
 					/* This does the same as above, just increases the height as well for additional content (dropdown, checkbox, etc.) */
 					ul.groupBox a.selecthier{
 					position:relative;
-						color:#009604;
+						color:##4bb9f8;
 						text-align:;
 						height:56px;
 						left:1px;
@@ -447,14 +438,14 @@ code{
 					/*  brings the selected group item to the right, meshing it with the content */
 					ul.tagBox li.select{
 					position:relative;
-						color:#009604;
+						color:#4bb9f8;
 						left:1px;
 						background:#ffffff;
 					}
 					/* This does the same as above, just increases the height as well for additional content (dropdown, checkbox, etc.) */
 					ul.tagBox li.selecthier{
 					position:relative;
-						color:#009604;
+						color:#4bb9f8;
 						text-align:;
 						height:56px;
 						left:1px;
@@ -533,7 +524,7 @@ code{
 			}
 
 			ul#topicnav a:hover { 
-				border-top:2px solid #009604;
+				border-top:2px solid #4bb9f8;
 			}
 
 		/* End Topic Navigation */
@@ -569,7 +560,7 @@ code{
 			}
 
 			ul#controlnav a:hover { 
-				border-top:2px solid #009604;
+				border-top:2px solid #4bb9f8;
 			}
 			/*  End Control Nav */
 			
@@ -589,7 +580,7 @@ code{
 								position: relative;
 								top: 1px;
 								padding-top: 7px; /* must change with respect to padding (X) above and below */
-								border-top:2px solid #009604;
+								border-top:2px solid ##4bb9f8;
 							}
 		
 		
@@ -624,7 +615,7 @@ code{
 			}
 
 			ul#adminnav a:hover { 
-				border-top:2px solid #009604;
+				border-top:2px solid ##4bb9f8;
 			}
 			
 			div#anb li.anb, div#mnb li.mnb, div#users li.users, div#groups li.groups, div#system li.system { /* settings for selected tab */
@@ -637,7 +628,7 @@ code{
 				position: relative;
 				top: 1px;
 				padding-top: 7px; /* must change with respect to padding (X) above and below */
-				border-top:2px solid #009604;
+				border-top:2px solid ##4bb9f8;
 			}
 			
 		/* End Admin Navigation */
@@ -695,7 +686,7 @@ code{
 				font-weight:bold;
 			}
 			li.footnav#border{
-				border-right:1px solid #009604;
+				border-right:1px solid #4bb9f8;
 			}
 	
 	#footer a{
@@ -705,7 +696,7 @@ code{
 		text-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px;
 	}
 	#footer a:hover{
-		color:#009604;
+		color:#4bb9f8;
 	}
 	
 	

@@ -55,6 +55,7 @@
 							</td>
 						</tr>
 					</table>
+					<br />
 					<p>
 						<h1>
 							To make sure you're human, could you solve this problem for us?

@@ -11,7 +11,7 @@
 				</div>
 				<div id="homecontainer">
 					<div id="homeleft">
-						<h3>Your Updates:</h3>
+						<h4>Your Updates:</h4>
 						<div id="updatedisplay">
 						<dt>
 							<dl id="updates">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 						<div id="homeright">
-							<h3>You're Following:</h3>
+							<h4>You're Following:</h4>
 							<dt>
 								<dl>
 									<a href="" class="bold">Problem title.</a>
