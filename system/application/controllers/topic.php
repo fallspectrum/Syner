@@ -177,7 +177,24 @@ class Topic extends Controller
 		$this->load->view("layout",$data);
 	}
 	
-		/**
+	/**
+	* Used to retrieve topic data for editing. Returns a json response.
+	*/
+	function edit_topic_ajax() 
+	{
+		$this->load->library('simple_json');
+		$json = new Simple_Json();
+		
+		$topic_data['content']="some content.";
+		$topic_data['tags'] = "some tags.";
+		$topic_data['title'] = "some_title";
+		
+		$json->add_data("topic",$topic_data);
+		
+		echo $json->format_response();
+	}
+	
+	/**
 	* This function is for editing the topic.
 	*/
 	function edit() 
@@ -204,7 +221,6 @@ class Topic extends Controller
 		}
 		$this->load->view("layout",$data);
 	}
-	
 	
 }
 ?>
