@@ -34,7 +34,11 @@ function redirect(page)
  * Valid checks are:
  * tinyMCE -must be set if interacting with tinyMCE editor.
  * trim - trim input, store value back into input
+ * email - check to make sure field is a valid email address
  * min_length[count] - make sure input is at least count characters long
+ * word_count[count] - explodes input (by spaces) and makes sure input has that many words.
+ * matches_element[element_id][formal_name]  Makes sure current element matches other element id
+ *
  * @return 0 on success, 1 on error.
  */
 function validate_form(rules)
