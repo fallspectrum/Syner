@@ -202,7 +202,7 @@ class User extends Controller {
 			
 			if (! $invalid)	{
 				//if all is good 
-				$json->add_error_response("success",1);
+				$json->add_error_response("success",$json->error_codes['success']);
 			}
 			
 		}
@@ -268,7 +268,7 @@ class User extends Controller {
 
 			try {
 				if($this->user_session->login($username,$password) != 0) {
-					$json->add_error_response('js',-5);
+					$json->add_error_response('js',$json->error_codes['login_fail']);
 					$invalid = true;
 				}
 			}
@@ -279,7 +279,7 @@ class User extends Controller {
 
 			if (! $invalid)	{
 				//if all is good 
-				$json->add_error_response("success",0);
+				$json->add_error_response("success",$json->error_codes['success']);
 			}
 			
 		}

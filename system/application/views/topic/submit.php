@@ -27,8 +27,8 @@
 					<textarea class="tinyMCE" id="problem_description"></textarea>
 				</p>
 				<h3>We need you to tag this problem, so other people can find it. <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
-				<p>Tags(separated by commas):<br />
-						<textarea id="problem_tags"></textarea>
+				<p>Tags(separated by spaces):<br />
+						<textarea id="problem_tags"></textarea> <label id="problem_tags_error"></label>
 				</p>
 					<input type="button" onclick="validate_topic_form()" value="Submit Problem" class="button" />
 				</form>

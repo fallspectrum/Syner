@@ -16,14 +16,14 @@ class Simple_JSON {
 	private $error_responses;
 
 	/**
-	* Static error codes to use with add_error_response()
-	* @static
+	* Error codes to use with add_error_response()
 	*/
-	public static $error_codes = array(	'success' => 1,
-						'invalid' => -1,
-						'duplicate' => -2,
-						'db_error' => -3,
-						'email_error' => -4
+	public $error_codes = array(	'success' => 0,
+					'invalid' => -1,
+					'duplicate' => -2,
+					'db_error' => -3,
+					'email_error' => -4,
+					'login_fail' => -5
 				);
 				
 	/**
@@ -100,14 +100,15 @@ class Simple_JSON {
 	* @param int $return_val return val for the paticular response
 	* @param string $formal_name a formal name to be used in the error message.
 	*/
-	function add_error_response($reference_id,$return_val,$formal_name='') 
+	function add_error_response($reference_id,$return_val) 
 	{
 		//Got to escape quotes so no malformed jquery responses are
 		//made
 		$response['reference_id']= str_replace('"','\"',$reference_id);
 		$response['return_val'] = str_replace('"','\"',$return_val);
-		$response['formal_name'] = str_replace('"','\"',$formal_name);
-		$this->add_data('error_responses',$response);
+		
+		//we need an array.
+		$this->add_data('error_responses',array($response));
 		
 	}
 

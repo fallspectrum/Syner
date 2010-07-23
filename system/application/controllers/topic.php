@@ -87,7 +87,7 @@ class Topic extends Controller
 			}
 		} else { // If the validation succeeds, check the tags
 	
-			$tags = explode(',', $this->input->post('problem_tags'));
+			$tags = explode(' ', $this->input->post('problem_tags'));
 			
 			//if we don't have atleast 3 tags
 			if(count($tags) < 3) {
