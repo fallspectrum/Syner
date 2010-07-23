@@ -16,7 +16,6 @@
 				<h3>What group does this problem belong to? <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
 				<p>*img with arrow point to the group module to the left here*</p>
 				<h3>How would you title this problem in a short phrase? <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
-				
 				<input type="text" id="problem_title" size="80" />
 				<label for="title" id="problem_title_error" style="display:none"></label>
 				</p>
@@ -27,7 +26,7 @@
 				</p>
 				<h3>We need you to tag this problem, so other people can find it. <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
 				<p>(Please separate by comma)<br />
-						<textarea id="problem_tags">Just, Like, This</textarea>
+						<textarea id="problem_tags">Just, Like, This</textarea> <label id="problem_tags_error"></label>
 				</p>
 				<br />
 					<input type="button" onclick="validate_topic_form()" value="Submit Problem" class="button" />

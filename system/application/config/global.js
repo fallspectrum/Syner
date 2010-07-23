@@ -13,11 +13,7 @@ var SY_OK_ICON = SY_SITEPATH+"styles/icons/reg_ok_ico.png";
  * Do not edit below this line unless you know what you are doing
  */
  
-function ajax_error(xhr,textStatus,errorThrow)
-{
-	$('#js_error').html("There was an error processing your request.");
-	$('#js_error').show();
-}
+
 
 
 /**
@@ -38,7 +34,11 @@ function redirect(page)
  * Valid checks are:
  * tinyMCE -must be set if interacting with tinyMCE editor.
  * trim - trim input, store value back into input
+ * email - check to make sure field is a valid email address
  * min_length[count] - make sure input is at least count characters long
+ * word_count[count] - explodes input (by spaces) and makes sure input has that many words.
+ * matches_element[element_id][formal_name]  Makes sure current element matches other element id
+ *
  * @return 0 on success, 1 on error.
  */
 function validate_form(rules)
@@ -69,6 +69,12 @@ function validate_form(rules)
 				case "tinyMCE" :
 					element_value = tinyMCE.get(element_id.substring(1)).getContent();
 					break;
+				case "email" :
+					var regex = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+					if(!regex.test(element_value)) {
+						bad_elements.push(new Array(element_id, element_title + " must be a valid email."));
+					}
+					break;
 				default:
 					more_checks = 1;
 			}
@@ -76,6 +82,8 @@ function validate_form(rules)
 			if(!more_checks) {
 				continue;
 			}
+
+			//checks the min length of the field
 			if (result = checks[j].match(/^min_length\[(.*)\]/)){
 				length = result[1];
 				//make sure value is the right length.
@@ -84,6 +92,22 @@ function validate_form(rules)
 				}
 			}
 
+			else if (result = checks[j].match(/^word_count\[(.*)\]/)){
+					word_count = result[1];
+					elements = element_value.split(" ");
+					if(elements.length < word_count) {
+						bad_elements.push(new Array(element_id, element_title + " must have at least " + word_count + " words"));
+					}
+			}
+
+			else if (result = checks[j].match(/^matches_element\[(.*)\]\[(.*)\]/)) {
+				element = result[1];
+				element_formal = result[2];
+				if($(element).val() != $(element_id).val()) {
+					bad_elements.push(new Array(element_id, element_title + " does not match " + element_formal));
+				}
+				
+			}
 		}
 		
 	}
@@ -132,47 +156,104 @@ function scroll_to_element(css_selector) {
 }
 
 
-/**
- * This function handles response messages from simple_json library
- */
-function simple_json_response_handler(data)
-{
-        for (var i = 0; i < data.error_responses.length; i++)
-        {
-                var response = data.error_responses[i];
-                var reference_id = "#" + response['reference_id'];
-		var formal_name = response['reference_id'];
-                var error_id = reference_id + "_error";
-		//check if there is a formal name of the id.
-		if(typeof(formal_names[formal_name]) != "undefined" )
-		{
-			formal_name = formal_names[formal_name];
-		}
-		switch(response['return_val']) 
-               	{
-			
-			case '1': 
-				simple_json_success();
-				break;
-			case '-1':
-				handle_bad_element(reference_id, "The entered " + formal_name + " is invalid.");
-				scroll_to_element(error_id); 
-				break;
-			case '-2':
-				handle_bad_element(reference_id, "The entered " + formal_name + " is already taken.");
-				scroll_to_element(error_id); 
-				break;
-			case '-3':
-				handle_bad_element(reference_id, "There was an error communicating with the database.");
-				scroll_to_element(error_id); 
-				break;
-			case '-4':
-				$(error_id).html("There was an error trying to send the activation email.");
-				$(error_id).show();
-				scroll_to_element(element_id); 
-				break;
-		}
-	}
-        
-}
 
+/**
+ * This class is used to help interpret json messages created by
+ * simple_json library
+ */
+function Simple_json() 
+{
+
+	/**
+	 * Holds formal names used for error messages. Id is css selector.
+	 */
+	formal_names = new Array();
+	this.add_formal_name = function(id,formal_name) {
+		formal_names[id] = formal_name;
+	};
+
+	/**
+	 * Called whenever we receive a success message. Should be overwritten.
+	 */
+	this.success_callback = function () {
+	};
+
+	
+	/**
+	 *  Used to create a ajax response.
+	 */
+	this.submit = function(a_url,a_data) {
+		$.ajax({
+			url: a_url,
+			dataType: 'json',
+			data: a_data,
+			type: 'POST',
+			success: this.response_handler,
+			error: this.error_handler
+		});
+	};
+
+	/**
+	 * Callback when there is an error.
+	 */
+	this.error_handler = function (xhr,textStatus,errorThrow)
+	{
+		$('#js_error').html("There was an error processing your request.");
+		$('#js_error').show();
+	};
+
+	//if jquery calls response_handler for the success function, this does not
+	//point to simple_json instance.
+	var me = this;	
+	
+	/**
+	 * This function handles response messages from simple_json library
+	 */
+	this.response_handler = function (data) 
+	{
+		for (var i = 0; i < data.error_responses.length; i++)
+		{
+			var response = data.error_responses[i];
+			var reference_id = "#" + response['reference_id'];
+			var formal_name = '#' + response['reference_id'];
+			var error_id = reference_id + "_error";
+			
+			//check if there is a formal name of the id.
+			if(typeof(formal_names[formal_name]) != "undefined" )
+			{
+				formal_name = formal_names[formal_name];
+			}
+			
+			switch(response['return_val']) 
+			{
+				
+				case '0': 
+					me.success_callback();
+					break;
+				case '-1':
+					handle_bad_element(reference_id, "The entered " + formal_name + " is invalid.");
+					scroll_to_element(error_id); 
+					break;
+				case '-2':
+					handle_bad_element(reference_id, "The entered " + formal_name + " is already taken.");
+					scroll_to_element(error_id); 
+					break;
+				case '-3':
+					handle_bad_element(reference_id, "There was an error communicating with the database.");
+					scroll_to_element(error_id); 
+					break;
+				case '-4':
+					$(error_id).html("There was an error trying to send the activation email.");
+					$(error_id).show();
+					scroll_to_element(element_id); 
+					break;
+				case '-5':
+					$(error_id).html("Incorrect username or password.");
+					$(error_id).show();
+					scroll_to_element(error_id); 
+					break;
+			}
+		}
+		
+	};
+}
