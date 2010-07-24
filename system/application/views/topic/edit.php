@@ -29,11 +29,11 @@
 			<div id="content" class="topic problem">
 				<form src="problemajax">
 					<div id="titleDisplay">
-					<label for="problem_title">Problem Title:</label><input type="text" name="topic_title" value="Title" />
+					<label for="problem_title">Problem Title:</label><input type="text" name="problem_title" id="problem_title" value="Title" />
 					</div>
 					<p>Problem Description: 
 					<!-- Tiny MCE form display -->
-						<textarea id="problem_content" class="tinyMCE"></textarea>
+						<textarea id="problem_description" name="problem_description" class="tinyMCE"></textarea>
 						</form>
 					</p>
 					<label>Problem tags:</label><br />

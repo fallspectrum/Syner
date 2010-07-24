@@ -38,16 +38,32 @@ class Topics extends Model
 	}
 
 	/**
-	* Retrieves a topic.  
-	* @returns true if exists, false otherwise.
+	* Check if a topic exists by name.  
+	* @returns number of topics with matching title.
 	*/
 	function topic_exists($title)
 	{
-		$topic_data['title'] = $title;
 		$this->db->from('topics');
 		$this->db->where('title',$title);
 		return $this->db->count_all_results();	
 	}
+
+	/**
+	* Check if a topic exists by id.
+	* @returns true if exists, false otherwise 
+	*/
+
+	function topic_id_exists($topic_id)
+	{
+
+		$this->db->from('topics');
+		$this->db->where('id',$topic_id);
+		if ($this->db->count_all_results() === 1) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
 	/**
 	 * This method sets the topic's content.
 	 * If an entry with the given topic exists,
@@ -103,7 +119,7 @@ class Topics extends Model
 		//check to see if we need to preform a join. This should only occur when
 		//a table besides 'topic' is  needed in the queue.
 		if (Topics::TOPIC_CONTENT) {
-			$need_join;
+			$need_join = true;
 		}
 		
 

@@ -14,8 +14,6 @@ var SY_OK_ICON = SY_SITEPATH+"styles/icons/reg_ok_ico.png";
  */
  
 
-
-
 /**
  *  This function is used to redirect the user.
  */
@@ -24,7 +22,34 @@ function redirect(page)
 	window.location = page;
 }
 
-/***
+/**
+ * This function inits tinyMCE. The callback function is called after it initializes.
+ */
+function init_tinyMCE (callback) {
+	tinyMCEInitParam = {
+		//General options
+		mode: "specific_textareas",
+		editor_selector: "tinyMCE",
+		theme: "advanced",
+		plugins: "safari,print,searchreplace,fullscreen,preview,table",
+		theme_advanced_buttons1: ",fontsizeselect,|,italic,bold,underline,strikethrough,|,sub,sup,bullist,numlist,|,hr,|,justifyleft,justifycenter,justifyright,|,outdent,indent,|,anchor,link,unlink,|,search,replace,|,fullscreen,preview,|,help",
+		theme_advanced_buttons2: "tablecontrols",
+		theme_advanced_buttons3: "",
+		theme_advanced_toolbar_location: "top",
+		theme_advanced_toolbar_align: "left",
+		theme_advanced_statusbar_location: "bottom",
+		width: "100%",
+		save_onsavecallback: "tinyMCE_save",
+		add_form_submit_trigger: false
+	};
+	//set callback function if set
+	if(typeof(callback) != undefined) {
+		tinyMCEInitParam.setup = function(ed) { ed.onInit.add(callback)};
+	}
+	tinyMCE.init(tinyMCEInitParam);
+}
+
+/**
  * This function is used to validate a form.
  * Rules is an array of rules. 
  * Element 0 of a rule is the id of the element on the page.
@@ -175,8 +200,7 @@ function Simple_json()
 	/**
 	 * Called whenever we receive a success message. Should be overwritten.
 	 */
-	this.success_callback = function () {
-	};
+	this.success_callback = function () {};
 
 	
 	/**
@@ -193,6 +217,13 @@ function Simple_json()
 		});
 	};
 
+	
+	/**
+	 * Callback for interpreting additional data
+	 * @param data additional data
+	 */
+	this.examine_data_callback = function (data) {};
+	
 	/**
 	 * Callback when there is an error.
 	 */
@@ -211,6 +242,12 @@ function Simple_json()
 	 */
 	this.response_handler = function (data) 
 	{
+		me.examine_data_callback(data);
+	
+		//we are done if there are no error messages
+		if(typeof(data.error_responses) == "undefined") {
+			return;
+		}
 		for (var i = 0; i < data.error_responses.length; i++)
 		{
 			var response = data.error_responses[i];

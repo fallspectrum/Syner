@@ -180,18 +180,33 @@ class Topic extends Controller
 	/**
 	* Used to retrieve topic data for editing. Returns a json response.
 	*/
-	function edit_topic_ajax() 
+	function edit_load_topic_ajax() 
 	{
 		$this->load->library('simple_json');
+		$this->load->model('topics','',TRUE);
+		$this->load->model('tags','',TRUE);
+		
 		$json = new Simple_Json();
+		try {
+			$data = $this->topics->get_topic_data($this->input->post("topic_id"),Topics::TOPIC_TITLE|Topics::TOPIC_CONTENT);
+			$tags = $this->tags->get_topic_tag_names($this->input->post("topic_id"));
+			$tag_names = array();
+			foreach ($tags as $tag) {
+				array_push($tag_names,$tag['name']);
+			}
+			$data['tags'] = $tag_names;
+
+
+			$json->add_data("topic",$data);
+			echo $json->format_response();
+		}
+
+		catch (Exception $e) {
+			$json->add_error_response("js",$json->error_codes['db_error']);		
+			echo $json->format_response();
+		}
+
 		
-		$topic_data['content']="some content.";
-		$topic_data['tags'] = "some tags.";
-		$topic_data['title'] = "some_title";
-		
-		$json->add_data("topic",$topic_data);
-		
-		echo $json->format_response();
 	}
 	
 	/**
@@ -206,6 +221,13 @@ class Topic extends Controller
 			//make sure a valid topic_id has been given
 			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] < 0) {
 				throw new Exception("A invalid topic ID has been supplied.");
+
+			}
+			
+			$this->load->model("topics",'',TRUE);
+			//check to make sure topic exists
+			if($this->topics->topic_id_exists($uri['topic_id'] === FALSE)) {
+				throw new Exception("A invalid topic ID has ben supplied.");
 			}
 		}
 		
@@ -215,7 +237,7 @@ class Topic extends Controller
 			$valid = FALSE;
 		}
 		if($valid) {
-			$data['js_files'] = array(SY_SITEPATH . "system/application/views/tiny_mce/tiny_mce.js");
+			$data['js_files'] = array(SY_SITEPATH . "system/application/views/tiny_mce/tiny_mce.js",SY_SITEPATH . "system/application/views/topic/edit.js");
 			$data['topic_id'] = $uri['topic_id'];
 			$data['content'] = $this->load->view("topic/edit",$data,TRUE);	
 		}

@@ -59,4 +59,25 @@ class Tags extends Model
 		$sql = substr($sql,0,-1);
 		$this->db->query($sql);
 	}
+
+	/**
+	* Retreives tag names for a specified topic id
+	* @param topic_id is the id of the topic
+	* @throws Exception if no tags where found.
+	* @return a query result.
+	*/
+	function get_topic_tag_names($topic_id)
+	{
+		$this->db->select("tag_names.name");
+		$this->db->from("tagged_topics");
+		$this->db->join("tag_names", "tagged_topics.tag_id = tag_names.id");
+
+		$this->db->where("topic_id",$topic_id);
+		$query = $this->db->get();
+		if($query->num_rows() < 1) {
+			throw new Exception("No tags found for topic.");
+		}
+		return $query->result_array();
+
+	}
 }
