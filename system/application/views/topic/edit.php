@@ -10,7 +10,7 @@
 				</ul> 
 			</div>
 			
-			<div class="controlnav">
+			<div class="controlnav" id="edit">
 				<ul id="controlnav">
 					<?php 
 					if (get_user_privilege() !== 0) {

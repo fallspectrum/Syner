@@ -39,6 +39,7 @@
 										<td  align="left">
 										<!--<img src="<?=SY_SITEPATH?>styles/icons/loading.gif" style="display: none" alt="loading..." id="js_icon" />-->
 										<label class="jserror" id="js_error"></label>
+										<br />
 										<input type="submit" value="Log In" class="button" /><br />
 										<a href="">Forgot your password?</a>
 										</td>

@@ -34,15 +34,15 @@
 		<div id="logo">
 			<div class="logoBox">
 				<a href="<?=SY_SITEPATH?>index.php">
-				<img src="<?=SY_SITEPATH?>styles/logo3.png" border="0" />
+				<img src="<?=SY_SITEPATH?>styles/logo4.png" border="0" />
 				</a>
 			</div>
 		</div>
 		<div id="headnav">
 			<ul id="headlist">
-				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/search" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
-				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/popular" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
-				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/recent" class="headnav"><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
+				<li class="headnav" ><a href="<?=SY_SITEPATH?>index.php/topic/search" class="headnav" id="active"><img src="<?=SY_SITEPATH?>styles/icons/search_ico.png" border="0" /> Search</a></li>
+				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/popular" class="headnav" id=""><img src="<?=SY_SITEPATH?>styles/icons/popular_ico.png" border="0" /> Popular</a></li>
+				<li class="headnav" id="#"><a href="<?=SY_SITEPATH?>index.php/topic/recent" class="headnav" id=""><img src="<?=SY_SITEPATH?>styles/icons/recent_ico.png" border="0" /> Recent</a></li>
 			</ul>
 		</div>
 		<div id="usernav">
@@ -50,24 +50,25 @@
 			
 				<?php 
 				
-				if (get_user_privilege() === 2) {
-				echo '
-					<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/admin/anb/"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
-				';
-				}
+				
 				
 				if (get_user_privilege() === 0) { echo '	
 				
-				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/register/"><img src="' . SY_SITEPATH . 'styles/icons/register2_ico.png" border="0" /> Register</a></li>
 				<li class="usernav"><a href="' . SY_SITEPATH  .'index.php/user/login"><img src=" ' . SY_SITEPATH . 'styles/icons/login_ico.png" border="0" /> Log In</a></li>
+				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/register/" class="border"><img src="' . SY_SITEPATH . 'styles/icons/register2_ico.png" border="0" /> Register</a></li>
 				'; } 
 				
 				else { echo '
-				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/home/"><img src="' . SY_SITEPATH . 'styles/icons/home_ico.png" border="0" /> Home</a></li>
-				<li class="usernav" id="first"><a href="' . SY_SITEPATH . 'index.php/user/settings/"><img src="' . SY_SITEPATH . 'styles/icons/settings_ico.png" border="0" /> Settings</a></li>
 				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/logout/"><img src="' . SY_SITEPATH . 'styles/icons/logout_ico.png" border="0" /> Log Out</a></li>
+				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/settings/" class="border"><img src="' . SY_SITEPATH . 'styles/icons/settings_ico.png" border="0" /> Settings</a></li>
+				<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/user/home/" class="border"><img src="' . SY_SITEPATH . 'styles/icons/home_ico.png" border="0" /> Home</a></li>
 				';}
 				
+				if (get_user_privilege() === 2) {
+				echo '
+					<li class="usernav"><a href="' . SY_SITEPATH . 'index.php/admin/anb/" class="border"><img src="' . SY_SITEPATH .'styles/icons/acp_ico.png" border="0" /> ACP</a></li>
+				';
+				}
 				?>
 			</ul>
 		</div>
