@@ -28,4 +28,5 @@ function validate_topic_form()
 		return false;
 	}
 }
-
+//initialize tinyMCE
+init_tinyMCE();
