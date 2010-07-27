@@ -59,11 +59,13 @@ function init_tinyMCE (callback) {
  * Valid checks are:
  * tinyMCE -must be set if interacting with tinyMCE editor.
  * trim - trim input, store value back into input
- * email - check to make sure field is a valid email address
- * min_length[count] - make sure input is at least count characters long
- * word_count[count] - explodes input (by spaces) and makes sure input has that many words.
- * matches_element[element_id][formal_name]  Makes sure current element matches other element id
- *
+ * -email - check to make sure field is a valid email address
+ * -min_length[count] - make sure input is at least count characters long
+ * -word_count[count][optional_character]  - explodes input and makes sure it has count words. Default character to 
+ * 	explode by is a space is not provided (ex word_count[3] will explode by spaces). 
+ * -matches_element[element_id][formal_name]  Makes sure current element matches other element id
+ * -format_list[check][replacement] - Creates a list. Uses check as seperation point. Inserts replacement between
+ *  	elements. 
  * @return 0 on success, 1 on error.
  */
 function validate_form(rules)
@@ -117,12 +119,18 @@ function validate_form(rules)
 				}
 			}
 
-			else if (result = checks[j].match(/^word_count\[(.*)\]/)){
+			else if (result = checks[j].match(/^word_count\[([0-9]*)\](?:\[(.)\])?/)){
 					word_count = result[1];
-					elements = element_value.split(" ");
+					split_char = " ";
+					if(typeof(result[2]) != 'undefined') {
+						split_char = result[2];
+					}	
+					
+					elements = element_value.split(split_char);
 					if(elements.length < word_count) {
 						bad_elements.push(new Array(element_id, element_title + " must have at least " + word_count + " words"));
 					}
+					$(element_id).val(element_value);
 			}
 
 			else if (result = checks[j].match(/^matches_element\[(.*)\]\[(.*)\]/)) {
@@ -132,6 +140,34 @@ function validate_form(rules)
 					bad_elements.push(new Array(element_id, element_title + " does not match " + element_formal));
 				}
 				
+			}
+
+			//creates a list. 1st argument is seperation point.  2nd argument is string to delimit by.
+			else if (result = checks[j].match(/^format_list\[(.*)\]\[(.*)\]/)) {
+				delimiter = result[1];
+				replacement = result[2];
+				
+				
+				//replace delimiters with replacement
+				rx = new RegExp(delimiter,'g');
+				element_value = element_value.replace(rx,replacement);
+	
+
+				//if delimiter appears twice in a row then replace it with single delimiter
+				rx = new RegExp(replacement + '{2,}','g');
+				element_value = element_value.replace(rx,replacement);
+				
+				//remove replacement from beginning 
+				if(element_value[0] == replacement) {
+					element_value = element_value.substring(1);
+				}
+				
+				//remove replacement from end of string
+				if(element_value[element_value.length -1] == replacement) {
+					element_value = element_value.substring(0,element_value.length -1);
+				}
+				$(element_id).val(element_value);
+
 			}
 		}
 		

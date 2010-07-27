@@ -25,7 +25,7 @@
 					<textarea class="tinyMCE" id="problem_description"></textarea>
 				</p>
 				<h3>We need you to tag this problem, so other people can find it. <img src="<?=SY_SITEPATH?>styles/icons/hint_ico.png" border="0" /></h3>
-				<p>(Please separate by comma)<br />
+				<p>Please separate by comma. Tags must be at least 4 characters long.<br />
 						<textarea id="problem_tags">Just, Like, This</textarea> <label id="problem_tags_error"></label>
 				</p>
 				<br />
