@@ -55,10 +55,9 @@ class Topics extends Model
 
 	function topic_id_exists($topic_id)
 	{
-
 		$this->db->from('topics');
 		$this->db->where('id',$topic_id);
-		if ($this->db->count_all_results() === 1) {
+		if ($this->db->count_all_results() == 1) {
 			return TRUE;
 		}
 		return FALSE;

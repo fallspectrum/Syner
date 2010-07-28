@@ -15,7 +15,7 @@ function validate_register_form()
 			$("#success_container").delay(600).fadeIn("Fast");
 		};
 		
-		data = "username=" + $('username').val() + "&email=" + $('#email').val() + "&password=" + $('password').val();
+		data = "username=" + $('#username').val() + "&email=" + $('#email').val() + "&password=" + $('#password').val();
 		url = SY_SITEPATH + 'index.php/user/registerajax';
 		sj.submit(url,data);
 	}

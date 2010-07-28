@@ -114,27 +114,27 @@ class Topic extends Controller
 		
 			if(!$invalid) {
 				
-				$this->load->model("Topics",'',TRUE);
-				$this->load->model("Tags",'',TRUE);
+				$this->load->model("topics",'',TRUE);
+				$this->load->model("tags",'',TRUE);
 
 				//check to see if the topic title already exists
-				if( $this->Topics->topic_exists($this->input->post('problem_title'))) {
+				if( $this->topics->topic_exists($this->input->post('problem_title'))) {
 					$json->add_error_response("problem_title",$json->error_codes['duplicate']);
 				}
 				else {	//Lets add the topic to the database.
 					try {
-						$topic_id = $this->Topics->add_entry(	$this->user_session->get_user_id(),
+						$topic_id = $this->topics->add_entry(	$this->user_session->get_user_id(),
 											$this->input->post('problem_title'),
 											date('Y-m-d H:i:s', time()), 
 											"global");
 
-						$this->Topics->set_topic_content($topic_id,
+						$this->topics->set_topic_content($topic_id,
 										$this->input->post('problem_description'),
 										$this->user_session->get_user_id());
 						
-						$this->Tags->add_tags($tags);		
-						$tag_ids = $this->Tags->get_tag_ids($tags);
-						$this->Tags->tag_topic($topic_id,$tag_ids);
+						$this->tags->add_tags($tags);		
+						$tag_ids = $this->tags->get_tag_ids($tags);
+						$this->tags->tag_topic($topic_id,$tag_ids);
 
 						$json->add_error_response('success',$json->error_codes['success']);
 					}
@@ -159,9 +159,20 @@ class Topic extends Controller
 		$uri = $this->uri->uri_to_assoc(3);
 		try {
 			//make sure a valid topic_id has been given
-			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] < 0) {
+			$this->load->model("topics",'',TRUE);
+			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) 
+				  || $uri['topic_id'] < 0 || !$this->topics->topic_id_exists($uri['topic_id'])) {
 				throw new Exception("A invalid topic ID has been supplied.");
 			}
+			//retreive topic title and content
+			$result = $this->topics->get_topic_data($uri['topic_id'],Topics::TOPIC_TITLE | Topics::TOPIC_CONTENT);
+			$topic_title = $result['title'];
+			$topic_content = $result['content'];
+
+			//retrieve topic tags
+			$this->load->model("tags",'',TRUE);
+			$tags = $this->tags->get_topic_tag_names($uri['topic_id']);
+
 		}
 		
 		catch (Exception $e) {
@@ -170,8 +181,12 @@ class Topic extends Controller
 			$valid = FALSE;
 		}
 		if($valid) {
+
 			$data['js_files'] = array(SY_SITEPATH . "system/application/views/tiny_mce/tiny_mce.js");
 			$data['topic_id'] = $uri['topic_id'];
+			$data['topic_title'] = $topic_title;
+			$data['problem_content'] = $topic_content;
+			$data['topic_tags'] = $tags;
 			$data['content'] = $this->load->view("topic/view",$data,TRUE);	
 		}
 		$this->load->view("layout",$data);
@@ -189,11 +204,7 @@ class Topic extends Controller
 		$json = new Simple_Json();
 		try {
 			$data = $this->topics->get_topic_data($this->input->post("topic_id"),Topics::TOPIC_TITLE|Topics::TOPIC_CONTENT);
-			$tags = $this->tags->get_topic_tag_names($this->input->post("topic_id"));
-			$tag_names = array();
-			foreach ($tags as $tag) {
-				array_push($tag_names,$tag['name']);
-			}
+			$tag_names = $this->tags->get_topic_tag_names($this->input->post("topic_id"));
 			$data['tags'] = $tag_names;
 
 
@@ -219,14 +230,14 @@ class Topic extends Controller
 		$uri = $this->uri->uri_to_assoc(3);
 		try {
 			//make sure a valid topic_id has been given
-			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] < 0) {
+			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] <= 0) {
 				throw new Exception("A invalid topic ID has been supplied.");
 
 			}
 			
 			$this->load->model("topics",'',TRUE);
 			//check to make sure topic exists
-			if($this->topics->topic_id_exists($uri['topic_id'] === FALSE)) {
+			if($this->topics->topic_id_exists($uri['topic_id']) === FALSE) {
 				throw new Exception("A invalid topic ID has ben supplied.");
 			}
 		}

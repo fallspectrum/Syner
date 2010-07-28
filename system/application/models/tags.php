@@ -64,7 +64,7 @@ class Tags extends Model
 	* Retreives tag names for a specified topic id
 	* @param topic_id is the id of the topic
 	* @throws Exception if no tags where found.
-	* @return a query result.
+	* @return an array of tags.
 	*/
 	function get_topic_tag_names($topic_id)
 	{
@@ -77,7 +77,11 @@ class Tags extends Model
 		if($query->num_rows() < 1) {
 			throw new Exception("No tags found for topic.");
 		}
-		return $query->result_array();
+		$tags = array();
+		foreach($query->result_array() as $tag) {
+			array_push($tags,$tag['name']);
+		}
+		return $tags;
 
 	}
 }

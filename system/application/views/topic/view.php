@@ -39,16 +39,22 @@
 					
 				</div>
 				
-				<h3>Topic Title Field</h3>
+				<h3><?=$topic_title?></h3>
 				
 				<div id="problem_content">
 				<p>
-				Basically when a user would approach a problem for the first time, they would see the Title, Tags, and Description in plain text.  When they hit the "Edit" button then the page loads TinyMCE for the problem description, and then two separate fields for the title, and tags.  When the user selects a button "Save" then then their changes are placed, an action is created that defines the changes and places it within the history feature (action page) and they're returned to the page in non-editor mode (plain text).  It would probably be helpful to have a "preview" option before the user submits.  It may even be helpful if we force the user to preview before submitting.  I see TinyMCE has a built in preview option.
+				<?=$problem_content?>
 				</p>
 				</div>
 				<div id="minispacer"></div>
 				<div id="tagDisplay">
-				<a href="">Problem</a> <a href="">Tag</a> <a href="">Something</a> <a href="">Kinda</a> <a href="">Maybe</a>
+				<?php 
+					if (isset($topic_tags) && is_array($topic_tags)) { 
+						foreach ($topic_tags as $tag) {
+							echo  '<a href="">' . $tag . '</a> ';
+						}
+					}
+				?>	
 				</div>
 			</div>
 			
