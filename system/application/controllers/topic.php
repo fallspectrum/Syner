@@ -24,9 +24,11 @@ class Topic extends Controller
 	*/
 	function search() 
 	{
+		$data['js_files'] = array("/syner/system/application/views/topic/tagmodule.js");
 		$data['content'] = $this->load->view("topic/search",'',TRUE);	
 		$this->load->view("layout",$data);
 	}
+
 	/**
 	* This function displays the popular view.
 	*/

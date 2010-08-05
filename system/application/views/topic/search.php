@@ -3,6 +3,7 @@
 		<div id="leftBox">
 			<?php
 				require('groupmodule.php');
+				require('tagmodule.php');
 			?>
 			
 		</div>

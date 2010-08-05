@@ -61,8 +61,10 @@ function init_tinyMCE (callback) {
  * trim - trim input, store value back into input
  * -email - check to make sure field is a valid email address
  * -min_length[count] - make sure input is at least count characters long
- * -word_count[count][optional_character]  - explodes input and makes sure it has count words. Default character to 
+ * -word_count[count][optional_character]  - explodes input and makes sure it has "count" words. Default character to 
  * 	explode by is a space is not provided (ex word_count[3] will explode by spaces). 
+ * -max_word_count[count][optional_character]  - explodes input and makes sure it has a maximum of "count" words. Default character to 
+ * 	explode by is a space is not provided (ex max_word_count[3] will explode by spaces). 
  * -matches_element[element_id][formal_name]  Makes sure current element matches other element id
  * -format_list[check][replacement] - Creates a list. Uses check as seperation point. Inserts replacement between
  *  	elements. 
@@ -127,12 +129,31 @@ function validate_form(rules)
 					}	
 					
 					elements = element_value.split(split_char);
-					if(elements.length < word_count) {
+					if(element_value.length == 0 || elements.length < word_count) {
 						bad_elements.push(new Array(element_id, element_title + " must have at least " + word_count + " words"));
 					}
 					$(element_id).val(element_value);
 			}
 
+			else if (result = checks[j].match(/^max_word_count\[([0-9]*)\](?:\[(.)\])?/)){
+					word_count = result[1];
+					split_char = " ";
+					if(typeof(result[2]) != 'undefined') {
+						split_char = result[2];
+					}	
+					
+					elements = element_value.split(split_char);
+					if(elements.length > word_count) {
+						if(word_count == 1) {
+							bad_elements.push(new Array(element_id, element_title + " can only have " + word_count + " word"));
+						}
+						else {
+							bad_elements.push(new Array(element_id, element_title + " can only have " + word_count + " words"));
+						}
+					}
+					$(element_id).val(element_value);
+			}
+			
 			else if (result = checks[j].match(/^matches_element\[(.*)\]\[(.*)\]/)) {
 				element = result[1];
 				element_formal = result[2];
