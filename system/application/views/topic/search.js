@@ -21,7 +21,7 @@ function parse_json_response(data)
 function do_search() 
 {
 	var rules = new Array();
-	rules.push(new Array("#txt_search","Search field","trim|min_length[3]"));
+	rules.push(new Array("#txt_search","Search field","trim|min_length[4]"));
 	if(!validate_form(rules)) {
 		sc = new Simple_json();
 		sc.add_formal_name("#txt_search","Search field");
