@@ -10,9 +10,10 @@
 		<div id="rightBox">
 			<div id="content">
 				<br />
-				<form>
-					<input type="text" name="search" value="" size="40" />
-					<input type="submit" value="Search" class="button" />
+				<form onSubmit="return do_search()">
+					<input type="text" name="search" value="" size="40" id = "txt_search"/>
+					<input type="submit" value="Search" class="button" /> <br>
+					<label for="text_search" id="txt_search_error"></label>
 				</form>
 				<div id="spacer"></div>
 				<p>
@@ -20,9 +21,10 @@
 					To start your search, select the group you'd like to search in.
 				</h1>
 				</p>
-				<p>
-				<a href="view/topic_id/0">Click here to view topic 0</a><br />
-				</p>
+				<div id="search_results">
+					<a href="">Topic title</a>
+					<p> This is dummy topic used to help style results.</p>
+				</div>
 				
 				<div id="spacer"></div>
 				<p>

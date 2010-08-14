@@ -141,5 +141,22 @@ class Topics extends Model
 		$result = $query->result_array();
 		return $result[0];
 	}
+
+	/**
+	* This function searches for a topic based on given tags or text.
+	* The text search is done by a MySQL's boolean raw text search.
+	* @param tags an array of tags
+	* @text a string to search for
+	* @returns the ressult array of query.
+	* @todo implement tag portion for search.
+	*/
+	function search_for_topic($tags,$text)
+	{
+		$text = $this->db->escape($text);
+		$sql = "SELECT T.id,T.title,C.content FROM topics AS T, topic_contents AS C WHERE T.id = C.topic_id AND ( MATCH(T.title) AGAINST (" . $text . "IN BOOLEAN MODE) OR MATCH(C.content) AGAINST ( " . $text . "IN BOOLEAN MODE))";
+		$query = $this->db->query($sql);
+		return($query->result_array());
+	}
+			
 	
 }

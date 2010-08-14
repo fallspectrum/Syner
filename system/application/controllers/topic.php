@@ -24,7 +24,7 @@ class Topic extends Controller
 	*/
 	function search() 
 	{
-		$data['js_files'] = array("/syner/system/application/views/topic/tagmodule.js");
+		$data['js_files'] = array("/syner/system/application/views/topic/tagmodule.js","/syner/system/application/views/topic/search.js");
 		$data['content'] = $this->load->view("topic/search",'',TRUE);	
 		$this->load->view("layout",$data);
 	}
@@ -83,6 +83,7 @@ class Topic extends Controller
 		$this->form_validation->set_rules('problem_description','problem description','required|trim|min_length[10]');
 		if($this->form_validation->run() === FALSE) 
 		{
+			//for each error response add it to the json response
 			foreach ($this->form_validation->_error_array as $error) {
 				$json->add_error_response($error[0],$error[1]);
 				$invalid = true;
@@ -256,6 +257,44 @@ class Topic extends Controller
 		}
 		$this->load->view("layout",$data);
 	}
+
+
+	/**
+	* This function handles request for searching a topic.
+	*/
+	function search_json()
+	{
+		$this->load->library("form_validation");
+		$this->load->library("simple_json");
+		$json = new Simple_Json();
+
+		$this->form_validation->set_rules("txt_search","Text search field","required|min_length[4]");
+
+		//Input was not valid.
+		if($this->form_validation->run() == FALSE) {
+			//for each error add it to the response
+			foreach ($this->form_validation->_error_array as $error) {
+				$json->add_error_response($error[0],$error[1]);
+			}
+		}
+
+		//Input was valid
+		else {
+			//Query data (TODO). Currently returns dummy data.
+			$this->load->model("topics",'',TRUE);
+			$result = $this->topics->search_for_topic(NULL,$this->input->post("txt_search"));	
+			foreach ($result as $row) {
+				//remove tags from text
+				$row['content'] = preg_replace('/<[^>]*>/',"", $row['content']);
+				$json->add_data("topics",array($row));
+			}
+
+
+			//Respond with matching topics
+		}
+		echo $json->format_response();
+	}
+
 	
 }
 ?>

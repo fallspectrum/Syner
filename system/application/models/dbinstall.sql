@@ -40,7 +40,8 @@ CREATE TABLE topics (
 	subscription_count INTEGER NOT NULL DEFAULT 1,
 	for_count INTEGER UNSIGNED NOT NULL DEFAULT 1,
 	against_count INTEGER UNSIGNED NOT NULL DEFAULT 0,
-	location_id VARCHAR(30) NOT NULL
+	location_id VARCHAR(30) NOT NULL,
+	FULLTEXT(title)
 ) CHARACTER SET utf8; 
 
 CREATE TABLE topic_subscriptions ( 
@@ -67,7 +68,8 @@ CREATE TABLE solution_votes (
 CREATE TABLE topic_contents (
 	topic_id INTEGER UNSIGNED NOT NULL,
 	content TEXT NOT NULL,
-	user_id INTEGER UNSIGNED NOT NULL
+	user_id INTEGER UNSIGNED NOT NULL,
+	FULLTEXT(content)
 ) CHARACTER SET utf8;
 
 CREATE TABLE topic_content_revisions (  
