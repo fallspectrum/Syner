@@ -72,18 +72,26 @@ class Simple_JSON {
 		}
 	
 		else {
-			
-			//Add data if we are an associative array.
-			$keys = array_keys($data);
-			if(array_keys($keys) != $keys) {
-				$this->additional_data[$name] = $data;
+		
+			//TODO: Make sure this is secure
+			//are we dealing with non array? (assuming string)
+			if(!is_array($data)) {
+				$this->additional_data[$name] = $data;	
 			}
-			
-			//Else create a new array and push sub elements to array.
-			else {
-				$this->additional_data[$name] = array();
-				foreach($data as $assoc_array) {
-					array_push($this->additional_data[$name], $assoc_array);
+
+			else {	
+				//Add data if we are an associative array.
+				$keys = array_keys($data);
+				if(array_keys($keys) != $keys) {
+					$this->additional_data[$name] = $data;
+				}
+				
+				//Else create a new array and push sub elements to array.
+				else {
+					$this->additional_data[$name] = array();
+					foreach($data as $assoc_array) {
+						array_push($this->additional_data[$name], $assoc_array);
+					}
 				}
 			}
 

@@ -295,6 +295,39 @@ class Topic extends Controller
 		echo $json->format_response();
 	}
 
-	
+	/**
+	* This function checks to see if the tag sent is valid.
+	* If it is a json response containing the tag id is sent back.
+	* normal simple_json error response is generated if problem occured.
+	* Otherwise a json variable tag_id contains -1 if invalid or a number >= 0 if valid.
+	*/
+	function validate_tag_json()
+	{
+		$this->load->library("form_validation");
+		$this->load->library("simple_json");
+		$json = new Simple_Json();
+		$this->form_validation->set_rules("addtag","addtag","required|min_length[4]");
+
+		//If input failed to validate...
+		if($this->form_validation->run() == FALSE) {
+			foreach($this->form_validation->_error_array as $error) {
+				$json->add_error_response($error[0],$error[1]);
+			}
+		}
+
+		//input was valid
+		else {
+			$this->load->model("tags",'',TRUE);
+			$result = $this->tags->get_tag_ids(array($this->input->post("addtag")));
+
+			$tag_id = -1;
+			if(sizeof($result) == 1) { 
+				$tag_id = $result[0];
+
+			} 
+			$json->add_data("tag_id",$tag_id);
+		}
+		echo $json->format_response();
+	}
 }
 ?>
