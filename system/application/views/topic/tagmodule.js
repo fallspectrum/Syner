@@ -5,7 +5,7 @@ function Tag_Module() {
 	
 	//Global counter for tag_id. Everytime a tag is added a tag_id is associated
 	//with it.
-	this.tag_id = 0;
+	this.tag_dom_id = 0;
 	
 		
 	//holds tag_descriptors. We will walk this list when seeing how operations
@@ -23,41 +23,41 @@ Tag_Module.prototype.Tag_Descriptor = function(tag_name,tag_id,tag_operator,tag_
 
 
 //appends a tag to list of tags
-Tag_Module.prototype.append_tag = function(tag_name) 
+Tag_Module.prototype.append_tag = function(tag_name,tag_id) 
 {
 	var li = document.createElement("li");
 	li.setAttribute("class","normal ignore");
-	li.setAttribute("id","tag"+me.tag_id);
+	li.setAttribute("id","tag"+me.tag_dom_id);
 
 	
 	var tagLink = document.createElement("span");
-	tagLink.setAttribute("onclick","set_tag_state(" + me.tag_id + ",1);");
+	tagLink.setAttribute("onclick","set_tag_state(" + me.tag_dom_id + ",1);");
 	var tagTxt = document.createTextNode(tag_name);
 	tagLink.appendChild(tagTxt);
 	
 	
 	var form = document.createElement("form");
-	form.setAttribute("name","tagForm" + me.tag_id);
+	form.setAttribute("name","tagForm" + me.tag_dom_id);
 	
 	radio = document.createElement("input");
 	radio.setAttribute("type","radio");
-	radio.setAttribute("name","tagOperation"+me.tag_id);
+	radio.setAttribute("name","tagOperation"+me.tag_dom_id);
 	radio.setAttribute("value","and");
-	radio.setAttribute("onclick","set_tag_state(" + me.tag_id + ");");
+	radio.setAttribute("onclick","set_tag_state(" + me.tag_dom_id + ");");
 	form.appendChild(radio);
 	
 	radio = document.createElement("input");
-	radio.setAttribute("name","tagOperation"+me.tag_id);
+	radio.setAttribute("name","tagOperation"+me.tag_dom_id);
 	radio.setAttribute("type","radio");
 	radio.setAttribute("value","or");
-	radio.setAttribute("onclick","set_tag_state(" + me.tag_id + ");");
+	radio.setAttribute("onclick","set_tag_state(" + me.tag_dom_id + ");");
 	form.appendChild(radio);
 	
 	radio = document.createElement("input");
-	radio.setAttribute("name","tagOperation"+me.tag_id);
+	radio.setAttribute("name","tagOperation"+me.tag_dom_id);
 	radio.setAttribute("type","radio");
 	radio.setAttribute("value","excluded");
-	radio.setAttribute("onclick","set_tag_state(" + me.tag_id + ");");
+	radio.setAttribute("onclick","set_tag_state(" + me.tag_dom_id + ");");
 	form.appendChild(radio);
 
 	form.appendChild(tagLink);
@@ -66,7 +66,7 @@ Tag_Module.prototype.append_tag = function(tag_name)
 	
 	remove_link = document.createElement("a");
 	remove_link.setAttribute("href","#");
-	remove_link.setAttribute("onclick","remove_tag(" + me.tag_id + ");");
+	remove_link.setAttribute("onclick","remove_tag(" + me.tag_dom_id + ");");
 
 	removeImage = document.createElement("img");
 	removeImage.setAttribute("class","inline");
@@ -82,9 +82,9 @@ Tag_Module.prototype.append_tag = function(tag_name)
 	tagBox.insertBefore(li,tagBoxEnd);
 
 	//add tag to tag list
-	me.tag_descriptions.push(new me.Tag_Descriptor(tag_name,0,"or",me.tag_id));
+	me.tag_descriptions.push(new me.Tag_Descriptor(tag_name,tag_id,"or",me.tag_dom_id));
 
-	me.tag_id++;
+	me.tag_dom_id++;
 }
 
 //sets the current state of the tag visually
@@ -161,7 +161,7 @@ Tag_Module.prototype.add_tag = function()
 			sj = new Simple_json();
 			sj.examine_data_callback = function (data) {
 				if(data.tag_id >= 0) {
-					me.append_tag(tag_name);
+					me.append_tag(tag_name,data.tag_id);
 				}
 				else {
 					alert("Invalid tag named supplied.");
