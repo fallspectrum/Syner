@@ -259,12 +259,19 @@ Tag_Module.prototype.retrieve_tags = function()
 	sj.submit(SY_SITEPATH + "index.php/user/retrieve_tags_json","");
 }
 
+Tag_Module.prototype.remove_all_tags = function() {
+	while(typeof(me.tag_descriptions[0]) != "undefined")
+	{
+		me.remove_tag(me.tag_descriptions[0].dom_id);
+	}
+}
+
 tag_module = new Tag_Module();
 add_tag = tag_module.add_tag;
 remove_tag = tag_module.remove_tag;
+remove_all_tags = tag_module.remove_all_tags;
 set_tag_state = tag_module.set_tag_state;
 save_tags = tag_module.save_tags;
-
 //load the tags after document is done loading
 $(document).ready ( function() {
 	tag_module.retrieve_tags();

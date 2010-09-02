@@ -365,69 +365,75 @@ class User extends Controller {
 		
 		$this->load->model("Users",'',TRUE);
 		$this->load->model("Tags",'',TRUE);
+		
 		//make sure the user is logged in before anything
-		try 
-		{
-			$user_id = $this->user_session->get_user_id();
-			
-			$values = $this->input->post("tag_descriptors");
-			$values = trim($values);
-			$count = 0;
-			if($values != "") {
-				$values = preg_split("/ /",$values);
-				$count = count($values);
-			}
-			//we are expecting a grouping of tag ids and operator function
-			
-			
-			
-			if($count % 2 != 0 ) {
-				throw new Exception('Invalid group count to save tags.');
-
-			}
-
-
-			//saved tag descriptors
-			$stds = array();
-			for($i=0;$i<$count;$i+=2) {
-				if(!ctype_digit($values[$i]) || ! ctype_digit($values[$i+1])  || $values[$i] < 0)
-				{
-					throw new Exception('Item in a tag descriptor is not numeric.');
+		if($this->user_session->get_privilege() == 0) {
+			$json->add_error_response("js_error",$json->error_codes['privilege_error']);	
+		}
+		else  {
+			try 
+			{
+				$user_id = $this->user_session->get_user_id();
+				$values = $this->input->post("tag_descriptors");
+				$values = trim($values);
+				$count = 0;
+				if($values != "") {
+					$values = preg_split("/ /",$values);
+					$count = count($values);
 				}
+				//we are expecting a grouping of tag ids and operator function
 				
+				
+				
+				if($count % 2 != 0 ) {
+					throw new Exception('Invalid group count to save tags.');
 
-				$tag_id = $values[$i];
-
-				//make sure we are in valid range of tag_operation numbers (see users model)
-				$tag_operation = $values[$i+1];
-				if($tag_operation<0 || $tag_operation > Saved_Tag_Descriptor::LAST_OP) {
-					throw new Exception('Item in tag descriptor had a invalid operator.');
 				}
 
-				//this can be written better if we first sort the elements.
-				$result = $this->Tags->get_tag_names(array($tag_id));
-				$result_count = count($result);
-				if($result_count != 1) {
-					throw New Exception('Invalid tag id.');	
+
+				//saved tag descriptors
+				$stds = array();
+				for($i=0;$i<$count;$i+=2) {
+					if(!ctype_digit($values[$i]) || ! ctype_digit($values[$i+1])  || $values[$i] < 0)
+					{
+						throw new Exception('Item in a tag descriptor is not numeric.');
+					}
+					
+
+					$tag_id = $values[$i];
+
+					//make sure we are in valid range of tag_operation numbers (see users model)
+					$tag_operation = $values[$i+1];
+					if($tag_operation<0 || $tag_operation > Saved_Tag_Descriptor::LAST_OP) {
+						throw new Exception('Item in tag descriptor had a invalid operator.');
+					}
+
+					//this can be written better if we first sort the elements.
+					$result = $this->Tags->get_tag_names(array($tag_id));
+					$result_count = count($result);
+					if($result_count != 1) {
+						throw New Exception('Invalid tag id.');	
+					}
+					$tag_name = $result[0];
+
+					array_push($stds,new Saved_Tag_Descriptor($tag_id,$tag_name,$tag_operation));
+
 				}
-				$tag_name = $result[0];
 
-				array_push($stds,new Saved_Tag_Descriptor($tag_id,$tag_name,$tag_operation));
+				
+				//time to save the tags
 
+				$this->Users->save_tags($user_id,$stds);
+
+				$json->add_error_response("success",$json->error_codes['success']);
 			}
 
-			
-			//time to save the tags
-
-			$this->Users->save_tags($user_id,$stds);
-
-			$json->add_error_response("success",$json->error_codes['success']);
+			catch (Exception $e) {
+				echo $e->getMessage();
+				die();
+			}
 		}
-
-		catch (Exception $e) {
-			echo $e->getMessage();
-		}
-			
+				
 		
 		echo $json->format_response();
 	}

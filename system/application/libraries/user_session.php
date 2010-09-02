@@ -41,13 +41,13 @@ class User_Session
 	
 	/**
 	* This function returns the id of the user, if logged in.
-	* @return integer 0+ is logged in. Throws exception if not logged in.
+	* @return integer 1+ is logged in. Throws exception if not logged in.
 	*/
 	function get_user_id() 
 	{
 		$CI = &get_instance();
 		$id = (int) $CI->session->userdata('user_id');
-		if($id === FALSE) {
+		if($id == FALSE) {
 			throw new Exception ("User is not logged in.");
 		}
 		return $id;
@@ -62,7 +62,7 @@ class User_Session
 	{
 		$CI = &get_instance();
 		$username = $CI->session->userdata('username');
-		if ($username === FALSE ) {
+		if ($username == FALSE ) {
 			$username = "";
 		}
 		return $username;
@@ -88,7 +88,7 @@ class User_Session
 	{
 		$CI =& get_instance();
 		$privilege = (int)$CI->session->userdata('privilege');
-		if ($privilege === FALSE) {
+		if ($privilege == FALSE) {
 			$privilege = 0;
 		}
 		return $privilege;

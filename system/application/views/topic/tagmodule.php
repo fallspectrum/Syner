@@ -11,7 +11,14 @@
 				</li>
 			
 				<li id="bottom">
-				<a id="green" onClick="save_tags()">Save</a> / / / / <a id="red" onClick="remove_tags()">Remove All</a>
+				<?php
+					if(get_user_privilege() == 0) {
+						echo '<span style="font-size: 80%"> Login to save tags</span> /   <a id="red" onClick="remove_all_tags()">Remove All</a>';
+					}
+					else {
+						echo '<a id="green" onClick="save_tags()">Save</a> / / / / <a id="red" onClick="remove_all_tags()">Remove All</a>';
+					}
+				?>
 				</li>
 		</ul>				
 
