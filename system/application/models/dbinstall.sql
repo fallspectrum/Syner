@@ -14,7 +14,8 @@ CREATE TABLE users (
 	full_name VARCHAR(30),
 	use_alias BOOLEAN NOT NULL DEFAULT 1, 
 	default_location_id VARCHAR(30),
-	privilege TINYINT UNSIGNED NOT NULL DEFAULT 1
+	privilege TINYINT UNSIGNED NOT NULL DEFAULT 1,
+	saved_tags VARCHAR(255) NOT NULL
 ) CHARACTER SET utf8;
 
 CREATE TABLE tag_names ( 

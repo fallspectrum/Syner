@@ -11,7 +11,7 @@
 				</li>
 			
 				<li id="bottom">
-				<a href="" id="green">Save</a> / / / / <a href="" id="red">Remove All</a>
+				<a id="green" onClick="save_tags()">Save</a> / / / / <a id="red" onClick="remove_tags()">Remove All</a>
 				</li>
 		</ul>				
 

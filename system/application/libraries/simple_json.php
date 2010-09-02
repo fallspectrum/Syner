@@ -23,7 +23,8 @@ class Simple_JSON {
 					'duplicate' => -2,
 					'db_error' => -3,
 					'email_error' => -4,
-					'login_fail' => -5
+					'login_fail' => -5,
+					'privilege_error' => -6
 				);
 				
 	/**

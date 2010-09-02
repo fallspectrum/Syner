@@ -25,6 +25,26 @@ class Tags extends Model
 	}
 	
 	/**
+	* Retrieves tag names based on ids.
+	* @param $names array of tag names
+	* @return returns array of tag names.
+	*/
+	function get_tag_names($ids)
+	{
+		$tag_names = array();
+		$this->db->select('name');
+		$this->db->where('id', array_shift($ids));
+		foreach($ids as $id) {
+			$this->db->or_where('id', $name);
+		}
+		$query = $this->db->get('tag_names');
+		foreach( $query->result() as $row) {
+			array_push($tag_names,$row->name);
+		}
+		return $tag_names;
+	}
+	
+	/**
 	* This function retrives a array of tag ids based on there name
 	* @param $names array of tag names
 	* @return tag id.
