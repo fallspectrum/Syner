@@ -157,6 +157,22 @@ class Topics extends Model
 		$query = $this->db->query($sql);
 		return($query->result_array());
 	}
-			
+	
+	/**
+	* This function retrieves the last 11 created topics.
+	* @return returns the query result array.
+	*/
+	function get_recent_topics($tags = "") {
+		if(is_array($tags) ) {
+			//add code here to get topics;
+		}
+		$this->db->select("topic_id,title,content");
+		$this->db->from("topics");
+		$this->db->join("topic_contents", 'topics.id = topic_contents.topic_id');
+		$this->db->limit(11);
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
 	
 }

@@ -39,10 +39,21 @@ class Topic extends Controller
 	}
 	/**
 	* This function displays the recent view.
+	* @todo handle tag filters
 	*/
 	function recent() 
 	{
-		$data['content'] = $this->load->view("topic/recent",'',TRUE);	
+		$this->load->model("Topics",'',TRUE);
+		$results = $this->Topics->get_recent_topics();
+
+		foreach($results as $topic) {
+			//cut off after 100 characters.
+			if( mb_strlen($topic['content']) > 100) {
+				$topic['content'] = mb_substr($topic['content'],0,100) . '...';
+			}
+		}
+		$recent_view_data['topics'] = $results; 
+		$data['content'] = $this->load->view("topic/recent",$recent_view_data,TRUE);	
 		$this->load->view("layout",$data);
 	}
 	
