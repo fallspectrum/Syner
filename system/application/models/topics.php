@@ -171,7 +171,10 @@ class Topics extends Model
 			$this->db->from("tagged_topics");
 			if(is_array($tags)) {
 				foreach($tags as $tag) {
-					$this->db->or_where("tagged_topics.tag_id =" , $tag->id);
+					//Ignore ignore tags
+					if($tag->operator != Saved_Tag_Descriptor::IGNORE_OP) {
+						$this->db->or_where("tagged_topics.tag_id =" , $tag->id);
+					}
 				}
 			}
 			$this->db->limit(11);
