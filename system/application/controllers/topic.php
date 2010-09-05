@@ -44,7 +44,16 @@ class Topic extends Controller
 	function recent() 
 	{
 		$this->load->model("Topics",'',TRUE);
-		$results = $this->Topics->get_recent_topics();
+		
+		if($this->user_session->get_privilege() != 0 ) {
+			$this->load->model("Users",'',TRUE);
+			$tags = $this->Users->retrieve_tags($this->user_session->get_user_id());
+			$results = $this->Topics->get_recent_topics($tags);
+		}
+		else {
+			$results = $this->Topics->get_recent_topics();
+		}
+			
 
 		foreach($results as $topic) {
 			//cut off after 100 characters.
@@ -53,6 +62,7 @@ class Topic extends Controller
 			}
 		}
 		$recent_view_data['topics'] = $results; 
+		$data['js_files'] = array("/syner/system/application/views/topic/tagmodule.js");
 		$data['content'] = $this->load->view("topic/recent",$recent_view_data,TRUE);	
 		$this->load->view("layout",$data);
 	}

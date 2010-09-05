@@ -163,16 +163,127 @@ class Topics extends Model
 	* @return returns the query result array.
 	*/
 	function get_recent_topics($tags = "") {
-		if(is_array($tags) ) {
-			//add code here to get topics;
-		}
-		$this->db->select("topic_id,title,content");
-		$this->db->from("topics");
-		$this->db->join("topic_contents", 'topics.id = topic_contents.topic_id');
-		$this->db->limit(11);
-		$query = $this->db->get();
-		return $query->result_array();
 
+		if(is_array($tags)) {
+			//first we must get 11 topics
+			$this->db->select("tagged_topics.topic_id");
+			$this->db->distinct();
+			$this->db->from("tagged_topics");
+			if(is_array($tags)) {
+				foreach($tags as $tag) {
+					$this->db->or_where("tagged_topics.tag_id =" , $tag->id);
+				}
+			}
+			$this->db->limit(11);
+			$topic_ids = $this->db->get();
+
+
+			//now we must get all tag id's and topic id's assoicated with the tag id.
+			$this->db->select("tagged_topics.tag_id,tagged_topics.topic_id");
+			$this->db->from("tagged_topics");
+			foreach($topic_ids->result() as $topic_id) {
+				$this->db->or_where("topic_id",$topic_id->topic_id);
+			}
+			$tag_topic_ids = $this->db->get();
+			
+
+			//now we decide which topics to return based on tag operation
+			$good_topics = array();
+			$cur_topic_id=-1;
+			$good_topic_index = -2;
+
+
+			foreach($tag_topic_ids->result() as $ttid) {
+				
+				//if we are on a new topic id then create a new variable to preform operations on
+				if($cur_topic_id != $ttid->topic_id ) {
+					$good_topic_index+=2;
+					$good_topics[$good_topic_index] = 1;
+					$good_topics[$good_topic_index +1] = $ttid->topic_id; 
+					$cur_topic_id=$ttid->topic_id;
+				}
+
+				//generate a lookup table for tags for this topic.
+				$tag_lookup = array();
+				foreach($tag_topic_ids->result() as $atopic) {
+					if($atopic->topic_id == $cur_topic_id) {
+						$tag_lookup[$atopic->tag_id] = TRUE;
+					}
+				}
+				
+				//foreach of the user's tags...
+				foreach($tags as $tag) {
+
+					//make sure we ignore those excludes!
+					if($good_topics[$good_topic_index] == 1 || $good_topics[$good_topic_index] == 0) {
+						switch($tag->operator) {
+							case Saved_Tag_Descriptor::AND_OP:
+								
+								//If the current topic dosen't include a tag with the OR operator
+								//we set exclude it from result...unless a OR operator resets it.
+								if(! array_key_exists($tag->id,$tag_lookup)) {
+									$good_topics[$good_topic_index] = 0;
+								}
+								break;
+							case Saved_Tag_Descriptor::OR_OP:
+								//topic will always be included if it matches a OR tag
+								if( array_key_exists($tag->id,$tag_lookup)) {
+									$good_topics[$good_topic_index] = 1;
+								}
+								break;
+							case Saved_Tag_Descriptor::EXCLUDE_OP:
+								//exclude topic if topic has a id to be excluded.
+								if( array_key_exists($tag->id,$tag_lookup)) {
+									$good_topics[$good_topic_index] = -1;
+								}
+								break;
+						}
+					}
+				}
+			}
+			$match = FALSE;
+
+			if(is_array($tags)) {
+				//do we have ANY matches?
+				for($i=0;$i<count($good_topics);$i+=2) {
+					if($good_topics[$i] != 0 && $good_topics[$i] != -1) {
+						$match = TRUE;
+						break;
+					}
+				}
+			} 
+				
+			if($match == TRUE) {
+
+				//Finally retrieve the relevant topics	
+				$this->db->select("id,title,content");
+				for($i=0;$i<count($good_topics);$i+=2) {
+					if($good_topics[$i] == 1 || $good_topics[$i]==2) {
+						$this->db->or_where('topics.id =', $good_topics[$i+1]);
+					}
+				}
+				$this->db->distinct();
+				$this->db->from("topics");
+				$this->db->join("topic_contents", 'topics.id = topic_contents.topic_id');
+				$this->db->limit(11);
+				$query = $this->db->get();
+				return $query->result_array();
+			}
+			//no matches, return blank array.
+			else {
+				return array();
+			}
+
+		}
+		//since we got no tags then just return the last 11 topics
+		else {
+			$this->db->select('id,title,content');
+			$this->db->from("topics");
+			$this->db->join("topic_contents", 'id = topic_contents.topic_id');
+			$this->db->limit(11);
+			$result = $this->db->get();
+			return $result->result_array();
+		}
 	}
 	
 }
