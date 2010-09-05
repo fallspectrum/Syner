@@ -103,9 +103,15 @@ class Saved_Tag_Descriptor {
 		$return_val = array();
 		$elements = explode(" " ,$string);
 		$ele_count = count($elements);
-		for($i = 0; $i < $ele_count; $i+=3) { 
-			array_push($return_val, new Saved_Tag_Descriptor($elements[$i],$elements[$i+1],$elements[$i+2]));
-			
+		//make sure we have 3 elements
+		if(strlen($string) != 0 )
+		{
+			if($ele_count %3 != 0) {
+				throw new Exception("Invalid tag descriptor string.");
+			}
+			for($i = 0; $i < $ele_count; $i+=3) { 
+				array_push($return_val, new Saved_Tag_Descriptor($elements[$i],$elements[$i+1],$elements[$i+2]));
+			}
 		}
 		return $return_val;
 	}
