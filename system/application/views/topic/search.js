@@ -10,7 +10,7 @@ function parse_json_response(data)
 	else {
 		for(i in data.topics) {
 			topic = data.topics[i];
-			search_html = "<a href='" + SY_SITEPATH + "index.php/topic/view/topic_id/"+topic.id +"'>"+topic.title +"</a>" + "<p>"+topic.content + "...</p>";
+			search_html = "<a href='" + SY_SITEPATH + "index.php/topic/view/topic_id/"+topic.id +"'>"+topic.title +"</a>" + "<p>"+topic.content + "</p>";
 			search_results.append(search_html);
 		}
 		$("#txt_search_error").html("Search is complete.");

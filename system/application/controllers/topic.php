@@ -56,9 +56,26 @@ class Topic extends Controller
 			
 
 		foreach($results as $topic) {
-			//cut off after 100 characters.
-			if( mb_strlen($topic['content']) > 100) {
-				$topic['content'] = mb_substr($topic['content'],0,100) . '...';
+			//cut off around 90-100 characters.
+			$content_length = mb_strlen($topic['content']);
+			if($content_length > 100) {
+				//find a space in the string
+				
+				$space_index=90;
+				//after 10 letters just cut it off, must be a long word.
+				for($space_index=90;$space_index < 100;$space_index++) {
+					if($topic['content'][$space_index] == " ") {
+						break;
+					}
+				}
+				
+				//just cut it off at 100th character if no space is found.
+				if($space_index == 100) {
+					$space_index = 99;
+				}
+
+				$topic['content'] = mb_substr($topic['content'],0,$space_index + 1) . '...';
+
 			}
 		}
 		$recent_view_data['topics'] = $results; 
@@ -301,12 +318,17 @@ class Topic extends Controller
 
 		//Input was valid
 		else {
-			//Query data (TODO). Currently returns dummy data.
 			$this->load->model("topics",'',TRUE);
 			$result = $this->topics->search_for_topic(NULL,$this->input->post("txt_search"));	
 			foreach ($result as $row) {
 				//remove tags from text
 				$row['content'] = preg_replace('/<[^>]*>/',"", $row['content']);
+
+				//after 100 characters truncate and and ...
+				if(mb_strlen($row['content']) > 100) {
+					$row['content'] = mb_substr($row['content'],100);
+				}
+
 				$json->add_data("topics",array($row));
 			}
 
