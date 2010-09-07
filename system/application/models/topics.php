@@ -1,17 +1,24 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * This file describes the topic model
- */
+* Model used for topic releated data
+*/
  
 class Topics extends Model 
 {
 	/**
-	* Constants used for flags in topic_get_data
+	* Bitwise mask to retrieve topic title
 	*/
 	const TOPIC_TITLE = 1;
+
+	/**
+	* Bitwise mask to retreive topic content
+	*/
 	const TOPIC_CONTENT =  2;
 
+	/**
+	* Constructor for topics class
+	*/
 	function Topics()
 	{
 		parent::Model();
@@ -20,6 +27,10 @@ class Topics extends Model
 	/**
 	* Add a topic entry into the database
 	* @exception Throws an exception on failure
+	* @param int $user_id 
+	* @param string $title
+	* @param string $date_created
+	* @param string $location_id
 	* @return integer Returns the id of the inserted row
 	*/
 	function add_entry($user_id, $title, $date_created, $location_id) 
@@ -106,6 +117,8 @@ class Topics extends Model
 	/**
 	* This function retrives data related to the topic id. 
 	* @throws exception when no columns are selected
+	* @param int $topic_id Id of topic
+	* @param int $flags bitwise mask to request data. Constats located in Topics model
 	* @return a associtave array for selected column data.
 	*/
 	function get_topic_data($topic_id, $flags) {
@@ -160,6 +173,7 @@ class Topics extends Model
 	
 	/**
 	* This function retrieves the last 11 created topics.
+	* @param optional|array $tags optional array of Save_Tag_Descriptors
 	* @return returns the query result array.
 	*/
 	function get_recent_topics($tags = "") {
