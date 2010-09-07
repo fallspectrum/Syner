@@ -290,6 +290,9 @@ class User extends Controller {
 	{
                 $privilege = $this->user_session->get_privilege(); 
                 if($privilege != 0) { 
+			$user_id = $this->user_session->get_user_id();
+			$this->load->model("Users",'',TRUE);
+			$data['topic_subscriptions'] = $this->Users->retrieve_topic_subscription($user_id);
                         $data['username'] = $this->user_session->get_username(); 
                         $data['content'] = $this->load->view("user/home",$data,true); 
  

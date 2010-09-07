@@ -75,6 +75,29 @@ class Users extends Model
 		return Saved_Tag_Descriptor::from_string($result->saved_tags);
 	}
 
+	/**
+	* Retrieves a list of topics that user subscribed to. Limits to first 11.
+	* @return array Returns array of associative arrays describing the topics.
+	*/
+	function retrieve_topic_subscription($user_id)
+	{
+		$this->db->select("title,topic_id,date");
+		$this->db->from("topic_subscriptions");
+		$this->db->join("topics","topic_subscriptions.topic_id = topics.id");
+		$this->db->where("topic_subscriptions.user_id",$user_id);
+		$this->db->limit(11);
+		$query = $this->db->get();
+		$results = $query->result_array();
+		
+		//Format dates for topics in a better manner
+		$result_count = count($results);
+		for($i=0;$i < $result_count; $i++) {
+			$results[$i]['date'] = date("d F, Y",strtotime($results[$i]['date']));
+		}
+		
+		return $results;
+	}
+
 }
 
 /**

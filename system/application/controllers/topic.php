@@ -177,6 +177,9 @@ class Topic extends Controller
 						$tag_ids = $this->tags->get_tag_ids($tags);
 						$this->tags->tag_topic($topic_id,$tag_ids);
 
+						//subscribe the user to the topic
+						$this->topics->subscribe_user($topic_id,$this->user_session->get_user_id(),Topics::USER_FOR,'');
+
 						$json->add_error_response('success',$json->error_codes['success']);
 					}
 					catch (Exception $e) {

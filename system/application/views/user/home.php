@@ -54,39 +54,18 @@
 					</div>
 						<div id="homeright">
 							<h4>You're Following:</h4>
-							<dt>
-								<dl>
-									<a href="" class="bold">Problem title.</a>
-									<dd>
-									-Since: August 15th, 2009
-									</dd>
-								</dl>
-							</dt>
-							<dt>
-								<dl>
-									<a href="" class="bold">Problem title.</a>
-									<dd>
-									-Since: Date
-									</dd>
-								</dl>
-							</dt>
-							<dt>
-								<dl>
-									<a href="" class="bold">Problem title.</a>
-									<dd>
-									-Since: Date
-									</dd>
-								</dl>
-							</dt>
-							<dt>
-								<dl>
-									<a href="" class="bold">Problem title.</a>
-									<dd>
-									-Since: Date
-									</dd>
-								</dl>
-							</dt>
-						
+							<?php
+							if(count($topic_subscriptions) > 0) {
+								foreach($topic_subscriptions as $subscription) {
+									echo "<dt><dl>";
+									echo '<a href="' . SY_SITEPATH . 'index.php/topic/view/topic_id/' . $subscription['topic_id'] . '" class="bold">' . $subscription['title'] . '</a>';
+									echo "<dd>\r\n-Since: " . $subscription['date'] . '</dd></dl></dt>';
+								}
+							}
+							else {
+								echo "You are currently not subscriped to any topics.";
+							}
+							?>
 						</ul>
 					</div>
 				</div>

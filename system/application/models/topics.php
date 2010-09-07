@@ -16,6 +16,10 @@ class Topics extends Model
 	*/
 	const TOPIC_CONTENT =  2;
 
+	const USER_FOR = 0;
+	const USER_AGAINST = 1;
+	const USER_UNDECIDED = 2;
+
 	/**
 	* Constructor for topics class
 	*/
@@ -44,9 +48,36 @@ class Topics extends Model
 		if(!$query) {
 			throw new Exception('Failed to add topic entry');
 		}
-		
+	
 		return $this->db->insert_id();
 	}
+
+	
+	/**
+	* Subscribes user to topic.
+	* @param int $user_id id of user
+	* @param int|const $siding stance of user (for,against,etc.). Check constants in this class.
+	* @param string $comment comment of user (if there is one).
+	* @todo update subscription count
+	*/
+	function subscribe_user($topic_id,$user_id,$siding, $comment) 
+	{
+		$data = array(  'topic_id' => $topic_id,
+				'date' => date('Y-m-d H:i:s', time()),
+				'user_id' => $user_id,
+				'siding' => $siding,
+				'comment' => $comment);
+		$query = $this->db->insert('topic_subscriptions',$data);
+		if(!$query) {
+			throw new Exception('Failed to subscribe user to topic!');
+		}
+
+		//add code to update topic subscripction count here!
+	}
+
+	/**
+	* Updates subscription count for topic	
+	*/
 
 	/**
 	* Check if a topic exists by name.  
