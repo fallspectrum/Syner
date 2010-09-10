@@ -1,11 +1,10 @@
 <?
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
 * This library is used for making a simple JSON response. Simply create a JSON_Response 
 * instance and use the proper methods.
 */
-
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 
 class Simple_JSON {
 	

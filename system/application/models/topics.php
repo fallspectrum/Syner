@@ -16,10 +16,27 @@ class Topics extends Model
 	*/
 	const TOPIC_CONTENT =  2;
 
+
+	/**
+	* Bitwise mask to retreive subscription count
+	*/
+	const TOPIC_SUBSCRIPTION_COUNT = 3;
+
+	/**
+	* Bitwise mask to retreive for count
+	*/
+	const TOPIC_FOR_COUNT = 4;
+
+	/**
+	* Bitwise mask to retreive against count
+	*/
+	const TOPIC_AGAINST_COUNT = 5;
+
 	const USER_FOR = 0;
 	const USER_AGAINST = 1;
 	const USER_UNDECIDED = 2;
-
+	const USER_UNSUSCRIBE = 3;
+	const USER_NOT_SUBSCRIBED = 4;
 	/**
 	* Constructor for topics class
 	*/
@@ -37,7 +54,7 @@ class Topics extends Model
 	* @param string $location_id
 	* @return integer Returns the id of the inserted row
 	*/
-	function add_entry($user_id, $title, $date_created, $location_id) 
+	function add_entry($user_id, $title, $date_created, $location_id)
 	{	
 		$topicData['user_id'] = $user_id;
 		$topicData['title'] = $title;
@@ -54,30 +71,153 @@ class Topics extends Model
 
 	
 	/**
-	* Subscribes user to topic.
+	* Subscribes or unsubscribes user to/from topic.
 	* @param int $user_id id of user
 	* @param int|const $siding stance of user (for,against,etc.). Check constants in this class.
 	* @param string $comment comment of user (if there is one).
-	* @todo update subscription count
+	* @param $update equals 0 if updating, anything else if creating new entry.
+	* @todo add error checks
 	*/
-	function subscribe_user($topic_id,$user_id,$siding, $comment) 
+	function subscribe_user($topic_id,$user_id,$new_siding, $comment,$update=0) 
 	{
-		$data = array(  'topic_id' => $topic_id,
-				'date' => date('Y-m-d H:i:s', time()),
-				'user_id' => $user_id,
-				'siding' => $siding,
-				'comment' => $comment);
-		$query = $this->db->insert('topic_subscriptions',$data);
-		if(!$query) {
-			throw new Exception('Failed to subscribe user to topic!');
-		}
+		//make sure we have a valid siding
+		if(	$new_siding != Topics::USER_UNSUSCRIBE && $new_siding != Topics::USER_FOR &&
+			$new_siding != Topics::USER_AGAINST && $new_siding != Topics::USER_UNDECIDED ) {
+				throw new Exception("Provided siding value is invalid.");
+			}
 
-		//add code to update topic subscripction count here!
+
+		//we are updating our stance on a topic
+		if($update == 0) {
+			$topic_data = $this->get_topic_data($topic_id,Topics::TOPIC_SUBSCRIPTION_COUNT &
+								      Topics::TOPIC_FOR_COUNT &
+								      Topics::TOPIC_AGAINST_COUNT);
+
+
+			$new_for = $topic_data['for_count'];
+			$new_against = $topic_data['against_count'];
+			$new_subscriptions = $topic_data['subscription_count'];
+			//get the saved user stance
+			$saved_stance = $this->get_user_stance($topic_id,$user_id);
+			
+			//just return if our current stance is the same as the saved stance.
+			if($new_siding == $saved_stance) {
+				return;
+			}
+
+			//Do we need to suscribe?
+			if( $saved_stance == Topics::USER_NOT_SUBSCRIBED) {
+
+				if($new_siding != Topics::USER_UNSUSCRIBE) {
+							$this->subscribe_user($topic_id,$user_id,$new_siding,$comment,1);
+							$new_subscriptions++;
+						}	
+			}
+
+			//we are already subscribed
+			else {
+				
+				//Are we unsuscribing?
+				if($new_siding == Topics::USER_UNSUSCRIBE) {
+					$this->db->from('topic_subscriptions');
+					$this->db->where('user_id',$user_id);
+					$this->db->where('topic_id',$topic_id);
+					$this->db->delete();
+					if($this->db->_error_number()) {
+						throw new Exception("Error while unsuscribing user from topic.");
+					}
+					$new_subscriptions -= 1;
+				}
+
+				//We are updating if not unsuscribing
+				else {
+					$data = array (	"siding" => $new_siding);
+					
+					$this->db->where('topic_id', $topic_id);
+					$this->db->where('user_id', $user_id);
+					$this->db->update('topic_subscriptions',$data);
+					if($this->db->_error_number()) {
+						throw new Exception("Error while updating subscription.");
+					}
+				}
+			}
+			
+			//calculate new siding values				
+			switch($new_siding) {
+				case Topics::USER_FOR:
+					$new_for +=1;
+					$new_against -=1;
+					break;
+				case Topics::USER_AGAINST:
+					$new_for -=1;
+					$new_against +=1;
+					break;
+				case Topics::USER_UNDECIDED:
+				case Topics::USER_UNSUSCRIBE:
+					if($saved_stance == Topics::USER_FOR) {
+						$new_for -=1;
+					}
+					else if($saved_stance == Topics::USER_AGAINST) {
+						$new_against -=1;
+					}
+					break;
+			}
+
+			//and finally update the counts in the database
+			$new_data = array(  'for_count' => $new_for,
+					'against_count' => $new_against,
+					'subscription_count' => $new_subscriptions);
+			$this->db->where('id',$topic_id);
+			$this->db->where('user_id', $user_id);
+			$this->db->update('topics',$new_data);
+			if($this->db->_error_number()) {
+				echo $this->db->last_query();
+				throw new Exception("Error while updating subscription counts.");
+			}
+		
+		}
+		//we are inserting a new entry
+		else {
+			//we want to subscribe
+			if($new_siding != Topics::USER_UNSUSCRIBE) {
+				$data = array(  'topic_id' => $topic_id,
+						'date' => date('Y-m-d H:i:s', time()),
+						'user_id' => $user_id,
+						'siding' => $new_siding,
+						'comment' => $comment);
+				$query = $this->db->insert('topic_subscriptions',$data);
+				if(!$query) {
+					throw new Exception('Failed to subscribe user to topic!');
+				}
+			}
+		}
 	}
 
 	/**
-	* Updates subscription count for topic	
+	* Retreives a user stance on a topic. Returns a constant.
+	* @throws an execption if user is not assigned to topic.
+	* @throws an exception if query ran into error.
 	*/
+	function get_user_stance($topic_id,$user_id) {
+		$this->db->from('topic_subscriptions');
+		$this->db->select('siding');
+		$this->db->where('topic_id',$topic_id);
+		$this->db->where('user_id',$user_id);
+		$this->db->limit(1);
+		$result = $this->db->get();
+		if($this->db->_error_number()) {
+			throw new Exception("Error while retreiving user stance from database.");
+		}
+
+		//Assume user is not subscribed to topic.
+		if($result->num_rows() != 1) {
+			return Topics::USER_NOT_SUBSCRIBED;	
+		}
+		
+		$row = $result->row();
+		return $row->siding;	
+		
+	}
 
 	/**
 	* Check if a topic exists by name.  
@@ -169,6 +309,19 @@ class Topics extends Model
 		if($flags & Topics::TOPIC_TITLE) {
 			$this->db->select('topics.title');
 		}
+	
+		if($flags & Topics::TOPIC_SUBSCRIPTION_COUNT) {
+			$this->db->select('topics.subscription_count');
+		}
+
+		if($flags & Topics::TOPIC_FOR_COUNT) {
+			$this->db->select('topics.for_count');
+		}
+
+		if($flags & Topics::TOPIC_AGAINST_COUNT) {
+			$this->db->select('topics.against_count');
+		}
+
 		if($flags & Topics::TOPIC_CONTENT) {
 			$this->db->select('topic_contents.content');
 			if($need_join) {

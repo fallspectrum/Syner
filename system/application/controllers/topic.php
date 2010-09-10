@@ -178,7 +178,7 @@ class Topic extends Controller
 						$this->tags->tag_topic($topic_id,$tag_ids);
 
 						//subscribe the user to the topic
-						$this->topics->subscribe_user($topic_id,$this->user_session->get_user_id(),Topics::USER_FOR,'');
+						$this->topics->subscribe_user($topic_id,$this->user_session->get_user_id(),Topics::USER_FOR,"",1);
 
 						$json->add_error_response('success',$json->error_codes['success']);
 					}
@@ -301,7 +301,80 @@ class Topic extends Controller
 
 
 	/**
+	* Handles action page request
+	*/
+	function action()
+	{
+		$uri = $this->uri->uri_to_assoc(3);
+		try {
+			//make sure a valid topic_id has been given
+			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] <= 0) {
+				throw new Exception("A invalid topic ID has been supplied.");
+
+			}
+			
+			$data['js_files'] = array(SY_SITEPATH . "system/application/views/topic/action.js");
+			$data['topic_id'] = $uri['topic_id'];
+			$data['content'] = $this->load->view("topic/action",$data,TRUE);
+
+		}
+
+			
+		catch (Exception $e) {
+			$data['general_message'] = $e->getMessage();
+			$data['content'] = $this->load->view("general",$data,TRUE);
+		}
+		$this->load->view("layout",$data);
+	}
+
+	/**
+	* Handles action page json requests.
+	* @todo accept comments
+	*/
+	function subscribe_json() 
+	{
+		
+		//If user isn't logged in then theres nothing to do.
+		if ($this->user_session->get_privilege() == 0) {
+			throw new Exception("Must be logged in to save settings.");
+		}
+
+		$this->load->library("Simple_Json");
+		$this->load->library("form_validation");
+		$json = new Simple_Json();
+		
+		$this->form_validation->set_rules("siding","siding","required|numeric");
+		$this->form_validation->set_rules("topic_id","topic id","required|numeric");
+		//Input was not valid.
+		if ($this->form_validation->run() == FALSE) {
+			foreach ($this->form_validation->_error_array as $error) {
+				$json->add_error_response($error[0],$error[1]);
+			}
+		}
+		
+		//Input passed the 1st check.
+		else {
+				
+			//make sure topic id exists
+			$topic_id = $this->input->post("topic_id");
+			$siding = $this->input->post("siding");
+
+			$this->load->model("Topics",'',TRUE);
+			if($this->Topics->topic_id_exists($topic_id) == FALSE) {
+				throw new Exception("Topic id was invalid.");
+			}
+			
+			$comment ="";
+			$this->Topics->subscribe_user($topic_id,$this->user_session->get_user_id(),$siding,$comment,0);
+
+			$json->add_error_response("success",$json->error_codes['success']);
+		}
+		echo $json->format_response();
+	}
+
+	/**
 	* This function handles request for searching a topic.
+	* @todo check to make sure topic is valud
 	*/
 	function search_json()
 	{
