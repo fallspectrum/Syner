@@ -305,24 +305,31 @@ class Topic extends Controller
 	*/
 	function action()
 	{
-		$uri = $this->uri->uri_to_assoc(3);
-		try {
-			//make sure a valid topic_id has been given
-			if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] <= 0) {
-				throw new Exception("A invalid topic ID has been supplied.");
+		//Ask the user to log in first if not.
+		if ($this->user_session->get_privilege() == 0) {
+			$data['general_message'] = "You must log in before viewing this page.";
+			$data['content'] = $this->load->view("general",$data,TRUE);
+		}
+		else {
+			$uri = $this->uri->uri_to_assoc(3);
+			try {
+				//make sure a valid topic_id has been given
+				if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] <= 0) {
+					throw new Exception("A invalid topic ID has been supplied.");
+
+				}
+				
+				$data['js_files'] = array(SY_SITEPATH . "system/application/views/topic/action.js");
+				$data['topic_id'] = $uri['topic_id'];
+				$data['content'] = $this->load->view("topic/action",$data,TRUE);
 
 			}
-			
-			$data['js_files'] = array(SY_SITEPATH . "system/application/views/topic/action.js");
-			$data['topic_id'] = $uri['topic_id'];
-			$data['content'] = $this->load->view("topic/action",$data,TRUE);
-
-		}
 
 			
-		catch (Exception $e) {
-			$data['general_message'] = $e->getMessage();
-			$data['content'] = $this->load->view("general",$data,TRUE);
+			catch (Exception $e) {
+				$data['general_message'] = $e->getMessage();
+				$data['content'] = $this->load->view("general",$data,TRUE);
+			}
 		}
 		$this->load->view("layout",$data);
 	}
