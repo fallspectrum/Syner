@@ -311,16 +311,59 @@ class Topic extends Controller
 			$data['content'] = $this->load->view("general",$data,TRUE);
 		}
 		else {
+			$this->load->model("Topics",'',TRUE);
 			$uri = $this->uri->uri_to_assoc(3);
 			try {
 				//make sure a valid topic_id has been given
-				if(!isset($uri['topic_id']) || !ctype_digit($uri['topic_id']) || $uri['topic_id'] <= 0) {
+				$topic_id = $uri['topic_id'];
+
+				if(!isset($topic_id) || !ctype_digit($topic_id) || $topic_id <= 0 || !$this->Topics->topic_id_exists($topic_id)) {
 					throw new Exception("A invalid topic ID has been supplied.");
 
 				}
 				
+			
+				//Lets check if user is asking subscribe/unsuscribe to topic
+				if(isset($uri['subscription_action']))  {
+					$action = $uri['subscription_action'];
+					$comment = "";	
+					$siding = -1;
+					switch($action) {
+						case "for":
+							$siding = Topics::USER_FOR;
+							break;
+						case "against":
+							$siding = Topics::USER_AGAINST;
+							break;
+						case "undecided":
+							$siding = Topics::USER_UNDECIDED;
+							break;
+						case "unsuscribe":
+							$siding = Topics::USER_UNSUSCRIBE;
+							break;
+					}
+					if($siding !== -1 ) {
+						$this->Topics->subscribe_user($topic_id,$this->user_session->get_user_id(),$siding,$comment,0);
+					}
+				}
+
+
+
+				//if user is subscribed to topic get the number of people subscribed to topic
+				$user_stance = $this->Topics->get_user_stance($topic_id,$this->user_session->get_user_id());
+				if($user_stance != Topics::USER_NOT_SUBSCRIBED) {
+					$info = $this->Topics->get_topic_data($topic_id,Topics::TOPIC_SUBSCRIPTION_COUNT|Topics::TOPIC_FOR_COUNT|Topics::TOPIC_AGAINST_COUNT);
+					$data['subscription_info'] = array (	
+					  "for_count"=> $info['for_count'],
+					  "against_count"=> $info['against_count'],
+					  "subscription_count" => $info['subscription_count'],
+					  "undecided_count"=>$info['subscription_count'] - ($info['for_count'] + $info['against_count']));
+
+				}
+				
+
+				$data['topic_id'] = $topic_id; 
 				$data['js_files'] = array(SY_SITEPATH . "system/application/views/topic/action.js");
-				$data['topic_id'] = $uri['topic_id'];
 				$data['content'] = $this->load->view("topic/action",$data,TRUE);
 
 			}
@@ -335,6 +378,7 @@ class Topic extends Controller
 	}
 
 	/**
+	* THIS IS NOT USED AT THE MOMENT!
 	* Handles action page json requests.
 	* @todo accept comments
 	*/
@@ -370,7 +414,7 @@ class Topic extends Controller
 			if($this->Topics->topic_id_exists($topic_id) == FALSE) {
 				throw new Exception("Topic id was invalid.");
 			}
-			
+		
 			$comment ="";
 			$this->Topics->subscribe_user($topic_id,$this->user_session->get_user_id(),$siding,$comment,0);
 
