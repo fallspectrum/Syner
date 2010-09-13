@@ -58,6 +58,9 @@ class Tags extends Model
 			$this->db->or_where('name', $name);
 		}
 		$query = $this->db->get('tag_names');
+		if($this->db->_error_number()) {
+			throw new Exception("Failed to retreived tag id.");
+		}
 		foreach( $query->result() as $row) {
 			array_push($tag_ids,$row->id);
 		}

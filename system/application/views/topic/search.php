@@ -15,6 +15,7 @@
 					<input type="submit" value="Search" class="button" /> <br>
 					<label for="text_search" id="txt_search_error"></label>
 				</form>
+				<label id="js_error"></label>
 				<div id="spacer"></div>
 				<p>
 				<h1>

@@ -488,16 +488,21 @@ class Topic extends Controller
 		//input was valid
 		else {
 			$this->load->model("tags",'',TRUE);
-			$result = $this->tags->get_tag_ids(array($this->input->post("addtag")));
+			try {
+				$result = $this->tags->get_tag_ids(array($this->input->post("addtag")));
+				$tag_id = -1;
+				if(sizeof($result) == 1) { 
+					$tag_id = $result[0];
 
-			$tag_id = -1;
-			if(sizeof($result) == 1) { 
-				$tag_id = $result[0];
-
-			} 
-			$json->add_data("tag_id",$tag_id);
+				} 
+				$json->add_data("tag_id",$tag_id);
+			}
+			//A db error occured.
+			catch (Exception $e) {
+				$json->add_error_response("js_error",$json->error_codes['db_error']);
+			}
+			echo $json->format_response();
 		}
-		echo $json->format_response();
 	}
 }
 ?>
