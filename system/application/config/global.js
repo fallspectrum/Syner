@@ -43,7 +43,7 @@ function init_tinyMCE (callback) {
 		add_form_submit_trigger: false
 	};
 	//set callback function if set
-	if(typeof(callback) != undefined) {
+	if(typeof(callback) != "undefined") {
 		tinyMCEInitParam.setup = function(ed) { ed.onInit.add(callback)};
 	}
 	tinyMCE.init(tinyMCEInitParam);
@@ -259,7 +259,7 @@ function Simple_json()
 	 */
 	this.success_callback = function () {};
 
-	
+
 	/**
 	 *  Used to create a ajax response.
 	 */
@@ -283,13 +283,16 @@ function Simple_json()
 	
 	/**
 	 * Callback when there is an error.
+	 * @todo disable verbose output
 	 */
 	this.error_handler = function (xhr,textStatus,errorThrow)
 	{
+		alert(xhr.responseText);
 		$('#js_error').html("There was an error processing your request.");
 		$('#js_error').show();
 	};
 
+	
 	//if jquery calls response_handler for the success function, this does not
 	//point to simple_json instance.
 	var me = this;	

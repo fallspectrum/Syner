@@ -486,5 +486,46 @@ class Topics extends Model
 			return $result->result_array();
 		}
 	}
+
+	/**
+	* This function retrieves 10 dicussions posts, newest to oldest
+	* @param int $problem_id problem id to retreive posts from
+	* @param int $index id if first post to retrieve. Default is 1st index.
+	*/
+	function get_discussion_posts($problem_id,$index=-1) {
+		$this->db->select('username,user_reply,user_id,discussion_posts.id');
+		$this->db->from("discussion_posts");
+		$this->db->join("users", 'user_id = users.id');
+		if($index >0) {
+			$this->db->where('discussion_posts.id >= ', $index);
+		}
+		$this->db->where('problem_id = ', $problem_id);
+		$this->db->order_by("id","DESC");
+		$this->db->limit(10);
+		$result = $this->db->get();
+		if($this->db->_error_number()) {
+			throw new Exception("Error occured while retrieveing discussion posts.");
+		}
+		return $result->result_array();
+	}
+
+	/**
+	* This function handles creating a new discussion post.
+	* @param int $problem_id associated problem id of post.
+	* @param int $user_id userid of post.
+	* @param string $content content of post 
+	* @param string $user_reply 
+	*/
+	function create_discussion_post($problem_id,$user_id,$user_reply) {
+		$data = array(
+			  'problem_id' => $problem_id, 
+			  'user_id' => $user_id,
+			  'user_reply' => $user_reply);
+		$this->db->insert('discussion_posts',$data);
+		if($this->db->_error_number()) {
+			throw new exception("Failed to insert discussion post.");
+		}
+	}
+
 	
 }

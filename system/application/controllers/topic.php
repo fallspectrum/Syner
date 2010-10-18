@@ -238,6 +238,7 @@ class Topic extends Controller
 	
 	/**
 	* Used to retrieve topic data for editing. Returns a json response.
+	* @todo ERROR CHECKING
 	*/
 	function edit_load_topic_ajax() 
 	{
@@ -253,15 +254,13 @@ class Topic extends Controller
 
 
 			$json->add_data("topic",$data);
-			echo $json->format_response();
 		}
 
 		catch (Exception $e) {
 			$json->add_error_response("js",$json->error_codes['db_error']);		
-			echo $json->format_response();
 		}
 
-		
+		echo $json->format_response();
 	}
 	
 	/**
@@ -504,5 +503,100 @@ class Topic extends Controller
 			echo $json->format_response();
 		}
 	}
+
+	/**
+	* This function is used to handle the topic display page.
+	* @todo update topic id when topics can have multiple problems
+	*/
+	function discussion()
+	{
+		
+		$uri_data = $this->uri->uri_to_assoc(3);
+	
+		//validate uri data
+		try {
+			if(!array_key_exists('problem_id',$uri_data) || !ctype_digit($uri_data['problem_id'])) {
+				throw new Exception("Problem id was not specified in URL.");
+			}
+		} catch (Exception $e) {
+			$data['general_message'] = $e->getMessage();
+			$data['content'] = $this->load->view("general",$data,TRUE);
+			$page =$this->load->view("layout",$data,TRUE);
+			die($page);
+		}
+	
+		
+		$this->load->model("Topics",'',TRUE);
+		
+		//get the topic title 
+		$topic_data = $this->Topics->get_topic_data($uri_data['problem_id'],Topics::TOPIC_TITLE);
+		if(!$topic_data['title'] ) {
+			$data['general_message'] = "Invalid problem id";
+
+			$data['content'] = $this->load->view("general",$data,TRUE);
+			$page =$this->load->view("layout",$data,TRUE);
+			die($page);
+	
+		}
+		
+		
+		//get the last 10 responses
+		$discussion_posts = $this->Topics->get_discussion_posts($uri_data['problem_id'],TRUE);
+
+		$data['js_files'] = array(SY_SITEPATH . "system/application/views/tiny_mce/tiny_mce_src.js",SY_SITEPATH . "system/application/views/topic/discussion.js");
+		$data['problem_title'] = $topic_data['title'];
+		$data['posts'] = $discussion_posts;
+		$data['topic_id'] = $uri_data['problem_id'];
+		$data['problem_id'] = $uri_data['problem_id'];
+		$data['content'] = $this->load->view("topic/discussion",$data,TRUE);	
+		$this->load->view("layout",$data);
+			
+	}
+
+	/**
+	* This function handles posting a new discussion reply
+	*/
+	function discussion_post_json() 
+	{	
+		
+		//if user isn't logged in then kill script. 
+		if($this->user_session->get_privilege() == 0 ) {
+			die("Must be logged in to send post.");
+		}
+		
+		
+		$this->load->library('form_validation');
+		$this->load->library('simple_json');
+		
+		$json = new Simple_Json();
+
+		$this->form_validation->set_rules("problem_id","problem_id",'required|integer');
+		$this->form_validation->set_rules("reply","reply","required|min_length[10]|max_length[500]");
+		
+		//if data failed to validate
+		if($this->form_validation->run() == FALSE) {
+		
+			foreach($this->form_validation->_error_array as $error) {
+				$json->add_error_response($error[0],$error[1]);
+			}
+		}
+		
+		else {
+		
+			$this->load->model('topics','',TRUE);
+
+			try {
+				$this->topics->create_discussion_post($this->input->post("problem_id"),$this->user_session->get_user_id(),$this->input->post("reply"));
+
+				$json->add_error_response('success',$json->error_codes['success']);
+			}
+
+			catch (Exception $e) {
+				$json->add_error_response("js",$json->error_codes['db_error']);		
+			}
+		}
+		echo $json->format_response();
+	}
+
 }
 ?>

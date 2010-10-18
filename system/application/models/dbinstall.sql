@@ -97,4 +97,12 @@ CREATE TABLE ci_sessions (
 	PRIMARY KEY (session_id)
 ) CHARACTER SET utf8;
 
+CREATE TABLE discussion_posts (
+	id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	problem_id INTEGER UNSIGNED NOT NULL,
+	user_id INTEGER UNSIGNED NOT NULL,
+	user_reply VARCHAR(10000)
+) CHARACTER SET utf8;
+
+
 INSERT INTO locations VALUES ("global","Global"),("cnt","Country"),("personal","Personal");
