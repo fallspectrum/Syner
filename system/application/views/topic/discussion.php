@@ -20,8 +20,10 @@
 					}
 					else {
 						foreach ($posts as $post) {
-							echo '<div class="username">' . $post['username']. '</div>';
-							echo '<p class="reply">' . $post['user_reply']. '</p>';
+							echo '<div class="reply"><span class="username">' . $post['username'] . '</span>';
+							echo '- ' . $post['time_updated'];
+							echo '<p class="reply_content">' . $post['user_reply']. '</p>';
+							echo '</div>';	
 						}
 					}
 				?>

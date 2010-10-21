@@ -493,7 +493,7 @@ class Topics extends Model
 	* @param int $index id if first post to retrieve. Default is 1st index.
 	*/
 	function get_discussion_posts($problem_id,$index=-1) {
-		$this->db->select('username,user_reply,user_id,discussion_posts.id');
+		$this->db->select('username,user_reply,user_id,discussion_posts.id,time_updated');
 		$this->db->from("discussion_posts");
 		$this->db->join("users", 'user_id = users.id');
 		if($index >0) {
@@ -506,7 +506,15 @@ class Topics extends Model
 		if($this->db->_error_number()) {
 			throw new Exception("Error occured while retrieveing discussion posts.");
 		}
-		return $result->result_array();
+
+		$results = $result->result_array(); 
+		//Format dates for topics in a better manner
+                $result_count = count($results);
+                for($i=0;$i < $result_count; $i++) {
+                        $results[$i]['time_updated'] = date("d F, Y",strtotime($results[$i]['time_updated']));
+                }
+		return $results;
+
 	}
 
 	/**
