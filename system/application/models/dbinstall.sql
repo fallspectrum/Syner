@@ -43,7 +43,7 @@ CREATE TABLE topics (
 	against_count INTEGER UNSIGNED NOT NULL DEFAULT 0,
 	location_id VARCHAR(30) NOT NULL,
 	FULLTEXT(title)
-) CHARACTER SET utf8; 
+) CHARACTER SET utf8, ENGINE = MYISAM; 
 
 CREATE TABLE topic_subscriptions ( 
 	topic_id INTEGER UNSIGNED NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE topic_contents (
 	content TEXT NOT NULL,
 	user_id INTEGER UNSIGNED NOT NULL,
 	FULLTEXT(content)
-) CHARACTER SET utf8;
+) CHARACTER SET utf8, ENGINE = MYISAM;
 
 CREATE TABLE topic_content_revisions (  
 	id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
